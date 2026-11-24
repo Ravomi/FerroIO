@@ -1,71 +1,73 @@
 # FerroIO
 
-> **下一代 Rust 驱动的跨平台嵌入式开发工作台**  
-> 融合类 PlatformIO 的统一工具链与生态管理、原生 `probe-rs` 调试烧录、可扩展插件体系，以及基于 **GPUI** 的高性能桌面端应用。
+> **A next-generation, Rust-powered cross-platform ecosystem for embedded development.**  
+> Unified toolchain & library management, native `probe-rs` flashing and debugging, extensible plugin architecture, and a fast **egui**-based desktop workbench.
 
 ---
 
-## 什么是 FerroIO？
+## Why FerroIO?
 
-**FerroIO** 是一个面向嵌入式系统的开源开发平台与桌面工作台。它旨在解决嵌入式开发中工具链碎片化、环境配置繁琐、IDE 笨重的问题，同时为 **C/C++** 与 **Rust** 嵌入式项目提供一致的开发体验。
+Embedded development shouldn't be slowed down by fragmented toolchains, brittle vendor IDEs, or manual environment setup. Inspired by **PlatformIO**, **FerroIO** brings a modern, reproducible, and fast workflow to both **C/C++** and **Rust** embedded projects—all from a single CLI and a lightweight native desktop workbench.
 
-- **统一构建与依赖管理**：使用声明式配置（`ferro.toml`，支持平滑导入 `platformio.ini`）管理开发板、框架、工具链与第三方库。
-- **原生高速烧录与调试**：深度集成 `probe-rs`，开箱支持 ARM Cortex-M、RISC-V 等主流架构的烧录、RTT 实时日志与硬件调试。
-- **GPUI 高性能桌面端**：基于 Zed 同款 GPU 加速 UI 框架 **GPUI** 构建，提供低延迟的工程管理、编译输出面板、串口终端与实时波形监视器。
-- **插件化架构**：支持通过插件扩展芯片平台（Platform）、开发板定义（Board）、构建钩子与桌面端工具应用。
-
----
-
-## 核心特性
-
-- **多生态兼容**：同时支持 Rust (`cargo` / `embassy` / `embedded-hal`) 与传统 C/C++ (`arm-none-eabi-gcc` / `esp-idf` / Arduino) 嵌入式工程。
-- **零配置工具链分发**：自动拉取并隔离管理各目标芯片所需的编译器、SDK 与调试工具。
-- **Board & Registry 兼容**：支持解析与复用社区现有的开发板元数据，快速适配数百款常见开发板。
-- **Core 与 UI 解耦**：既可以作为纯命令行工具（`ferro-cli`）运行在 CI/CD 与无头环境中，也可以通过 `ferro-ui` 获得完整的桌面端交互体验。
+- **Zero-Hassle Toolchain Management**: Automatically provisions and isolates compilers, SDKs, and debuggers per target board and framework.
+- **Declarative Project Configuration**: Define boards, frameworks, build flags, and dependencies cleanly in `ferro.toml` (with smooth migration from `platformio.ini`).
+- **Native High-Speed Debug & Flash**: Built-in `probe-rs` integration for ARM Cortex-M, RISC-V, and more—supporting flashing, RTT real-time logging, and hardware debugging out of the box.
+- **Fast Native Desktop Workbench**: Powered by **egui** (`eframe`), delivering a responsive project manager, build console, serial/RTT monitor, and real-time waveform plotter.
+- **Extensible Plugin System**: Add new silicon platforms, board definitions, build hooks, and custom UI panels through a clean plugin interface.
 
 ---
 
-## 项目结构（规划）
+## Key Features
+
+- **Multi-Ecosystem Support**: First-class support for both **Rust** (`cargo`, `embassy`, `embedded-hal`) and **C/C++** (`arm-none-eabi-gcc`, `esp-idf`, Arduino) embedded workflows.
+- **Board & Registry Compatibility**: Reuse and parse community board metadata to support hundreds of popular development boards.
+- **Decoupled Core & UI**: Run `ferro-cli` headlessly in CI/CD pipelines and terminals, or launch `ferro-ui` for a full interactive desktop experience.
+- **Cross-Platform**: Works consistently across Linux, macOS, and Windows.
+
+---
+
+## Architecture
 
 ```text
 FerroIO/
-├── Cargo.toml              # Workspace 配置
+├── Cargo.toml              # Workspace configuration
 ├── crates/
-│   ├── ferro-core/         # 核心引擎：工程解析、工具链管理、构建、probe-rs 烧录、串口
-│   ├── ferro-plugin/       # 插件协议与加载器（声明式配置 / WASM / 子进程 RPC）
-│   ├── ferro-cli/          # 命令行工具（init / build / flash / monitor）
-│   └── ferro-ui/           # GPUI 桌面应用与插件工作台
-└── plugins/                # 内置平台与工具插件
+│   ├── ferro-core/         # Core engine: project parsing, toolchain manager, builder, probe-rs, serial
+│   ├── ferro-plugin/       # Plugin protocol & loader (declarative / WASM / RPC)
+│   ├── ferro-cli/          # CLI tool (init / build / flash / monitor)
+│   └── ferro-ui/           # Native egui desktop workbench
+└── plugins/                # Built-in platform & tool plugins
 ```
 
 ---
 
-## 快速开始（规划中）
+## Quick Start (Planned)
 
 ```bash
-# 初始化一个新工程
+# Initialize a new project for a target board
 ferro init --board stm32f401ccu6
 
-# 编译工程
+# Build firmware
 ferro build
 
-# 烧录固件并打开 RTT / 串口监视器
+# Flash firmware and open RTT / serial monitor
 ferro flash --monitor
 
-# 启动 GPUI 桌面工作台
+# Launch the desktop workbench
 ferro ui
 ```
 
 ---
 
-## 路线图
+## Roadmap
 
-- [ ] **Phase 1 — Core & CLI MVP**：完成 Workspace 初始化，打通 `init` / `build` / `flash` / `monitor` 闭环（优先支持 STM32 / ESP32）。
-- [ ] **Phase 2 — 插件体系与生态兼容**：确定插件接口规范，支持导入 PlatformIO 板卡配置。
-- [ ] **Phase 3 — GPUI 桌面端**：构建工程管理、编译控制台、串口/RTT 监视器与插件面板。
+- [x] **Phase 0 — Workspace Bootstrap**: Rust workspace setup with `ferro-core`, `ferro-plugin`, `ferro-cli`, and `ferro-ui` (`egui`).
+- [ ] **Phase 1 — Core & CLI MVP**: End-to-end `init` / `build` / `flash` / `monitor` workflow (targeting STM32 & ESP32 first).
+- [ ] **Phase 2 — Plugin System & Ecosystem**: Finalize plugin APIs and `platformio.ini` / board metadata import.
+- [ ] **Phase 3 — Desktop Workbench**: Project explorer, build output console, serial/RTT terminal, and real-time signal plotter.
 
 ---
 
-## 许可证
+## License
 
-待定（拟采用 MIT / Apache-2.0 双许可）。
+Dual-licensed under **MIT** or **Apache-2.0** (matching the Rust ecosystem standard).

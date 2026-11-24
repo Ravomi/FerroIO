@@ -1,0 +1,13 @@
+[package]
+name = "ferro-cli"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "ferro"
+path = "src/main.rs"
+
+[dependencies]
+ferro-core.workspace = true
+ferro-plugin.workspace = true

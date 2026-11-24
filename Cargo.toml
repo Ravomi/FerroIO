@@ -1,0 +1,19 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/ferro-core",
+    "crates/ferro-plugin",
+    "crates/ferro-cli",
+    "crates/ferro-ui",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+
+[workspace.dependencies]
+ferro-core = { path = "crates/ferro-core" }
+ferro-plugin = { path = "crates/ferro-plugin" }
+eframe = "0.31"
+egui = "0.31"
