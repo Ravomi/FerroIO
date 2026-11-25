@@ -7,19 +7,19 @@ fn main() -> eframe::Result<()> {
     };
 
     eframe::run_native(
-        "FerroIO Workbench",
+        "RavomIO Workbench",
         options,
-        Box::new(|_cc| Ok(Box::new(FerroApp::default()))),
+        Box::new(|_cc| Ok(Box::new(RavomApp::default()))),
     )
 }
 
 #[derive(Default)]
-struct FerroApp;
+struct RavomApp;
 
-impl eframe::App for FerroApp {
+impl eframe::App for RavomApp {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         egui::CentralPanel::default().show(ctx, |ui| {
-            ui.heading(format!("FerroIO Workbench v{}", ferro_core::version()));
+            ui.heading(format!("RavomIO Workbench v{}", ravom_core::version()));
             ui.label("egui 桌面端骨架已就绪。");
         });
     }

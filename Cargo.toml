@@ -1,10 +1,10 @@
 [workspace]
 resolver = "2"
 members = [
-    "crates/ferro-core",
-    "crates/ferro-plugin",
-    "crates/ferro-cli",
-    "crates/ferro-ui",
+    "crates/ravom-core",
+    "crates/ravom-plugin",
+    "crates/ravom-cli",
+    "crates/ravom-ui",
 ]
 
 [workspace.package]
@@ -13,7 +13,11 @@ edition = "2021"
 license = "MIT OR Apache-2.0"
 
 [workspace.dependencies]
-ferro-core = { path = "crates/ferro-core" }
-ferro-plugin = { path = "crates/ferro-plugin" }
+ravom-core = { path = "crates/ravom-core" }
+ravom-plugin = { path = "crates/ravom-plugin" }
 eframe = "0.31"
 egui = "0.31"
+clap = { version = "4", features = ["derive"] }
+serde = { version = "1", features = ["derive"] }
+toml = "0.8"
+thiserror = "2"
