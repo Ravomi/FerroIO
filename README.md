@@ -71,6 +71,16 @@ mio ui
 
 ---
 
+## TODO
+
+- [ ] **C/C++ Build Pipeline**: Integrate `arm-none-eabi-gcc`, `esp-idf`, and Arduino build runners into `mio build` alongside `cargo`.
+- [ ] **FPGA Synthesis Pipeline**: Wire `rust-hdl` / `spade` / `veryl` → `yosys` → `nextpnr` → `ecppack` / `icepack` bitstream generation into `mio build`.
+- [ ] **Interactive Serial Terminal**: Add real-time serial TX/RX backend (`serialport`) to `mio monitor` and `ravom-ui`.
+- [ ] **Hardware-in-the-Loop Verification**: End-to-end `probe-rs` flashing, RTT (`defmt`) logging, and `openFPGALoader` bitstream verification on physical boards (STM32, ESP32, RP2040/RP2350, STEP-MXO2-LPC, Tang Nano).
+- [ ] **Automated Toolchain Provisioning**: Auto-download/manage `probe-rs`, `openFPGALoader`, and cross-compilation toolchains per target platform.
+
+---
+
 ## License
 
 Dual-licensed under **MIT** or **Apache-2.0** (matching the Rust ecosystem standard).
