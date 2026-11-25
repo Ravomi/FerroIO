@@ -1,0 +1,7 @@
+id = "tang_nano_20k"
+name = "Sipeed Tang Nano 20K (GW2AR-18C)"
+vendor = "Sipeed"
+platform = "gowin_fpga"
+mcu = "GW2AR-LV18QN88C8/I7"
+default_framework = "rust-hdl"
+frameworks = ["rust-hdl", "verilog", "apicula"]

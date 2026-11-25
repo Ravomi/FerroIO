@@ -119,6 +119,11 @@ static BUILTIN_FRAMEWORKS: &[BuiltinFramework] = &[
         display_name: "Bare-Metal (#![no_std])",
         is_rtos: false,
     },
+    BuiltinFramework {
+        id: "rust-hdl",
+        display_name: "RustHDL (FPGA: Rust -> Verilog -> yosys/nextpnr)",
+        is_rtos: false,
+    },
 ];
 
 /// Return all built-in framework/RTOS plugins.

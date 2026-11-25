@@ -1,0 +1,7 @@
+id = "tinyfpga_bx"
+name = "TinyFPGA BX (iCE40LP8K)"
+vendor = "TinyFPGA"
+platform = "lattice_ice40"
+mcu = "ICE40LP8K-CM81"
+default_framework = "rust-hdl"
+frameworks = ["rust-hdl", "verilog", "icestorm"]

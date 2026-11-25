@@ -1,0 +1,7 @@
+id = "step_mxo2_lpc"
+name = "STEP-MXO2-LPC (Lattice MachXO2-4000HC)"
+vendor = "STEPFPGA"
+platform = "lattice_machxo2"
+mcu = "LCMXO2-4000HC-4MG132C"
+default_framework = "rust-hdl"
+frameworks = ["rust-hdl", "verilog"]

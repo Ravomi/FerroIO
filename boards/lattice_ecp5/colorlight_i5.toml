@@ -1,0 +1,7 @@
+id = "colorlight_i5"
+name = "Colorlight i5 (ECP5-25F)"
+vendor = "Colorlight"
+platform = "lattice_ecp5"
+mcu = "LFE5U-25F-6BG381C"
+default_framework = "rust-hdl"
+frameworks = ["rust-hdl", "verilog"]
