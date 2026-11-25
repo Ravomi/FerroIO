@@ -134,6 +134,11 @@ static BUILTIN_FRAMEWORKS: &[BuiltinFramework] = &[
         display_name: "Veryl HDL (Modern SystemVerilog alternative)",
         is_rtos: false,
     },
+    BuiltinFramework {
+        id: "mirui",
+        display_name: "Mirui (no_std ECS Embedded & Desktop UI Framework)",
+        is_rtos: false,
+    },
 ];
 
 /// Return all built-in framework/RTOS plugins.
