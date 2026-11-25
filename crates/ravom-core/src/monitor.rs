@@ -2,9 +2,11 @@ use crate::config::RavomConfig;
 use crate::flash::resolve_firmware_path;
 use crate::registry::find_board_record;
 use crate::{CoreError, Result};
-use std::fs;
+use std::fs::{self, OpenOptions};
+use std::io::{self, Read, Write};
 use std::path::Path;
 use std::process::Command;
+use std::thread;
 
 /// Discover likely USB/ACM serial ports on Unix-like systems without native dependencies.
 pub fn list_serial_ports() -> Vec<String> {
@@ -55,6 +57,45 @@ pub fn monitor_rtt(dir: &Path, env_name: Option<&str>, release: bool) -> Result<
     if !status.success() {
         return Err(CoreError::MonitorFailed(status.code()));
     }
+    Ok(())
+}
+
+/// Open an interactive serial terminal on `port` at `baud` using `stty` + raw device I/O.
+pub fn monitor_serial(port: &str, baud: u32) -> Result<()> {
+    let baud_str = baud.to_string();
+    let stty_status = Command::new("stty")
+        .args(["-F", port, &baud_str, "raw", "-echo"])
+        .status()
+        .map_err(|_| CoreError::MonitorFailed(None))?;
+    if !stty_status.success() {
+        return Err(CoreError::MonitorFailed(stty_status.code()));
+    }
+
+    let mut reader = OpenOptions::new().read(true).open(port)?;
+    let mut writer = OpenOptions::new().write(true).open(port)?;
+
+    let tx_handle = thread::spawn(move || {
+        let mut stdin = io::stdin().lock();
+        let mut buf = [0u8; 256];
+        while let Ok(n) = stdin.read(&mut buf) {
+            if n == 0 || writer.write_all(&buf[..n]).is_err() {
+                break;
+            }
+            let _ = writer.flush();
+        }
+    });
+
+    let mut stdout = io::stdout().lock();
+    let mut buf = [0u8; 256];
+    while let Ok(n) = reader.read(&mut buf) {
+        if n == 0 {
+            break;
+        }
+        stdout.write_all(&buf[..n])?;
+        stdout.flush()?;
+    }
+
+    drop(tx_handle);
     Ok(())
 }
 

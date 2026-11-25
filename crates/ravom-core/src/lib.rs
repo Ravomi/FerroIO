@@ -9,6 +9,7 @@ pub mod monitor;
 pub mod project;
 pub mod registry;
 pub mod sim;
+pub mod toolchain;
 
 use std::path::PathBuf;
 use thiserror::Error;

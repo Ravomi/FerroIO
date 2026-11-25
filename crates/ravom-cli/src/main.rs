@@ -126,6 +126,12 @@ enum Commands {
         #[arg(short, long)]
         release: bool,
     },
+    /// Check installed embedded/FPGA toolchains and optionally install a Rust target
+    Doctor {
+        /// Install a Rust target triple via `rustup target add <TRIPLE>`
+        #[arg(long)]
+        install_target: Option<String>,
+    },
     /// Launch the RavomIO egui desktop workbench
     Ui,
 }
@@ -233,8 +239,15 @@ fn run(cli: Cli) -> Result<(), Box<dyn std::error::Error>> {
                 let ports = ravom_core::monitor::list_serial_ports();
                 let selected = port.or_else(|| ports.into_iter().next());
                 match selected {
-                    Some(p) => println!("Serial monitor ready for {p} @ {baud} baud (interactive terminal backend coming next)."),
-                    None => return Err("no serial port found; specify --port <PATH> or use --rtt".into()),
+                    Some(p) => {
+                        println!("Opening serial monitor on {p} @ {baud} baud (Ctrl+C to exit)...");
+                        ravom_core::monitor::monitor_serial(&p, baud)?;
+                    }
+                    None => {
+                        return Err(
+                            "no serial port found; specify --port <PATH> or use --rtt".into()
+                        )
+                    }
                 }
             }
         }
@@ -299,6 +312,23 @@ fn run(cli: Cli) -> Result<(), Box<dyn std::error::Error>> {
                 run,
             )?;
             println!("Deployed binary to {dest}");
+        }
+        Commands::Doctor { install_target } => {
+            if let Some(target) = install_target {
+                ravom_core::toolchain::install_rust_target(&target)?;
+                println!("Installed Rust target '{target}' via rustup.");
+                return Ok(());
+            }
+            println!("{:<20} {:<10} HINT", "TOOL", "STATUS");
+            for tool in ravom_core::toolchain::check_toolchains() {
+                let state = if tool.installed { "OK" } else { "MISSING" };
+                let hint = if tool.installed {
+                    "-"
+                } else {
+                    tool.install_hint
+                };
+                println!("{:<20} {:<10} {}", tool.name, state, hint);
+            }
         }
         Commands::Ui => {
             println!("Run `cargo run -p ravom-ui` to launch the RavomIO desktop workbench.");
