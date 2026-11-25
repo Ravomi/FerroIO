@@ -19,7 +19,7 @@ Embedded development shouldn't be slowed down by fragmented toolchains, brittle 
 
 ## Key Features
 
-- **Multi-Ecosystem Support**: First-class support for both **Rust** (`cargo`, `embassy`, `embedded-hal`) and **C/C++** (`arm-none-eabi-gcc`, `esp-idf`, Arduino) embedded workflows.
+- **Multi-Ecosystem Support**: First-class support for **Rust** (`cargo`, `embassy`, `rtic`, `embedded-hal`, [`mirui`](https://github.com/W-Mai/mirui) `no_std` embedded UI), **C/C++** (`arm-none-eabi-gcc`, `esp-idf`, Arduino), and **Open-Source FPGA** (`rust-hdl`, `spade`, `veryl` + `yosys` / `nextpnr` / `openFPGALoader`).
 - **Board & Registry Compatibility**: Reuse and parse community board metadata to support hundreds of popular development boards.
 - **Decoupled Core & UI**: Run `ravom-cli` (`mio`) headlessly in CI/CD pipelines and terminals, or launch `ravom-ui` for a full interactive desktop experience.
 - **Cross-Platform**: Works consistently across Linux, macOS, and Windows.
@@ -66,7 +66,7 @@ mio ui
 
 - [x] **Phase 0 — Workspace Bootstrap**: Rust workspace setup with `ravom-core`, `ravom-plugin`, `ravom-cli` (`mio`), and `ravom-ui` (`egui`).
 - [x] **Phase 1 — Core & CLI MVP**: End-to-end `mio init` / `build` / `run` / `flash` / `monitor` / `boards` workflow (verified with STM32F103C8T6 Cortex-M3 ELF build & Google Rust Style lints).
-- [x] **Phase 2 — Plugin System & Ecosystem**: Unified TOML board registry (36 platforms, 2,319 boards), `ravom-plugin` framework/RTOS plugins (Embassy, RTIC, ESP-IDF, FreeRTOS, Zephyr, RT-Thread), and `mio migrate` (`platformio.ini` → `ravom.toml`).
+- [x] **Phase 2 — Plugin System & Ecosystem**: Unified TOML board registry (44 platforms, 2,339 boards), `ravom-plugin` framework/RTOS/UI/HDL plugins (Embassy, RTIC, ESP-IDF, FreeRTOS, Zephyr, RT-Thread, `mirui`, `rust-hdl`, `spade`, `veryl`), and `mio migrate` (`platformio.ini` → `ravom.toml`).
 - [x] **Phase 3 — Desktop Workbench**: `ravom-ui` (`egui`) with 2,319-board live search, non-blocking background build/flash console, serial port discovery, and real-time signal plotter.
 
 ---
