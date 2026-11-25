@@ -1,13 +1,13 @@
-# FerroIO
+# RavomIO
 
 > **A next-generation, Rust-powered cross-platform ecosystem for embedded development.**  
 > Unified toolchain & library management, native `probe-rs` flashing and debugging, extensible plugin architecture, and a fast **egui**-based desktop workbench.
 
 ---
 
-## Why FerroIO?
+## Why RavomIO?
 
-Embedded development shouldn't be slowed down by fragmented toolchains, brittle vendor IDEs, or manual environment setup. Inspired by **PlatformIO**, **FerroIO** brings a modern, reproducible, and fast workflow to both **C/C++** and **Rust** embedded projects—all from a single CLI and a lightweight native desktop workbench.
+Embedded development shouldn't be slowed down by fragmented toolchains, brittle vendor IDEs, or manual environment setup. Inspired by **PlatformIO**, **RavomIO** brings a modern, reproducible, and fast workflow to both **C/C++** and **Rust** embedded projects—all from a single CLI and a lightweight native desktop workbench.
 
 - **Zero-Hassle Toolchain Management**: Automatically provisions and isolates compilers, SDKs, and debuggers per target board and framework.
 - **Declarative Project Configuration**: Define boards, frameworks, build flags, and dependencies cleanly in `ferro.toml` (with smooth migration from `platformio.ini`).
@@ -29,7 +29,7 @@ Embedded development shouldn't be slowed down by fragmented toolchains, brittle 
 ## Architecture
 
 ```text
-FerroIO/
+RavomIO/
 ├── Cargo.toml              # Workspace configuration
 ├── crates/
 │   ├── ferro-core/         # Core engine: project parsing, toolchain manager, builder, probe-rs, serial
