@@ -3,6 +3,7 @@
 pub mod build;
 pub mod config;
 pub mod flash;
+pub mod monitor;
 pub mod project;
 
 use std::path::PathBuf;
@@ -44,6 +45,9 @@ pub enum CoreError {
 
     #[error("flash failed with exit code {0:?} (is `probe-rs` installed and in PATH?)")]
     FlashFailed(Option<i32>),
+
+    #[error("monitor failed with exit code {0:?} (is `probe-rs` installed and in PATH?)")]
+    MonitorFailed(Option<i32>),
 }
 
 pub fn version() -> &'static str {

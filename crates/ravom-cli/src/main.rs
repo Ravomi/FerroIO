@@ -25,6 +25,18 @@ enum Commands {
         #[arg(short, long, default_value = ".")]
         dir: PathBuf,
     },
+    /// Build (and optionally upload) firmware — PlatformIO `pio run` style
+    Run {
+        /// Environment name from ravom.toml
+        #[arg(short, long)]
+        env: Option<String>,
+        /// Target action (e.g. `upload` to build and flash)
+        #[arg(short, long)]
+        target: Option<String>,
+        /// Build in release mode
+        #[arg(short, long)]
+        release: bool,
+    },
     /// Build firmware for the current project
     Build {
         /// Environment name from ravom.toml
@@ -54,6 +66,18 @@ enum Commands {
         /// Baud rate
         #[arg(short, long, default_value_t = 115200)]
         baud: u32,
+        /// Attach via probe-rs RTT instead of serial
+        #[arg(long)]
+        rtt: bool,
+        /// Environment name from ravom.toml (used with --rtt)
+        #[arg(short, long)]
+        env: Option<String>,
+        /// Use release ELF (used with --rtt)
+        #[arg(short, long)]
+        release: bool,
+        /// List available serial ports and exit
+        #[arg(short, long)]
+        list: bool,
     },
     /// List built-in supported boards
     Boards {
@@ -90,6 +114,31 @@ fn run(cli: Cli) -> Result<(), Box<dyn std::error::Error>> {
                 res.framework
             );
         }
+        Commands::Run {
+            env,
+            target,
+            release,
+        } => {
+            let cwd = PathBuf::from(".");
+            let res = ravom_core::build::build_project(&cwd, env.as_deref(), release)?;
+            println!(
+                "Built environment '{}' (board: {}, target: {}, release: {})",
+                res.env_name,
+                res.board_id,
+                res.target.as_deref().unwrap_or("host"),
+                res.release
+            );
+            if matches!(target.as_deref(), Some("upload" | "flash")) {
+                let flash_res =
+                    ravom_core::flash::flash_project(&cwd, env.as_deref(), release, false)?;
+                println!(
+                    "Uploaded environment '{}' to {} ({})",
+                    flash_res.env_name,
+                    flash_res.chip,
+                    flash_res.firmware.display()
+                );
+            }
+        }
         Commands::Build { env, release } => {
             let res = ravom_core::build::build_project(
                 &PathBuf::from("."),
@@ -122,11 +171,33 @@ fn run(cli: Cli) -> Result<(), Box<dyn std::error::Error>> {
                 res.firmware.display()
             );
         }
-        Commands::Monitor { port, baud } => {
-            println!(
-                "mio monitor (port: {}, baud: {baud}) — serial/RTT monitor not yet implemented (Phase 1)",
-                port.as_deref().unwrap_or("auto")
-            );
+        Commands::Monitor {
+            port,
+            baud,
+            rtt,
+            env,
+            release,
+            list,
+        } => {
+            if list {
+                let ports = ravom_core::monitor::list_serial_ports();
+                if ports.is_empty() {
+                    println!("No serial ports detected under /dev (ttyUSB*/ttyACM*/cu.usb*).");
+                } else {
+                    for p in ports {
+                        println!("{p}");
+                    }
+                }
+            } else if rtt {
+                ravom_core::monitor::monitor_rtt(&PathBuf::from("."), env.as_deref(), release)?;
+            } else {
+                let ports = ravom_core::monitor::list_serial_ports();
+                let selected = port.or_else(|| ports.into_iter().next());
+                match selected {
+                    Some(p) => println!("Serial monitor ready for {p} @ {baud} baud (interactive terminal backend coming next)."),
+                    None => return Err("no serial port found; specify --port <PATH> or use --rtt".into()),
+                }
+            }
         }
         Commands::Boards { query } => {
             let q = query.unwrap_or_default().to_lowercase();
