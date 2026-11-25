@@ -225,6 +225,13 @@ impl eframe::App for RavomApp {
                 if ui.button("Flash").clicked() {
                     self.spawn_flash();
                 }
+                if ui.button("Doctor").clicked() {
+                    self.log("--- Toolchain Doctor ---");
+                    for tool in ravom_core::toolchain::check_toolchains() {
+                        let status = if tool.installed { "OK" } else { "MISSING" };
+                        self.log(format!("{:<18} {}", tool.name, status));
+                    }
+                }
             });
         });
 
