@@ -81,6 +81,21 @@ mio ui
 
 ---
 
+## Acknowledgments
+
+RavomIO stands on the shoulders of the open-source embedded, FPGA, and Rust communities. Special thanks to:
+
+- **[PlatformIO](https://github.com/platformio)** & community platform maintainers (**[CommunityGD32Cores/platform-gd32](https://github.com/CommunityGD32Cores/platform-gd32)**, **[Community-PIO-CH32V/platform-ch32v](https://github.com/Community-PIO-CH32V/platform-ch32v)**, **[maxgerhardt/platform-raspberrypi](https://github.com/maxgerhardt/platform-raspberrypi)**) — workflow inspiration and community board metadata.
+- **[probe-rs](https://github.com/probe-rs/probe-rs)** — Rust-native MCU flashing, hardware debugging, and RTT logging.
+- **[egui / eframe](https://github.com/emilk/egui)** — immediate-mode GUI powering `ravom-ui`.
+- **[mirui](https://github.com/W-Mai/mirui)** — `no_std`, ECS-driven embedded & desktop UI framework.
+- **[Embassy](https://github.com/embassy-rs/embassy)** & **[RTIC](https://github.com/rtic-rs/rtic)** — modern Rust async and hard real-time embedded frameworks.
+- **[RustHDL](https://github.com/samitbasu/rust-hdl)**, **[rust-on-step-mxo2-lpc](https://github.com/y5c4l3/rust-on-step-mxo2-lpc)**, **[Yosys](https://github.com/YosysHQ/yosys)**, **[nextpnr](https://github.com/YosysHQ/nextpnr)**, and **[openFPGALoader](https://github.com/trabucayre/openFPGALoader)** — open-source Rust & Verilog FPGA synthesis and bitstream programming.
+- **[Renode](https://github.com/renode/renode)**, **[QEMU](https://www.qemu.org/)**, and **[Wokwi](https://wokwi.com/)** — hardware simulation backends.
+- Core Rust crates: **[clap](https://github.com/clap-rs/clap)**, **[serde](https://github.com/serde-rs/serde)**, **[serde_json](https://github.com/serde-rs/json)**, **[toml](https://github.com/toml-rs/toml)**, and **[thiserror](https://github.com/dtolnay/thiserror)**.
+
+---
+
 ## License
 
 Dual-licensed under **MIT** or **Apache-2.0** (matching the Rust ecosystem standard).
