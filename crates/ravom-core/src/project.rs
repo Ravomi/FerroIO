@@ -74,10 +74,15 @@ pub fn init_project(dir: &Path, board_id: &str, framework: Option<&str>) -> Resu
             format!("[build]\ntarget = \"{target}\"\n"),
         )?;
     }
-    fs::write(
-        dir.join("src/main.rs"),
-        "// RavomIO entry point\nfn main() {\n    // TODO: initialize peripherals\n}\n",
-    )?;
+    let starter_src = ravom_plugin::find_framework_plugin(&fw)
+        .map(|plugin| plugin.starter_main_rs(&board.id))
+        .unwrap_or_else(|| {
+            format!(
+                "// RavomIO starter for `{}` (framework: {fw})\n#![no_std]\n#![no_main]\n\nuse core::panic::PanicInfo;\n\n#[panic_handler]\nfn panic(_info: &PanicInfo) -> ! {{\n    loop {{}}\n}}\n\n#[no_mangle]\npub extern \"C\" fn _start() -> ! {{\n    loop {{}}\n}}\n",
+                board.id
+            )
+        });
+    fs::write(dir.join("src/main.rs"), starter_src)?;
     fs::write(dir.join(".gitignore"), "target/\n.ravom/\n")?;
 
     Ok(InitResult {

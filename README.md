@@ -65,9 +65,9 @@ mio ui
 ## Roadmap
 
 - [x] **Phase 0 — Workspace Bootstrap**: Rust workspace setup with `ravom-core`, `ravom-plugin`, `ravom-cli` (`mio`), and `ravom-ui` (`egui`).
-- [ ] **Phase 1 — Core & CLI MVP**: End-to-end `init` / `build` / `flash` / `monitor` workflow (targeting STM32 & ESP32 first).
-- [ ] **Phase 2 — Plugin System & Ecosystem**: Finalize plugin APIs and `platformio.ini` / board metadata import.
-- [ ] **Phase 3 — Desktop Workbench**: Project explorer, build output console, serial/RTT terminal, and real-time signal plotter.
+- [x] **Phase 1 — Core & CLI MVP**: End-to-end `mio init` / `build` / `run` / `flash` / `monitor` / `boards` workflow (verified with STM32F103C8T6 Cortex-M3 ELF build & Google Rust Style lints).
+- [x] **Phase 2 — Plugin System & Ecosystem**: Unified TOML board registry (36 platforms, 2,319 boards), `ravom-plugin` framework/RTOS plugins (Embassy, RTIC, ESP-IDF, FreeRTOS, Zephyr, RT-Thread), and `mio migrate` (`platformio.ini` → `ravom.toml`).
+- [x] **Phase 3 — Desktop Workbench**: `ravom-ui` (`egui`) with 2,319-board live search, non-blocking background build/flash console, serial port discovery, and real-time signal plotter.
 
 ---
 

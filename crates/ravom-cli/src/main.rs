@@ -90,6 +90,12 @@ enum Commands {
         #[arg(long, default_value = "custom")]
         platform: String,
     },
+    /// Migrate an existing `platformio.ini` project to `ravom.toml`
+    Migrate {
+        /// Project directory containing `platformio.ini`
+        #[arg(short, long, default_value = ".")]
+        dir: PathBuf,
+    },
     /// Launch the RavomIO egui desktop workbench
     Ui,
 }
@@ -229,6 +235,10 @@ fn run(cli: Cli) -> Result<(), Box<dyn std::error::Error>> {
                     println!("{:<22} {:<14} {:<16} {}", b.id, b.platform, b.mcu, b.name);
                 }
             }
+        }
+        Commands::Migrate { dir } => {
+            let out = ravom_core::migrate::migrate_platformio_project(&dir)?;
+            println!("Migrated platformio.ini -> {}", out.display());
         }
         Commands::Ui => {
             println!("Run `cargo run -p ravom-ui` to launch the RavomIO desktop workbench.");

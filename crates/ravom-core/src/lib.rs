@@ -3,6 +3,7 @@
 pub mod build;
 pub mod config;
 pub mod flash;
+pub mod migrate;
 pub mod monitor;
 pub mod project;
 pub mod registry;
@@ -34,6 +35,9 @@ pub enum CoreError {
 
     #[error("ravom.toml not found in {0}")]
     ManifestNotFound(PathBuf),
+
+    #[error("platformio.ini not found in {0}")]
+    PlatformIoIniNotFound(PathBuf),
 
     #[error("environment '{0}' not found in ravom.toml")]
     UnknownEnv(String),
