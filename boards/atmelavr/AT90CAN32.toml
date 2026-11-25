@@ -1,0 +1,10 @@
+id = "AT90CAN32"
+name = "AT90CAN32"
+vendor = "Microchip"
+platform = "atmelavr"
+mcu = "AT90CAN32"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "AT90CAN32"
+flash_bytes = 32768
+ram_bytes = 2048

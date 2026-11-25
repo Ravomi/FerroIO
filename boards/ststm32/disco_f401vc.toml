@@ -1,0 +1,16 @@
+id = "disco_f401vc"
+name = "ST 32F401CDISCOVERY"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32F401VCT6"
+cpu = "cortex-m4"
+default_framework = "cmsis"
+frameworks = [
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32F401VC"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 262144
+ram_bytes = 65536

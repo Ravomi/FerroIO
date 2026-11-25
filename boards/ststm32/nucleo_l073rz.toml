@@ -1,0 +1,19 @@
+id = "nucleo_l073rz"
+name = "ST Nucleo L073RZ"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32L073RZ"
+cpu = "cortex-m0plus"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "mbed",
+    "stm32cube",
+    "libopencm3",
+    "zephyr",
+]
+probe_rs_chip = "STM32L073RZ"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 196608
+ram_bytes = 20480

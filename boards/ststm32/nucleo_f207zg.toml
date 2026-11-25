@@ -1,0 +1,19 @@
+id = "nucleo_f207zg"
+name = "ST Nucleo F207ZG"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32F207ZGT6"
+cpu = "cortex-m3"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "mbed",
+    "stm32cube",
+    "libopencm3",
+    "zephyr",
+]
+probe_rs_chip = "STM32F207ZG"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 1048576
+ram_bytes = 131072

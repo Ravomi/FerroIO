@@ -1,0 +1,19 @@
+id = "disco_f746ng"
+name = "ST 32F746GDISCOVERY"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32F746NGH6"
+cpu = "cortex-m7"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "mbed",
+    "stm32cube",
+    "libopencm3",
+    "zephyr",
+]
+probe_rs_chip = "STM32F746NG"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 1048576
+ram_bytes = 327680

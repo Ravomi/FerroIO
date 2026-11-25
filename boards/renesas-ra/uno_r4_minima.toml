@@ -1,0 +1,16 @@
+id = "uno_r4_minima"
+name = "Arduino Uno R4 Minima"
+vendor = "Arduino"
+platform = "renesas-ra"
+mcu = "RA4M1"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "fsp",
+    "cmsis",
+]
+probe_rs_chip = "R7FA4M1AB"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 262144
+ram_bytes = 32768

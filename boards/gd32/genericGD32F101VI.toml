@@ -1,0 +1,12 @@
+id = "genericGD32F101VI"
+name = "GD32F101VI (80k RAM, 204k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32F101VIT6"
+cpu = "cortex-m3"
+default_framework = "spl"
+frameworks = ["spl"]
+probe_rs_chip = "GD32F101VI"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 208896
+ram_bytes = 81920

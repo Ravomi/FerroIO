@@ -1,0 +1,15 @@
+id = "genericGD32W515TI"
+name = "GD32W515TI (448k RAM, 2048k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32W515TIQ6"
+cpu = "cortex-m33"
+default_framework = "spl"
+frameworks = [
+    "spl",
+    "wifi-sdk",
+]
+probe_rs_chip = "GD32W515TI"
+rust_target = "thumbv8m.main-none-eabihf"
+flash_bytes = 2097152
+ram_bytes = 458752

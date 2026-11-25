@@ -1,0 +1,10 @@
+id = "ATtiny827"
+name = "ATtiny827"
+vendor = "Microchip"
+platform = "atmelmegaavr"
+mcu = "ATTINY827"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATTINY827"
+flash_bytes = 8192
+ram_bytes = 1024

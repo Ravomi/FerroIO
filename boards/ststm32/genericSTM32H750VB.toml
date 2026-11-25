@@ -1,0 +1,17 @@
+id = "genericSTM32H750VB"
+name = "STM32H750VBT6 (1024k RAM. 128k Flash)"
+vendor = "Generic"
+platform = "ststm32"
+mcu = "STM32H750VBT6"
+cpu = "cortex-m7"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32H750VB"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 131072
+ram_bytes = 524288

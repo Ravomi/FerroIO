@@ -1,0 +1,12 @@
+id = "lpcxpresso55s16"
+name = "NXP LPCXpresso55S16"
+vendor = "NXP"
+platform = "nxplpc"
+mcu = "LPC55S16"
+cpu = "cortex-m33"
+default_framework = "zephyr"
+frameworks = ["zephyr"]
+probe_rs_chip = "LPC55S16"
+rust_target = "thumbv8m.main-none-eabihf"
+flash_bytes = 262144
+ram_bytes = 98304

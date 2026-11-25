@@ -1,0 +1,12 @@
+id = "efm32gg_stk3700"
+name = "EFM32GG-STK3700 Giant Gecko"
+vendor = "Silicon Labs"
+platform = "siliconlabsefm32"
+mcu = "EFM32GG990F1024"
+cpu = "cortex-m3"
+default_framework = "mbed"
+frameworks = ["mbed"]
+probe_rs_chip = "EFM32GG990F1024"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 1048576
+ram_bytes = 131072

@@ -1,0 +1,18 @@
+id = "nucleo_l412rb_p"
+name = "ST Nucleo L412RB-P"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32L412RBT6P"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+    "zephyr",
+]
+probe_rs_chip = "STM32L412RB"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 131072
+ram_bytes = 40960

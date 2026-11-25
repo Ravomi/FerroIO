@@ -1,0 +1,12 @@
+id = "sparkfun_samd51_thing_plus"
+name = "SparkFun SAMD51 Thing Plus"
+vendor = "SparkFun"
+platform = "atmelsam"
+mcu = "SAMD51J20A"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATSAMD51J20"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 507904
+ram_bytes = 196608

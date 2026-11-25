@@ -1,0 +1,10 @@
+id = "ATmega324PA"
+name = "ATmega324PA"
+vendor = "Microchip"
+platform = "atmelavr"
+mcu = "ATMEGA324PA"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA324PA"
+flash_bytes = 32768
+ram_bytes = 2048

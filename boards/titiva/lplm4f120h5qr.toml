@@ -1,0 +1,15 @@
+id = "lplm4f120h5qr"
+name = "TI LaunchPad (Stellaris) w/ lm4f120 (80MHz)"
+vendor = "TI"
+platform = "titiva"
+mcu = "LPLM4F120H5QR"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "libopencm3",
+]
+probe_rs_chip = "LPLM4F120H5QR"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 262144
+ram_bytes = 32768

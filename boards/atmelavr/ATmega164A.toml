@@ -1,0 +1,10 @@
+id = "ATmega164A"
+name = "ATmega164A"
+vendor = "Microchip"
+platform = "atmelavr"
+mcu = "ATMEGA164A"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA164A"
+flash_bytes = 16384
+ram_bytes = 1024

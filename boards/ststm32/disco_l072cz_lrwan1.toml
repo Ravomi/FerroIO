@@ -1,0 +1,19 @@
+id = "disco_l072cz_lrwan1"
+name = "ST DISCO-L072CZ-LRWAN1"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32L072CZ"
+cpu = "cortex-m0plus"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "mbed",
+    "stm32cube",
+    "libopencm3",
+    "zephyr",
+]
+probe_rs_chip = "STM32L072CZ"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 196608
+ram_bytes = 20480

@@ -1,0 +1,10 @@
+id = "pro8MHzatmega168"
+name = "Arduino Pro or Pro Mini ATmega168 (3.3V, 8 MHz)"
+vendor = "Arduino"
+platform = "atmelavr"
+mcu = "ATMEGA168"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA168"
+flash_bytes = 14336
+ram_bytes = 1024

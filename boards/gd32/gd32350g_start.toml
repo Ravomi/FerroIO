@@ -1,0 +1,15 @@
+id = "gd32350g_start"
+name = "GD32350G-START"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32F350G8U6"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "spl",
+]
+probe_rs_chip = "GD32F350G8"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 65536
+ram_bytes = 8192

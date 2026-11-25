@@ -1,0 +1,14 @@
+id = "4d_systems_esp32s3_gen4_r8n16"
+name = "4D Systems GEN4-ESP32 16MB (ESP32S3-R8N16)"
+vendor = "4D Systems"
+platform = "espressif32"
+mcu = "ESP32S3"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "espidf",
+]
+probe_rs_chip = "ESP32S3"
+rust_target = "xtensa-esp32s3-none-elf"
+flash_bytes = 16777216
+ram_bytes = 327680

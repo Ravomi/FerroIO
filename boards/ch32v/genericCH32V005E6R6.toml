@@ -1,0 +1,13 @@
+id = "genericCH32V005E6R6"
+name = "Generic CH32V005E6R6"
+vendor = "W.CH"
+platform = "ch32v"
+mcu = "CH32V005E6R6"
+default_framework = "noneos-sdk"
+frameworks = [
+    "noneos-sdk",
+    "ch32v003fun",
+]
+probe_rs_chip = "CH32V005E6R6"
+flash_bytes = 32768
+ram_bytes = 6144

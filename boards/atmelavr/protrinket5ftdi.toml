@@ -1,0 +1,10 @@
+id = "protrinket5ftdi"
+name = "Adafruit Pro Trinket 5V/16MHz (FTDI)"
+vendor = "Adafruit"
+platform = "atmelavr"
+mcu = "ATMEGA328P"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA328P"
+flash_bytes = 28672
+ram_bytes = 2048

@@ -1,0 +1,14 @@
+id = "upesy_esp32c3_basic"
+name = "uPesy ESP32C3 Basic"
+vendor = "uPesy"
+platform = "espressif32"
+mcu = "ESP32C3"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "espidf",
+]
+probe_rs_chip = "ESP32C3"
+rust_target = "riscv32imc-unknown-none-elf"
+flash_bytes = 4194304
+ram_bytes = 327680

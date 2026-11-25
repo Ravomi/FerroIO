@@ -1,0 +1,14 @@
+id = "esp32doit-devkit-v1"
+name = "DOIT ESP32 DEVKIT V1"
+vendor = "DOIT"
+platform = "espressif32"
+mcu = "ESP32"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "espidf",
+]
+probe_rs_chip = "ESP32"
+rust_target = "xtensa-esp32-none-elf"
+flash_bytes = 4194304
+ram_bytes = 327680

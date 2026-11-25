@@ -1,0 +1,12 @@
+id = "nicla_sense_me"
+name = "Arduino Nicla Sense ME"
+vendor = "Arduino"
+platform = "nordicnrf52"
+mcu = "NRF52832"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "nRF52832_xxAA"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 527616
+ram_bytes = 64288

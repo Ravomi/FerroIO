@@ -1,0 +1,12 @@
+id = "lilygo_t3_stm32_v1"
+name = "LilyGo T3-STM32"
+vendor = "LilyGo"
+platform = "ststm32"
+mcu = "STM32WLE5CCU7"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "STM32WLE5CC"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 262144
+ram_bytes = 65536

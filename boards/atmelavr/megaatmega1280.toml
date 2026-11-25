@@ -1,0 +1,10 @@
+id = "megaatmega1280"
+name = "Arduino Mega or Mega 2560 ATmega1280"
+vendor = "Arduino"
+platform = "atmelavr"
+mcu = "ATMEGA1280"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA1280"
+flash_bytes = 126976
+ram_bytes = 8192

@@ -1,0 +1,10 @@
+id = "helvepic32_mx270"
+name = "HelvePic32 MX270"
+vendor = "BOXTEC"
+platform = "microchippic32"
+mcu = "32MX270F256B"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "32MX270F256B"
+flash_bytes = 249856
+ram_bytes = 63488

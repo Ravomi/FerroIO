@@ -1,0 +1,17 @@
+id = "genericSTM32F411CC"
+name = "STM32F411CC (128k RAM. 256k Flash)"
+vendor = "Generic"
+platform = "ststm32"
+mcu = "STM32F411CCU6"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32F411CC"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 262144
+ram_bytes = 131072

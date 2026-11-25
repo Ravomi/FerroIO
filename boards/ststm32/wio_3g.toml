@@ -1,0 +1,17 @@
+id = "wio_3g"
+name = "Seeed Wio 3G"
+vendor = "SeeedStudio"
+platform = "ststm32"
+mcu = "STM32F439VI"
+cpu = "cortex-m4"
+default_framework = "cmsis"
+frameworks = [
+    "cmsis",
+    "mbed",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32F439VI"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 2097152
+ram_bytes = 262144

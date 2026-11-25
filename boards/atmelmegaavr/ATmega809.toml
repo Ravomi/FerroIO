@@ -1,0 +1,10 @@
+id = "ATmega809"
+name = "ATmega809"
+vendor = "Microchip"
+platform = "atmelmegaavr"
+mcu = "ATMEGA809"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA809"
+flash_bytes = 8192
+ram_bytes = 1024

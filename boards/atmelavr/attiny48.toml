@@ -1,0 +1,10 @@
+id = "attiny48"
+name = "Generic ATtiny48"
+vendor = "Atmel"
+platform = "atmelavr"
+mcu = "ATTINY48"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATTINY48"
+flash_bytes = 4096
+ram_bytes = 256

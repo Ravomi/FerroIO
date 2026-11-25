@@ -1,0 +1,17 @@
+id = "remram_v1"
+name = "3D printer controller"
+vendor = "RemRam"
+platform = "ststm32"
+mcu = "STM32F765VIT6"
+cpu = "cortex-m7"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32F765VI"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 2097152
+ram_bytes = 524288

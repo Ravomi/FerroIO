@@ -1,0 +1,16 @@
+id = "disco_f750n8"
+name = "STM32F7508-DK"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32F750N8H6"
+cpu = "cortex-m7"
+default_framework = "cmsis"
+frameworks = [
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32F750N8"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 65536
+ram_bytes = 348160

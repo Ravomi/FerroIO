@@ -1,0 +1,10 @@
+id = "lpmsp430fr5739"
+name = "TI FraunchPad MSP-EXP430FR5739LP"
+vendor = "TI"
+platform = "timsp430"
+mcu = "MSP430FR5739"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "MSP430FR5739"
+flash_bytes = 15743
+ram_bytes = 1024

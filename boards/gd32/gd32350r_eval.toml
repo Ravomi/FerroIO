@@ -1,0 +1,12 @@
+id = "gd32350r_eval"
+name = "GD32350R-EVAL"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32F350R8T6"
+cpu = "cortex-m4"
+default_framework = "spl"
+frameworks = ["spl"]
+probe_rs_chip = "GD32F350R8"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 65536
+ram_bytes = 16384

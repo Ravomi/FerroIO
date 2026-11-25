@@ -1,0 +1,10 @@
+id = "cui32"
+name = "Pic32 CUI32-Development Stick"
+vendor = "SparkFun"
+platform = "microchippic32"
+mcu = "32MX440F512H"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "32MX440F512H"
+flash_bytes = 520192
+ram_bytes = 32768

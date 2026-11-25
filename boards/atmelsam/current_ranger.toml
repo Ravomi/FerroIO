@@ -1,0 +1,12 @@
+id = "current_ranger"
+name = "LowPowerLab CurrentRanger"
+vendor = "LowPowerLab"
+platform = "atmelsam"
+mcu = "SAMD21G18A"
+cpu = "cortex-m0plus"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "SAMD21G18A"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 262144
+ram_bytes = 32768

@@ -1,0 +1,13 @@
+id = "genericCH571F"
+name = "Generic CH571F"
+vendor = "W.CH"
+platform = "ch32v"
+mcu = "CH571F"
+default_framework = "noneos-sdk"
+frameworks = [
+    "noneos-sdk",
+    "ch32v003fun",
+]
+probe_rs_chip = "CH571F"
+flash_bytes = 229376
+ram_bytes = 18432

@@ -1,0 +1,10 @@
+id = "nofire"
+name = "Pontech NoFire"
+vendor = "Pontech"
+platform = "microchippic32"
+mcu = "32MZ2048EFG100"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "32MZ2048EFG100"
+flash_bytes = 2080768
+ram_bytes = 524288

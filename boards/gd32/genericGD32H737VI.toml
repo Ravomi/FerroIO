@@ -1,0 +1,12 @@
+id = "genericGD32H737VI"
+name = "GD32H737VI (1024k RAM, 2048k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32H737VIT6"
+cpu = "cortex-m7"
+default_framework = "spl"
+frameworks = ["spl"]
+probe_rs_chip = "GD32H737VI"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 2097152
+ram_bytes = 327680

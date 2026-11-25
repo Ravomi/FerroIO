@@ -1,0 +1,15 @@
+id = "keyboardio_model_100"
+name = "Keyboardio Model 100"
+vendor = "Keyboardio"
+platform = "gd32"
+mcu = "GD32F303CGT6"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "spl",
+]
+probe_rs_chip = "GD32F303CG"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 1048576
+ram_bytes = 98304

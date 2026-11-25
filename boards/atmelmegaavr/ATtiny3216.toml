@@ -1,0 +1,10 @@
+id = "ATtiny3216"
+name = "ATtiny3216"
+vendor = "Microchip"
+platform = "atmelmegaavr"
+mcu = "ATTINY3216"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATTINY3216"
+flash_bytes = 32768
+ram_bytes = 2048

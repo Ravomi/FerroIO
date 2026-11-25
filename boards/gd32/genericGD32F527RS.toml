@@ -1,0 +1,12 @@
+id = "genericGD32F527RS"
+name = "GD32F527RS (576k RAM, 7680k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32F527RST7"
+cpu = "cortex-m33"
+default_framework = "spl"
+frameworks = ["spl"]
+probe_rs_chip = "GD32F527RS"
+rust_target = "thumbv8m.main-none-eabihf"
+flash_bytes = 7864320
+ram_bytes = 589824

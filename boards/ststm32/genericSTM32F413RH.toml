@@ -1,0 +1,17 @@
+id = "genericSTM32F413RH"
+name = "STM32F413RH (320k RAM. 1536k Flash)"
+vendor = "Generic"
+platform = "ststm32"
+mcu = "STM32F413RHT6"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32F413RH"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 1572864
+ram_bytes = 327680

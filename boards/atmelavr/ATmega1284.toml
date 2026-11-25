@@ -1,0 +1,10 @@
+id = "ATmega1284"
+name = "ATmega1284"
+vendor = "Microchip"
+platform = "atmelavr"
+mcu = "ATMEGA1284"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA1284"
+flash_bytes = 131072
+ram_bytes = 16384

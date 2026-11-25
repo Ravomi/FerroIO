@@ -1,0 +1,17 @@
+id = "leafony_ap03"
+name = "Leafony Systems AP03"
+vendor = "Leafony Systems"
+platform = "ststm32"
+mcu = "STM32L452RET6"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32L452RE"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 524288
+ram_bytes = 163840

@@ -1,0 +1,12 @@
+id = "genericGD32H759IG"
+name = "GD32H759IG (1024k RAM, 1024k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32H759IGK6"
+cpu = "cortex-m7"
+default_framework = "spl"
+frameworks = ["spl"]
+probe_rs_chip = "GD32H759IG"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 1048576
+ram_bytes = 327680

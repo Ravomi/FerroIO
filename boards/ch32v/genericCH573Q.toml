@@ -1,0 +1,13 @@
+id = "genericCH573Q"
+name = "Generic CH573Q"
+vendor = "W.CH"
+platform = "ch32v"
+mcu = "CH573Q"
+default_framework = "noneos-sdk"
+frameworks = [
+    "noneos-sdk",
+    "ch32v003fun",
+]
+probe_rs_chip = "CH573Q"
+flash_bytes = 229376
+ram_bytes = 18432

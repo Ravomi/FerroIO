@@ -1,0 +1,19 @@
+id = "nucleo_f767zi"
+name = "ST Nucleo F767ZI"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32F767ZIT6"
+cpu = "cortex-m7"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "mbed",
+    "stm32cube",
+    "libopencm3",
+    "zephyr",
+]
+probe_rs_chip = "STM32F767ZI"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 2097152
+ram_bytes = 524288

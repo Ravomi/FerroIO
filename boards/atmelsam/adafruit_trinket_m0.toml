@@ -1,0 +1,15 @@
+id = "adafruit_trinket_m0"
+name = "Adafruit Trinket M0"
+vendor = "Adafruit"
+platform = "atmelsam"
+mcu = "SAMD21E18A"
+cpu = "cortex-m0plus"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "zephyr",
+]
+probe_rs_chip = "ATSAMD21E18"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 262144
+ram_bytes = 32768

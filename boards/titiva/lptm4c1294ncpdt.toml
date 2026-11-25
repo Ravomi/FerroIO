@@ -1,0 +1,15 @@
+id = "lptm4c1294ncpdt"
+name = "TI LaunchPad (Tiva C) w/ tm4c129 (120MHz)"
+vendor = "TI"
+platform = "titiva"
+mcu = "LPTM4C1294NCPDT"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "libopencm3",
+]
+probe_rs_chip = "LPTM4C1294NCPDT"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 1048576
+ram_bytes = 262144

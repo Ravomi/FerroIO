@@ -1,0 +1,17 @@
+id = "genericSTM32F413CG"
+name = "STM32F413CG (320k RAM. 1024k Flash)"
+vendor = "Generic"
+platform = "ststm32"
+mcu = "STM32F413CGU6"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32F413CG"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 1048576
+ram_bytes = 327680

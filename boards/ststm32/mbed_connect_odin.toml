@@ -1,0 +1,15 @@
+id = "mbed_connect_odin"
+name = "Mbed Connect Cloud"
+vendor = "u-blox"
+platform = "ststm32"
+mcu = "STM32F439ZIY6"
+cpu = "cortex-m4"
+default_framework = "stm32cube"
+frameworks = [
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32F439ZI"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 2097152
+ram_bytes = 262144

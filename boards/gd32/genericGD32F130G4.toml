@@ -1,0 +1,15 @@
+id = "genericGD32F130G4"
+name = "GD32F130G4 (4k RAM, 16k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32F130G4U6"
+cpu = "cortex-m3"
+default_framework = "spl"
+frameworks = [
+    "spl",
+    "arduino",
+]
+probe_rs_chip = "GD32F130G4"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 16384
+ram_bytes = 4096

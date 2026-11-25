@@ -1,0 +1,12 @@
+id = "genericGD32C103CB"
+name = "GD32C103CB (32k RAM, 128k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32C103CBT6"
+cpu = "cortex-m4"
+default_framework = "spl"
+frameworks = ["spl"]
+probe_rs_chip = "GD32C103CB"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 131072
+ram_bytes = 32768

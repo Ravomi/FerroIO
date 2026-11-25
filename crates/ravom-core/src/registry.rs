@@ -1,12 +1,12 @@
 use crate::config::builtin_boards;
 use crate::Result;
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 use std::fs;
 use std::path::{Path, PathBuf};
 
 /// Unified owned board metadata (from built-in list or imported PlatformIO `boards/*.json`).
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct BoardRecord {
     pub id: String,
     pub name: String,
@@ -126,7 +126,7 @@ pub fn default_boards_dir() -> PathBuf {
     PathBuf::from(".ravom").join("boards")
 }
 
-/// Import all valid PlatformIO `*.json` board definitions from `src_dir` into `dest_dir/<platform>/`.
+/// Import all valid PlatformIO `*.json` board definitions from `src_dir` into `dest_dir/<platform>/*.toml`.
 pub fn import_pio_boards_dir(src_dir: &Path, platform: &str, dest_dir: &Path) -> Result<usize> {
     let target_dir = dest_dir.join(platform);
     fs::create_dir_all(&target_dir)?;
@@ -142,8 +142,9 @@ pub fn import_pio_boards_dir(src_dir: &Path, platform: &str, dest_dir: &Path) ->
             continue;
         };
         let raw = fs::read_to_string(&path)?;
-        if parse_pio_board_json(stem, platform, &raw).is_ok() {
-            fs::write(target_dir.join(format!("{stem}.json")), raw)?;
+        if let Ok(record) = parse_pio_board_json(stem, platform, &raw) {
+            let toml_text = toml::to_string_pretty(&record)?;
+            fs::write(target_dir.join(format!("{stem}.toml")), toml_text)?;
             imported += 1;
         }
     }
@@ -167,16 +168,20 @@ fn load_boards_from_root(root: &Path, map: &mut BTreeMap<String, BoardRecord>) {
         };
         for file_entry in files.flatten() {
             let file_path = file_entry.path();
-            if file_path.extension().and_then(|e| e.to_str()) != Some("json") {
-                continue;
-            }
+            let ext = file_path.extension().and_then(|e| e.to_str());
             let Some(stem) = file_path.file_stem().and_then(|s| s.to_str()) else {
                 continue;
             };
-            if let Ok(raw) = fs::read_to_string(&file_path) {
-                if let Ok(record) = parse_pio_board_json(stem, platform_name, &raw) {
-                    map.insert(record.id.to_ascii_lowercase(), record);
-                }
+            let Ok(raw) = fs::read_to_string(&file_path) else {
+                continue;
+            };
+            let parsed = match ext {
+                Some("toml") => toml::from_str::<BoardRecord>(&raw).ok(),
+                Some("json") => parse_pio_board_json(stem, platform_name, &raw).ok(),
+                _ => None,
+            };
+            if let Some(record) = parsed {
+                map.insert(record.id.to_ascii_lowercase(), record);
             }
         }
     }
@@ -266,7 +271,12 @@ mod tests {
         let count = import_pio_boards_dir(&src, "ststm32", &dst)
             .expect("import_pio_boards_dir should succeed");
         assert_eq!(count, 1);
-        assert!(dst.join("ststm32/blackpill_f411ce.json").exists());
+        let toml_path = dst.join("ststm32/blackpill_f411ce.toml");
+        assert!(toml_path.exists());
+        let raw_toml = fs::read_to_string(&toml_path).expect("read generated board toml");
+        let parsed: BoardRecord = toml::from_str(&raw_toml).expect("parse generated board toml");
+        assert_eq!(parsed.id, "blackpill_f411ce");
+        assert_eq!(parsed.rust_target.as_deref(), Some("thumbv7em-none-eabihf"));
 
         let _ = fs::remove_dir_all(&src);
         let _ = fs::remove_dir_all(&dst);

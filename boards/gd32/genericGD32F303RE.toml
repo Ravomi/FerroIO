@@ -1,0 +1,15 @@
+id = "genericGD32F303RE"
+name = "GD32F303RE (64k RAM, 512k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32F303RET6"
+cpu = "cortex-m4"
+default_framework = "spl"
+frameworks = [
+    "spl",
+    "arduino",
+]
+probe_rs_chip = "GD32F303RE"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 524288
+ram_bytes = 65536

@@ -1,0 +1,18 @@
+id = "nucleo_l031k6"
+name = "ST Nucleo L031K6"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32L031K6T6"
+cpu = "cortex-m0plus"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+    "zephyr",
+]
+probe_rs_chip = "STM32L031K6"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 32768
+ram_bytes = 8192

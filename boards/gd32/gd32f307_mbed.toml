@@ -1,0 +1,16 @@
+id = "gd32f307_mbed"
+name = "GD32F307VG-mbed (96k RAM. 1024k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32F307VGT6"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "spl",
+    "mbed",
+]
+probe_rs_chip = "GD32F307VG"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 1048576
+ram_bytes = 98304

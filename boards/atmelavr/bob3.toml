@@ -1,0 +1,10 @@
+id = "bob3"
+name = "nicai-systems BOB3 coding bot"
+vendor = "nicai-systems"
+platform = "atmelavr"
+mcu = "ATMEGA88"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA88"
+flash_bytes = 8192
+ram_bytes = 1024

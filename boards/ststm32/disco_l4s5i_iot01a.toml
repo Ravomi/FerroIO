@@ -1,0 +1,16 @@
+id = "disco_l4s5i_iot01a"
+name = "ST STM32L4+ Discovery kit IoT node"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32L4S5VIT6"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+]
+probe_rs_chip = "STM32L4S5VI"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 2097152
+ram_bytes = 655360

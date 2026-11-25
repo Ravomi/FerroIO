@@ -1,0 +1,10 @@
+id = "ATmega644P"
+name = "ATmega644P/PA"
+vendor = "Microchip"
+platform = "atmelavr"
+mcu = "ATMEGA644P"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA644P"
+flash_bytes = 65536
+ram_bytes = 4096

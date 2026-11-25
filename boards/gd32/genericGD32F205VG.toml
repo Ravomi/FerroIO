@@ -1,0 +1,12 @@
+id = "genericGD32F205VG"
+name = "GD32F205VG (256k RAM, 1024k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32F205VGT6"
+cpu = "cortex-m3"
+default_framework = "spl"
+frameworks = ["spl"]
+probe_rs_chip = "GD32F205VG"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 1048576
+ram_bytes = 262144

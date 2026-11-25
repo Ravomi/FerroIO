@@ -1,0 +1,10 @@
+id = "ATmega325"
+name = "ATmega325/A"
+vendor = "Microchip"
+platform = "atmelavr"
+mcu = "ATMEGA325"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA325"
+flash_bytes = 32768
+ram_bytes = 2048

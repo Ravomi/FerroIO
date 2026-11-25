@@ -1,0 +1,10 @@
+id = "ch32h417qeu6_evt_r0"
+name = "CH32H417QEU6-R0-1v1"
+vendor = "WCH"
+platform = "ch32v"
+mcu = "CH32H417QEU6"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "CH32H417QEU6"
+flash_bytes = 933888
+ram_bytes = 917504

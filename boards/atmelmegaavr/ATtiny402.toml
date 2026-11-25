@@ -1,0 +1,10 @@
+id = "ATtiny402"
+name = "ATtiny402"
+vendor = "Microchip"
+platform = "atmelmegaavr"
+mcu = "ATTINY402"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATTINY402"
+flash_bytes = 4096
+ram_bytes = 256

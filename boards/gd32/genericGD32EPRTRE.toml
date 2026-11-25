@@ -1,0 +1,12 @@
+id = "genericGD32EPRTRE"
+name = "GD32EPRTRE (4192k RAM, 512k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32EPRTRET6"
+cpu = "cortex-m33"
+default_framework = "spl"
+frameworks = ["spl"]
+probe_rs_chip = "GD32EPRTRE"
+rust_target = "thumbv8m.main-none-eabihf"
+flash_bytes = 524288
+ram_bytes = 4292608

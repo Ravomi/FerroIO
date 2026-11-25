@@ -1,0 +1,10 @@
+id = "genericCH641P"
+name = "Generic CH641P"
+vendor = "W.CH"
+platform = "ch32v"
+mcu = "CH641P"
+default_framework = "noneos-sdk"
+frameworks = ["noneos-sdk"]
+probe_rs_chip = "CH641P"
+flash_bytes = 16384
+ram_bytes = 2048

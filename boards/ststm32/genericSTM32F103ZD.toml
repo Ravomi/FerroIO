@@ -1,0 +1,17 @@
+id = "genericSTM32F103ZD"
+name = "STM32F103ZD (64k RAM. 384k Flash)"
+vendor = "Generic"
+platform = "ststm32"
+mcu = "STM32F103ZDT6"
+cpu = "cortex-m3"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "libopencm3",
+    "stm32cube",
+]
+probe_rs_chip = "STM32F103ZD"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 393216
+ram_bytes = 65536

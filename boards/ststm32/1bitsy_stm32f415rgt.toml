@@ -1,0 +1,17 @@
+id = "1bitsy_stm32f415rgt"
+name = "1Bitsy"
+vendor = "1BitSquared"
+platform = "ststm32"
+mcu = "STM32F415RGT"
+cpu = "cortex-m4"
+default_framework = "libopencm3"
+frameworks = [
+    "libopencm3",
+    "cmsis",
+    "spl",
+    "stm32cube",
+]
+probe_rs_chip = "STM32F415RG"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 1048576
+ram_bytes = 131072

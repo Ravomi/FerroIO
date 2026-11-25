@@ -1,0 +1,12 @@
+id = "teensylc"
+name = "Teensy LC"
+vendor = "Teensy"
+platform = "teensy"
+mcu = "MKL26Z64"
+cpu = "cortex-m0plus"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "MKL26Z64xxx4"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 63488
+ram_bytes = 8192

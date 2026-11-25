@@ -1,0 +1,17 @@
+id = "pybstick26_pro"
+name = "PYBStick 26 Pro"
+vendor = "PYBStick"
+platform = "ststm32"
+mcu = "STM32F412RE"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32G412CG"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 524288
+ram_bytes = 262144

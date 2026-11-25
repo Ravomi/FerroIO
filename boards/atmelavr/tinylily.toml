@@ -1,0 +1,10 @@
+id = "tinylily"
+name = "TinyCircuits TinyLily Mini Processor"
+vendor = "TinyCircuits"
+platform = "atmelavr"
+mcu = "ATMEGA328P"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA328P"
+flash_bytes = 30720
+ram_bytes = 2048

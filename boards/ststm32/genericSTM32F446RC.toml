@@ -1,0 +1,17 @@
+id = "genericSTM32F446RC"
+name = "STM32F446RC (128k RAM. 256k Flash)"
+vendor = "Generic"
+platform = "ststm32"
+mcu = "STM32F446RCT6"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32F446RC"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 262144
+ram_bytes = 131072

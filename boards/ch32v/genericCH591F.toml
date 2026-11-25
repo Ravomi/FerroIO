@@ -1,0 +1,15 @@
+id = "genericCH591F"
+name = "Generic CH591F"
+vendor = "W.CH"
+platform = "ch32v"
+mcu = "CH591F"
+default_framework = "noneos-sdk"
+frameworks = [
+    "noneos-sdk",
+    "freertos",
+    "rt-thread",
+    "ch32v003fun",
+]
+probe_rs_chip = "CH591F"
+flash_bytes = 253952
+ram_bytes = 26624

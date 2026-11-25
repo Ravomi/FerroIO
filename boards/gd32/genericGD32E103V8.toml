@@ -1,0 +1,12 @@
+id = "genericGD32E103V8"
+name = "GD32E103V8 (20k RAM, 64k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32E103V8T6"
+cpu = "cortex-m4"
+default_framework = "spl"
+frameworks = ["spl"]
+probe_rs_chip = "GD32E103V8"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 65536
+ram_bytes = 20480

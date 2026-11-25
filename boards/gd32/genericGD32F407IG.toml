@@ -1,0 +1,12 @@
+id = "genericGD32F407IG"
+name = "GD32F407IG (192k RAM, 1024k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32F407IGH6"
+cpu = "cortex-m4"
+default_framework = "spl"
+frameworks = ["spl"]
+probe_rs_chip = "GD32F407IG"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 1048576
+ram_bytes = 131072

@@ -1,0 +1,16 @@
+id = "disco_b_g431b_esc1"
+name = "ST B-G431B-ESC1 Discovery"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32G431CBU6"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+]
+probe_rs_chip = "STM32G431CB"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 131072
+ram_bytes = 32768

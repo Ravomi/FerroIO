@@ -1,0 +1,15 @@
+id = "frdm_kl25z"
+name = "Freescale Kinetis FRDM-KL25Z"
+vendor = "Freescale"
+platform = "freescalekinetis"
+mcu = "MKL25Z128VLK4"
+cpu = "cortex-m0plus"
+default_framework = "mbed"
+frameworks = [
+    "mbed",
+    "zephyr",
+]
+probe_rs_chip = "MKL25Z128xxx4"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 131072
+ram_bytes = 16384

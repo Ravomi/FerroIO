@@ -1,0 +1,18 @@
+id = "genericCH32V307RCT6"
+name = "Generic CH32V307RCT6"
+vendor = "W.CH"
+platform = "ch32v"
+mcu = "CH32V307RCT6"
+default_framework = "noneos-sdk"
+frameworks = [
+    "noneos-sdk",
+    "freertos",
+    "harmony-liteos",
+    "rt-thread",
+    "tencent-os",
+    "ch32v003fun",
+    "arduino",
+]
+probe_rs_chip = "CH32V307RCT6"
+flash_bytes = 262144
+ram_bytes = 65536

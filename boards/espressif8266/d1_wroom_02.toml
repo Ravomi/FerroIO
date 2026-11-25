@@ -1,0 +1,14 @@
+id = "d1_wroom_02"
+name = "WeMos D1 ESP-WROOM-02"
+vendor = "WeMos"
+platform = "espressif8266"
+mcu = "ESP8266"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "esp8266-rtos-sdk",
+    "esp8266-nonos-sdk",
+]
+probe_rs_chip = "ESP8266"
+flash_bytes = 2097152
+ram_bytes = 81920

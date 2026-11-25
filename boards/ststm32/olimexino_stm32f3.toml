@@ -1,0 +1,17 @@
+id = "olimexino_stm32f3"
+name = "Olimex OLIMEXINO-STM32F3"
+vendor = "Olimex"
+platform = "ststm32"
+mcu = "STM32F303RCT6"
+cpu = "cortex-m3"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "libopencm3",
+    "stm32cube",
+]
+probe_rs_chip = "STM32F303RC"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 262144
+ram_bytes = 40960

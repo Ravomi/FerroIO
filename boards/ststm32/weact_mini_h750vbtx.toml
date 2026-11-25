@@ -1,0 +1,16 @@
+id = "weact_mini_h750vbtx"
+name = "WeAct Studio MiniSTM32H750VBTX"
+vendor = "WeAct Studio"
+platform = "ststm32"
+mcu = "STM32H750VBT6"
+cpu = "cortex-m7"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+]
+probe_rs_chip = "STM32H750VB"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 524288
+ram_bytes = 131072

@@ -1,0 +1,15 @@
+id = "waveshare_rp2040_plus_16mb"
+name = "RP2040 Plus 16MB"
+vendor = "Waveshare"
+platform = "raspberrypi-earlephilhower"
+mcu = "RP2040"
+cpu = "cortex-m0plus"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "picosdk",
+]
+probe_rs_chip = "RP2040_M0_0"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 16777216
+ram_bytes = 262144

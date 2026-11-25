@@ -1,0 +1,12 @@
+id = "segger_ip_switch"
+name = "SEGGER IP Switch Board"
+vendor = "SEGGER"
+platform = "freescalekinetis"
+mcu = "MK66FN2M0VMD18"
+cpu = "cortex-m4"
+default_framework = "zephyr"
+frameworks = ["zephyr"]
+probe_rs_chip = "MK66FN2M0xxx18"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 2097152
+ram_bytes = 262144

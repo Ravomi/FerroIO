@@ -1,0 +1,12 @@
+id = "genericGD32F105VC"
+name = "GD32F105VC (96k RAM, 256k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32F105VCT6"
+cpu = "cortex-m3"
+default_framework = "spl"
+frameworks = ["spl"]
+probe_rs_chip = "GD32F105VC"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 262144
+ram_bytes = 98304

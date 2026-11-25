@@ -1,0 +1,17 @@
+id = "xdot_l151cc"
+name = "MultiTech xDot"
+vendor = "MultiTech"
+platform = "ststm32"
+mcu = "STM32L151CCU6"
+cpu = "cortex-m3"
+default_framework = "cmsis"
+frameworks = [
+    "cmsis",
+    "mbed",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32L151CC"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 262144
+ram_bytes = 32768

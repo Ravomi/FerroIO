@@ -1,0 +1,10 @@
+id = "ATmega649"
+name = "ATmega649/A"
+vendor = "Microchip"
+platform = "atmelavr"
+mcu = "ATMEGA649"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA649"
+flash_bytes = 65536
+ram_bytes = 4096

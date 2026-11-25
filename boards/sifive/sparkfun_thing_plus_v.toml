@@ -1,0 +1,14 @@
+id = "sparkfun_thing_plus_v"
+name = "SparkFun RED-V Thing Plus"
+vendor = "SparkFun"
+platform = "sifive"
+mcu = "FE310"
+default_framework = "freedom-e-sdk"
+frameworks = [
+    "freedom-e-sdk",
+    "freertos",
+    "zephyr",
+]
+probe_rs_chip = "FE310"
+flash_bytes = 16777216
+ram_bytes = 16384

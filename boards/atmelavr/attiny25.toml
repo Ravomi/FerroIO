@@ -1,0 +1,10 @@
+id = "attiny25"
+name = "Generic ATtiny25"
+vendor = "Atmel"
+platform = "atmelavr"
+mcu = "ATTINY25"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATTINY25"
+flash_bytes = 2048
+ram_bytes = 128

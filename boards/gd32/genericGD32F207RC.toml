@@ -1,0 +1,12 @@
+id = "genericGD32F207RC"
+name = "GD32F207RC (128k RAM, 256k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32F207RCT6"
+cpu = "cortex-m3"
+default_framework = "spl"
+frameworks = ["spl"]
+probe_rs_chip = "GD32F207RC"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 262144
+ram_bytes = 131072

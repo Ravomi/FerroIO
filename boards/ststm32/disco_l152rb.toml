@@ -1,0 +1,17 @@
+id = "disco_l152rb"
+name = "ST STM32LDISCOVERY"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32L152RBT6"
+cpu = "cortex-m3"
+default_framework = "cmsis"
+frameworks = [
+    "cmsis",
+    "spl",
+    "libopencm3",
+    "stm32cube",
+]
+probe_rs_chip = "STM32L152RB"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 131072
+ram_bytes = 16384

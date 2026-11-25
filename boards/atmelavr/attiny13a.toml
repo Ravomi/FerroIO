@@ -1,0 +1,10 @@
+id = "attiny13a"
+name = "ATtiny13A"
+vendor = "Microchip"
+platform = "atmelavr"
+mcu = "ATTINY13A"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATTINY13A"
+flash_bytes = 1024
+ram_bytes = 64

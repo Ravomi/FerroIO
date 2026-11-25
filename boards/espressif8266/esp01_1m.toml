@@ -1,0 +1,14 @@
+id = "esp01_1m"
+name = "Espressif Generic ESP8266 ESP-01 1M"
+vendor = "Espressif"
+platform = "espressif8266"
+mcu = "ESP8266"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "esp8266-rtos-sdk",
+    "esp8266-nonos-sdk",
+]
+probe_rs_chip = "ESP8266"
+flash_bytes = 1048576
+ram_bytes = 81920

@@ -1,0 +1,15 @@
+id = "adafruit_ledglasses_nrf52840"
+name = "Adafruit LED Glasses Driver nRF52840"
+vendor = "Adafruit"
+platform = "nordicnrf52"
+mcu = "NRF52840"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "zephyr",
+]
+probe_rs_chip = "nRF52840_xxAA"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 815104
+ram_bytes = 237568

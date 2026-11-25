@@ -1,0 +1,10 @@
+id = "at90pwm216"
+name = "Atmel AT90PWM216"
+vendor = "Microchip"
+platform = "atmelavr"
+mcu = "AT90PWM216"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "AT90PWM216"
+flash_bytes = 16384
+ram_bytes = 1024

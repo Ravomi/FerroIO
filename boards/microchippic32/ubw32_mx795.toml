@@ -1,0 +1,10 @@
+id = "ubw32_mx795"
+name = "UBW32 MX795"
+vendor = "UBW32"
+platform = "microchippic32"
+mcu = "32MX795F512L"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "32MX795F512L"
+flash_bytes = 520192
+ram_bytes = 131072

@@ -1,0 +1,12 @@
+id = "genericGD32F101RK"
+name = "GD32F101RK (80k RAM, 3072k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32F101RKT6"
+cpu = "cortex-m3"
+default_framework = "spl"
+frameworks = ["spl"]
+probe_rs_chip = "GD32F101RK"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 3145728
+ram_bytes = 81920

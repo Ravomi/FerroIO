@@ -1,0 +1,12 @@
+id = "hackaBLE"
+name = "hackaBLE"
+vendor = "Electronut Labs"
+platform = "nordicnrf52"
+mcu = "NRF52832"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "nRF52832_xxAA"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 524288
+ram_bytes = 65536

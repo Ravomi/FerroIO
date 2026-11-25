@@ -1,0 +1,18 @@
+id = "disco_h747xi"
+name = "STM32H747I-DISCO"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32H747XIH6"
+cpu = "cortex-m7"
+default_framework = "cmsis"
+frameworks = [
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+    "mbed",
+    "zephyr",
+]
+probe_rs_chip = "STM32H747XI"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 2097152
+ram_bytes = 524288

@@ -1,0 +1,15 @@
+id = "pimoroni_tiny2350"
+name = "Tiny2350"
+vendor = "Pimoroni"
+platform = "raspberrypi-earlephilhower"
+mcu = "RP2350"
+cpu = "cortex-m33"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "picosdk",
+]
+probe_rs_chip = "RP2350_M33_0"
+rust_target = "thumbv8m.main-none-eabihf"
+flash_bytes = 4194304
+ram_bytes = 524288

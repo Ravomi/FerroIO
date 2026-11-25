@@ -1,0 +1,15 @@
+id = "teensy40"
+name = "Teensy 4.0"
+vendor = "Teensy"
+platform = "teensy"
+mcu = "IMXRT1062"
+cpu = "cortex-m7"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "zephyr",
+]
+probe_rs_chip = "MIMXRT1062xxxxA"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 2031616
+ram_bytes = 524288

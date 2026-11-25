@@ -1,0 +1,15 @@
+id = "cricket_l082cz"
+name = "Cricket-L082CZ"
+vendor = "Tlera Corporation"
+platform = "ststm32"
+mcu = "STM32L082CZY6"
+cpu = "cortex-m0plus"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "stm32cube",
+]
+probe_rs_chip = "STM32L082CZ"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 196608
+ram_bytes = 20480

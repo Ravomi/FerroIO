@@ -1,0 +1,17 @@
+id = "coreboard_f401rc"
+name = "Core board F401RCT6"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32F401RCT6"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32F401RC"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 262144
+ram_bytes = 65536

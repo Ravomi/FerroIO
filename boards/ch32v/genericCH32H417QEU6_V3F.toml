@@ -1,0 +1,13 @@
+id = "genericCH32H417QEU6_V3F"
+name = "Generic CH32H417QEU6 (V3F Master)"
+vendor = "W.CH"
+platform = "ch32v"
+mcu = "CH32H417QEU6"
+default_framework = "noneos-sdk"
+frameworks = [
+    "noneos-sdk",
+    "ch32v003fun",
+]
+probe_rs_chip = "CH32H417QEU6"
+flash_bytes = 983040
+ram_bytes = 131072

@@ -1,0 +1,10 @@
+id = "nano_every"
+name = "Arduino Nano Every"
+vendor = "Arduino"
+platform = "atmelmegaavr"
+mcu = "ATMEGA4809"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA4809"
+flash_bytes = 48640
+ram_bytes = 6144

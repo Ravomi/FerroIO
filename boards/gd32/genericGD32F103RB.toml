@@ -1,0 +1,15 @@
+id = "genericGD32F103RB"
+name = "GD32F103RB (20k RAM, 128k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32F103RBT6"
+cpu = "cortex-m3"
+default_framework = "spl"
+frameworks = [
+    "spl",
+    "arduino",
+]
+probe_rs_chip = "GD32F103RB"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 131072
+ram_bytes = 20480

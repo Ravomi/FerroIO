@@ -1,0 +1,12 @@
+id = "nucleo_g491re"
+name = "Nucleo G491RE"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32G491RET6"
+cpu = "cortex-m4"
+default_framework = "stm32cube"
+frameworks = ["stm32cube"]
+probe_rs_chip = "STM32G491RE"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 524288
+ram_bytes = 114688

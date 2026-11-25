@@ -1,0 +1,18 @@
+id = "nucleo_f072rb"
+name = "ST Nucleo F072RB"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32F072RBT6"
+cpu = "cortex-m0"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "mbed",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32F072RB"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 131072
+ram_bytes = 16384

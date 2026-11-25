@@ -1,0 +1,16 @@
+id = "nrf52840_dk"
+name = "Nordic nRF52840-DK"
+vendor = "Nordic"
+platform = "nordicnrf52"
+mcu = "NRF52840"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "mbed",
+    "zephyr",
+]
+probe_rs_chip = "nRF52840_xxAA"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 1048576
+ram_bytes = 262144

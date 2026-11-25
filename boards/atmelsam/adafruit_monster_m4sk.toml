@@ -1,0 +1,12 @@
+id = "adafruit_monster_m4sk"
+name = "Adafruit MONSTER M4SK"
+vendor = "Adafruit"
+platform = "atmelsam"
+mcu = "SAMD51G19A"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATSAMD51J19"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 507904
+ram_bytes = 196608

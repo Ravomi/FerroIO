@@ -1,0 +1,17 @@
+id = "elektor_f072c8"
+name = "Elektor LoRa Node Core F072C8 (64 kB)"
+vendor = "Elektor"
+platform = "ststm32"
+mcu = "STM32F072C8T6"
+cpu = "cortex-m0"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "libopencm3",
+    "stm32cube",
+]
+probe_rs_chip = "STM32F072C8"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 65536
+ram_bytes = 16384

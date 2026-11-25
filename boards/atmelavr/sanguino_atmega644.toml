@@ -1,0 +1,10 @@
+id = "sanguino_atmega644"
+name = "Sanguino ATmega644 or ATmega644A (16 MHz)"
+vendor = "Sanguino"
+platform = "atmelavr"
+mcu = "ATMEGA644"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA644"
+flash_bytes = 64512
+ram_bytes = 4096

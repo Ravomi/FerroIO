@@ -1,0 +1,14 @@
+id = "dfrobot_beetle_esp32c3"
+name = "DFRobot Beetle ESP32-C3"
+vendor = "DFRobot"
+platform = "espressif32"
+mcu = "ESP32C3"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "espidf",
+]
+probe_rs_chip = "ESP32C3"
+rust_target = "riscv32imc-unknown-none-elf"
+flash_bytes = 4194304
+ram_bytes = 327680

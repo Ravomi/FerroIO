@@ -1,0 +1,10 @@
+id = "chipkit_pro_mx7"
+name = "Digilent chipKIT Pro MX7"
+vendor = "Digilent"
+platform = "microchippic32"
+mcu = "32MX795F512L"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "32MX795F512L"
+flash_bytes = 520192
+ram_bytes = 131072

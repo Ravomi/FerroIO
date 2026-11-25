@@ -1,0 +1,15 @@
+id = "lptm4c123gh6pm"
+name = "TI LaunchPad (Tiva C) w/ tm4c123 (80MHz)"
+vendor = "TI"
+platform = "titiva"
+mcu = "LPTM4C123GH6PM"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "libopencm3",
+]
+probe_rs_chip = "LPTM4C123GH6PM"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 262144
+ram_bytes = 32768

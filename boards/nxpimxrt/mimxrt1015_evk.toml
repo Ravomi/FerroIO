@@ -1,0 +1,12 @@
+id = "mimxrt1015_evk"
+name = "NXP i.MX RT1015 Evaluation Kit"
+vendor = "NXP"
+platform = "nxpimxrt"
+mcu = "MIMXRT1015DAF5A"
+cpu = "cortex-m7"
+default_framework = "zephyr"
+frameworks = ["zephyr"]
+probe_rs_chip = "MIMXRT1015DAF5A"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 98304
+ram_bytes = 131072

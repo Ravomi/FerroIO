@@ -1,0 +1,17 @@
+id = "b96b_aerocore2"
+name = "96Boards Neonkey"
+vendor = "96Boards"
+platform = "ststm32"
+mcu = "STM32F427VIT6"
+cpu = "cortex-m4"
+default_framework = "cmsis"
+frameworks = [
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+    "zephyr",
+]
+probe_rs_chip = "STM32F427VI"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 2091752
+ram_bytes = 262144

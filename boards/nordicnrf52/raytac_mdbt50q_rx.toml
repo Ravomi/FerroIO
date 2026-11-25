@@ -1,0 +1,12 @@
+id = "raytac_mdbt50q_rx"
+name = "Raytac MDBT50Q-RX Dongle"
+vendor = "Raytac"
+platform = "nordicnrf52"
+mcu = "NRF52840"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "nRF52840_xxAA"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 815104
+ram_bytes = 248832

@@ -1,0 +1,12 @@
+id = "ublox_bmd345eval_nrf52840"
+name = "u-blox BMD-345-EVAL"
+vendor = "u-blox"
+platform = "nordicnrf52"
+mcu = "NRF52840"
+cpu = "cortex-m4"
+default_framework = "zephyr"
+frameworks = ["zephyr"]
+probe_rs_chip = "nRF52840_xxAA"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 1048576
+ram_bytes = 262144

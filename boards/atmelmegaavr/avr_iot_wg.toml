@@ -1,0 +1,10 @@
+id = "avr_iot_wg"
+name = "AVR-IoT WG Development Board"
+vendor = "Microchip"
+platform = "atmelmegaavr"
+mcu = "ATMEGA4808"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA4808"
+flash_bytes = 49152
+ram_bytes = 6144

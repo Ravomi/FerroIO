@@ -1,0 +1,10 @@
+id = "attiny84"
+name = "Generic ATtiny84"
+vendor = "Atmel"
+platform = "atmelavr"
+mcu = "ATTINY84"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATTINY84"
+flash_bytes = 8192
+ram_bytes = 512

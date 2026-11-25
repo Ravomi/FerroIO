@@ -1,0 +1,14 @@
+id = "adafruit_itsybitsy_esp32"
+name = "Adafruit ItsyBitsy ESP32"
+vendor = "Adafruit"
+platform = "espressif32"
+mcu = "ESP32"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "espidf",
+]
+probe_rs_chip = "ESP32"
+rust_target = "xtensa-esp32-none-elf"
+flash_bytes = 8388608
+ram_bytes = 327680

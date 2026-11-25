@@ -1,0 +1,17 @@
+id = "disco_f412zg"
+name = "32F412GDISCOVERY"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32F412ZGT6"
+cpu = "cortex-m4"
+default_framework = "cmsis"
+frameworks = [
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+    "zephyr",
+]
+probe_rs_chip = "STM32F412ZG"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 1048576
+ram_bytes = 262144

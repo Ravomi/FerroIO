@@ -1,0 +1,19 @@
+id = "nucleo_f746zg"
+name = "ST Nucleo F746ZG"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32F746ZGT6"
+cpu = "cortex-m7"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "mbed",
+    "stm32cube",
+    "libopencm3",
+    "zephyr",
+]
+probe_rs_chip = "STM32F746ZG"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 1048576
+ram_bytes = 327680

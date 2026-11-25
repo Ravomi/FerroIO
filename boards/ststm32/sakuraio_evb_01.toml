@@ -1,0 +1,16 @@
+id = "sakuraio_evb_01"
+name = "sakura.io Evaluation Board"
+vendor = "sakura.io"
+platform = "ststm32"
+mcu = "STM32F411RET6"
+cpu = "cortex-m4"
+default_framework = "cmsis"
+frameworks = [
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32F411RE"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 1048576
+ram_bytes = 131072

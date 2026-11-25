@@ -1,0 +1,15 @@
+id = "mimxrt1050_evk"
+name = "NXP i.MX RT1050 Evaluation Kit"
+vendor = "NXP"
+platform = "nxpimxrt"
+mcu = "MIMXRT1052DVL6B"
+cpu = "cortex-m7"
+default_framework = "mbed"
+frameworks = [
+    "mbed",
+    "zephyr",
+]
+probe_rs_chip = "MIMXRT1052DVL6B"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 8388608
+ram_bytes = 33554432

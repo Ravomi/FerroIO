@@ -1,0 +1,14 @@
+id = "bee_motion_s3"
+name = "Smart Bee Motion S3"
+vendor = "Smart Bee"
+platform = "espressif32"
+mcu = "ESP32S3"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "espidf",
+]
+probe_rs_chip = "ESP32S3"
+rust_target = "xtensa-esp32s3-none-elf"
+flash_bytes = 8388608
+ram_bytes = 327680

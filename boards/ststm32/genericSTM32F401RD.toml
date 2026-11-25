@@ -1,0 +1,17 @@
+id = "genericSTM32F401RD"
+name = "STM32F401RD (96k RAM. 384k Flash)"
+vendor = "Generic"
+platform = "ststm32"
+mcu = "STM32F401RDT6"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32F401RD"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 393216
+ram_bytes = 98304

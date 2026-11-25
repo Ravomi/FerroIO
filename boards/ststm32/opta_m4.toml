@@ -1,0 +1,12 @@
+id = "opta_m4"
+name = "Arduino Opta (M4 core)"
+vendor = "Arduino"
+platform = "ststm32"
+mcu = "STM32H747XIH6"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "STM32H747XI_M4"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 1048576
+ram_bytes = 294248

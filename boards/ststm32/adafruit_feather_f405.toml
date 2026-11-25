@@ -1,0 +1,18 @@
+id = "adafruit_feather_f405"
+name = "Adafruit Feather STM32F405"
+vendor = "Adafruit"
+platform = "ststm32"
+mcu = "STM32F405RGT6"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+    "zephyr",
+]
+probe_rs_chip = "STM32F405RG"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 1048576
+ram_bytes = 131072

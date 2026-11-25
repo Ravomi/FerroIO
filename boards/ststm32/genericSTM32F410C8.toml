@@ -1,0 +1,17 @@
+id = "genericSTM32F410C8"
+name = "STM32F410C8 (32k RAM. 64k Flash)"
+vendor = "Generic"
+platform = "ststm32"
+mcu = "STM32F410C8T6"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32F410C8"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 65536
+ram_bytes = 32768

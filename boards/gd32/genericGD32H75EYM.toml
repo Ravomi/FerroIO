@@ -1,0 +1,12 @@
+id = "genericGD32H75EYM"
+name = "GD32H75EYM (1024k RAM, 3840k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32H75EYMJ6"
+cpu = "cortex-m7"
+default_framework = "spl"
+frameworks = ["spl"]
+probe_rs_chip = "GD32H75EYM"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 3932160
+ram_bytes = 1048576

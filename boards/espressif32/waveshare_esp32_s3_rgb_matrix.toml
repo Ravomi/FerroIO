@@ -1,0 +1,14 @@
+id = "waveshare_esp32_s3_rgb_matrix"
+name = "Waveshare ESP32-S3-RGB-Matrix"
+vendor = "Waveshare"
+platform = "espressif32"
+mcu = "ESP32S3"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "espidf",
+]
+probe_rs_chip = "ESP32S3"
+rust_target = "xtensa-esp32s3-none-elf"
+flash_bytes = 33554432
+ram_bytes = 327680

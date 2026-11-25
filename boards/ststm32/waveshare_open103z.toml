@@ -1,0 +1,17 @@
+id = "waveshare_open103z"
+name = "Waveshare Open103Z"
+vendor = "Waveshare"
+platform = "ststm32"
+mcu = "STM32F103ZET6"
+cpu = "cortex-m3"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "libopencm3",
+    "stm32cube",
+]
+probe_rs_chip = "STM32F103ZE"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 524288
+ram_bytes = 65536

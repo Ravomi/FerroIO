@@ -1,0 +1,12 @@
+id = "genericGD32F310F8"
+name = "GD32F310F8 (8k RAM, 64k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32F310F8P6"
+cpu = "cortex-m4"
+default_framework = "spl"
+frameworks = ["spl"]
+probe_rs_chip = "GD32F310F8"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 65536
+ram_bytes = 8192

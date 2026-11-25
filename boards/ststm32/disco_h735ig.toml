@@ -1,0 +1,15 @@
+id = "disco_h735ig"
+name = "STM32H735G-DK Discovery kit"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32H735IGK6"
+cpu = "cortex-m7"
+default_framework = "stm32cube"
+frameworks = [
+    "stm32cube",
+    "zephyr",
+]
+probe_rs_chip = "STM32H735IG"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 1048576
+ram_bytes = 442368

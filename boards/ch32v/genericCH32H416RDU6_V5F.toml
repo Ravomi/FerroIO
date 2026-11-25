@@ -1,0 +1,13 @@
+id = "genericCH32H416RDU6_V5F"
+name = "Generic CH32H416RDU6 (V5F Slave)"
+vendor = "W.CH"
+platform = "ch32v"
+mcu = "CH32H416RDU6"
+default_framework = "noneos-sdk"
+frameworks = [
+    "noneos-sdk",
+    "ch32v003fun",
+]
+probe_rs_chip = "CH32H416RDU6"
+flash_bytes = 491520
+ram_bytes = 131072

@@ -1,0 +1,17 @@
+id = "rhf76_052"
+name = "RHF76 052"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32L051C8T6"
+cpu = "cortex-m0plus"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32L051C8"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 65536
+ram_bytes = 8192

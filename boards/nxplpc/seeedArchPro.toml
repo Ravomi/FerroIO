@@ -1,0 +1,12 @@
+id = "seeedArchPro"
+name = "Seeed Arch Pro"
+vendor = "SeeedStudio"
+platform = "nxplpc"
+mcu = "LPC1768"
+cpu = "cortex-m3"
+default_framework = "mbed"
+frameworks = ["mbed"]
+probe_rs_chip = "LPC1768"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 524288
+ram_bytes = 65536

@@ -1,0 +1,16 @@
+id = "eval_l073z"
+name = "ST STM32L073Z-EVAL"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32L073VZT6"
+cpu = "cortex-m0plus"
+default_framework = "cmsis"
+frameworks = [
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32L073VZ"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 196608
+ram_bytes = 20480

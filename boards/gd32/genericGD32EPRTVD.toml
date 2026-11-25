@@ -1,0 +1,12 @@
+id = "genericGD32EPRTVD"
+name = "GD32EPRTVD (4192k RAM, 384k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32EPRTVDT6"
+cpu = "cortex-m33"
+default_framework = "spl"
+frameworks = ["spl"]
+probe_rs_chip = "GD32EPRTVD"
+rust_target = "thumbv8m.main-none-eabihf"
+flash_bytes = 393216
+ram_bytes = 4292608

@@ -1,0 +1,16 @@
+id = "genericSTM32F303CB"
+name = "STM32F303CB (32k RAM. 128k Flash)"
+vendor = "Generic"
+platform = "ststm32"
+mcu = "STM32F303CBT6"
+cpu = "cortex-m4"
+default_framework = "cmsis"
+frameworks = [
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32F303CB"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 131072
+ram_bytes = 32768

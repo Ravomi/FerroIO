@@ -1,0 +1,15 @@
+id = "frdm_k82f"
+name = "Freescale Kinetis FRDM-K82F"
+vendor = "Freescale"
+platform = "freescalekinetis"
+mcu = "MK82FN256VLL15"
+cpu = "cortex-m4"
+default_framework = "mbed"
+frameworks = [
+    "mbed",
+    "zephyr",
+]
+probe_rs_chip = "MK82FN256xxx15"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 262144
+ram_bytes = 262144

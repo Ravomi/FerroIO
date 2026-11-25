@@ -1,0 +1,10 @@
+id = "xplained_nano_416"
+name = "ATtiny416 Xplained Nano"
+vendor = "Microchip"
+platform = "atmelmegaavr"
+mcu = "ATTINY416"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATTINY416"
+flash_bytes = 4096
+ram_bytes = 256

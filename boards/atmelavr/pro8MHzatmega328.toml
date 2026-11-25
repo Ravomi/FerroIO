@@ -1,0 +1,10 @@
+id = "pro8MHzatmega328"
+name = "Arduino Pro or Pro Mini ATmega328 (3.3V, 8 MHz)"
+vendor = "Arduino"
+platform = "atmelavr"
+mcu = "ATMEGA328P"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA328P"
+flash_bytes = 30720
+ram_bytes = 2048

@@ -1,0 +1,14 @@
+id = "geekble_nano_esp32s3"
+name = "Geekble nano ESP32-S3"
+vendor = "Geekble"
+platform = "espressif32"
+mcu = "ESP32S3"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "espidf",
+]
+probe_rs_chip = "ESP32S3"
+rust_target = "xtensa-esp32s3-none-elf"
+flash_bytes = 4194304
+ram_bytes = 327680

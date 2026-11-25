@@ -1,0 +1,19 @@
+id = "nucleo_l433rc_p"
+name = "ST Nucleo L433RC-P"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32L433RC"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "mbed",
+    "stm32cube",
+    "libopencm3",
+    "zephyr",
+]
+probe_rs_chip = "STM32L433RC"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 262144
+ram_bytes = 65536

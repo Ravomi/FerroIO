@@ -1,0 +1,10 @@
+id = "attiny261"
+name = "Generic ATtiny261"
+vendor = "Atmel"
+platform = "atmelavr"
+mcu = "ATTINY261"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATTINY261"
+flash_bytes = 2048
+ram_bytes = 128

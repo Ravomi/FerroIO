@@ -1,0 +1,15 @@
+id = "nucleo_wl55jc"
+name = "ST Nucleo WL55JC"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32WL55JC"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "zephyr",
+]
+probe_rs_chip = "STM32WL55JC"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 262144
+ram_bytes = 65536

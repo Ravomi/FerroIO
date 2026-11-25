@@ -1,0 +1,17 @@
+id = "seeedArchMax"
+name = "Seeed Arch Max"
+vendor = "SeeedStudio"
+platform = "ststm32"
+mcu = "STM32F407VET6"
+cpu = "cortex-m4"
+default_framework = "cmsis"
+frameworks = [
+    "cmsis",
+    "mbed",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32F407VE"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 524288
+ram_bytes = 196608

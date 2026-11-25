@@ -1,0 +1,12 @@
+id = "lpc11u68"
+name = "LPCXpresso11U68"
+vendor = "NXP"
+platform = "nxplpc"
+mcu = "LPC11U68"
+cpu = "cortex-m0plus"
+default_framework = "zephyr"
+frameworks = ["zephyr"]
+probe_rs_chip = "LPC11U68"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 262144
+ram_bytes = 36864

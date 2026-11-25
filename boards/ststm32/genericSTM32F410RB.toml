@@ -1,0 +1,17 @@
+id = "genericSTM32F410RB"
+name = "STM32F410RB (32k RAM. 128k Flash)"
+vendor = "Generic"
+platform = "ststm32"
+mcu = "STM32F410RBT6"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32F410RB"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 131072
+ram_bytes = 32768

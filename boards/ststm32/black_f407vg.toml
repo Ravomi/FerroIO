@@ -1,0 +1,17 @@
+id = "black_f407vg"
+name = "Black STM32F407VG"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32F407VGT6"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32F407VG"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 524288
+ram_bytes = 131072

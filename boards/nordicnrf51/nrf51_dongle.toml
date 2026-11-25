@@ -1,0 +1,15 @@
+id = "nrf51_dongle"
+name = "Nordic nRF51 Dongle (PCA10031)"
+vendor = "Nordic"
+platform = "nordicnrf51"
+mcu = "NRF51822"
+cpu = "cortex-m0"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "zephyr",
+]
+probe_rs_chip = "nRF51822_xxAC"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 262144
+ram_bytes = 32768

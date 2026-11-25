@@ -1,0 +1,18 @@
+id = "blackpill_f401ce"
+name = "WeAct Studio BlackPill V3.0 (STM32F401CE)"
+vendor = "WeAct Studio"
+platform = "ststm32"
+mcu = "STM32F401CEU6"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+    "zephyr",
+]
+probe_rs_chip = "STM32F401CE"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 524288
+ram_bytes = 98304

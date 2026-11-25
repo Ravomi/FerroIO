@@ -1,0 +1,10 @@
+id = "ATmega328"
+name = "ATmega328"
+vendor = "Microchip"
+platform = "atmelavr"
+mcu = "ATMEGA328"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA328"
+flash_bytes = 32768
+ram_bytes = 2048

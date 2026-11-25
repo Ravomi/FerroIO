@@ -1,0 +1,15 @@
+id = "adafruit_itsybitsy_m4"
+name = "Adafruit ItsyBitsy M4"
+vendor = "Adafruit"
+platform = "atmelsam"
+mcu = "SAMD51G19A"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "zephyr",
+]
+probe_rs_chip = "ATSAMD51G19"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 524288
+ram_bytes = 196608

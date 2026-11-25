@@ -1,0 +1,15 @@
+id = "frdm_kw41z"
+name = "Freescale Kinetis FRDM-KW41Z"
+vendor = "Freescale"
+platform = "freescalekinetis"
+mcu = "MKW41Z512VHT4"
+cpu = "cortex-m0plus"
+default_framework = "mbed"
+frameworks = [
+    "mbed",
+    "zephyr",
+]
+probe_rs_chip = "MKW41Z512xxx4"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 524288
+ram_bytes = 131072

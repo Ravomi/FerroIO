@@ -1,0 +1,14 @@
+id = "rymcu-esp32-c3-devkitm-1"
+name = "RYMCU ESP32-C3-DevKitM-1"
+vendor = "RYMCU"
+platform = "espressif32"
+mcu = "ESP32C3"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "espidf",
+]
+probe_rs_chip = "ESP32C3"
+rust_target = "riscv32imc-unknown-none-elf"
+flash_bytes = 4194304
+ram_bytes = 327680

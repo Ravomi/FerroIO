@@ -1,0 +1,13 @@
+id = "genericCH570Q"
+name = "Generic CH570Q"
+vendor = "W.CH"
+platform = "ch32v"
+mcu = "CH570Q"
+default_framework = "noneos-sdk"
+frameworks = [
+    "noneos-sdk",
+    "ch32v003fun",
+]
+probe_rs_chip = "CH570Q"
+flash_bytes = 253952
+ram_bytes = 12288

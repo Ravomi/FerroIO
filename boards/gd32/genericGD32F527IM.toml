@@ -1,0 +1,12 @@
+id = "genericGD32F527IM"
+name = "GD32F527IM (1088k RAM, 4608k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32F527IMK7"
+cpu = "cortex-m33"
+default_framework = "spl"
+frameworks = ["spl"]
+probe_rs_chip = "GD32F527IM"
+rust_target = "thumbv8m.main-none-eabihf"
+flash_bytes = 4718592
+ram_bytes = 1114112

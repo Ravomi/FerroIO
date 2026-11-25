@@ -1,0 +1,10 @@
+id = "fubarino_sd"
+name = "Fubarino SD (1.5)"
+vendor = "Fubarino"
+platform = "microchippic32"
+mcu = "32MX795F512H"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "32MX795F512H"
+flash_bytes = 520192
+ram_bytes = 131072

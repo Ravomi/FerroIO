@@ -1,0 +1,12 @@
+id = "genericGD32A513CB"
+name = "GD32A513CB (24k RAM, 128k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32A513CBT3"
+cpu = "cortex-m33"
+default_framework = "spl"
+frameworks = ["spl"]
+probe_rs_chip = "GD32A513CB"
+rust_target = "thumbv8m.main-none-eabihf"
+flash_bytes = 131072
+ram_bytes = 24576

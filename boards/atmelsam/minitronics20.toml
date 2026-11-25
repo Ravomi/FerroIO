@@ -1,0 +1,12 @@
+id = "minitronics20"
+name = "Minitronics v2.0"
+vendor = "ReprapWorld"
+platform = "atmelsam"
+mcu = "SAMD21J18A"
+cpu = "cortex-m0plus"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATSAMD21J18"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 262144
+ram_bytes = 32768

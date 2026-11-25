@@ -1,0 +1,15 @@
+id = "genericGD32W515P0"
+name = "GD32W515P0 (448k RAM, 0k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32W515P0Q6"
+cpu = "cortex-m33"
+default_framework = "spl"
+frameworks = [
+    "spl",
+    "wifi-sdk",
+]
+probe_rs_chip = "GD32W515P0"
+rust_target = "thumbv8m.main-none-eabihf"
+flash_bytes = 0
+ram_bytes = 458752

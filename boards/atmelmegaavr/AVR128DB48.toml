@@ -1,0 +1,10 @@
+id = "AVR128DB48"
+name = "AVR128DB48"
+vendor = "Microchip"
+platform = "atmelmegaavr"
+mcu = "AVR128DB48"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "AVR128DB48"
+flash_bytes = 131072
+ram_bytes = 16384

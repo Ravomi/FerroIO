@@ -1,0 +1,10 @@
+id = "ATtiny1607"
+name = "ATtiny1607"
+vendor = "Microchip"
+platform = "atmelmegaavr"
+mcu = "ATTINY1607"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATTINY1607"
+flash_bytes = 16384
+ram_bytes = 1024

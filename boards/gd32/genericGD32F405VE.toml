@@ -1,0 +1,12 @@
+id = "genericGD32F405VE"
+name = "GD32F405VE (192k RAM, 512k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32F405VET6"
+cpu = "cortex-m4"
+default_framework = "spl"
+frameworks = ["spl"]
+probe_rs_chip = "GD32F405VE"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 524288
+ram_bytes = 131072

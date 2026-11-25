@@ -1,0 +1,15 @@
+id = "genericGD32F303RK"
+name = "GD32F303RK (96k RAM, 3072k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32F303RKT6"
+cpu = "cortex-m4"
+default_framework = "spl"
+frameworks = [
+    "spl",
+    "arduino",
+]
+probe_rs_chip = "GD32F303RK"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 3145728
+ram_bytes = 98304

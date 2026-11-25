@@ -1,0 +1,12 @@
+id = "genericGD32A503CC"
+name = "GD32A503CC (32k RAM, 256k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32A503CCT3"
+cpu = "cortex-m33"
+default_framework = "spl"
+frameworks = ["spl"]
+probe_rs_chip = "GD32A503CC"
+rust_target = "thumbv8m.main-none-eabihf"
+flash_bytes = 262144
+ram_bytes = 32768

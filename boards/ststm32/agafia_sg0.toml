@@ -1,0 +1,17 @@
+id = "agafia_sg0"
+name = "Sigma IC AGAFIA SG0"
+vendor = "Sigma IC"
+platform = "ststm32"
+mcu = "STM32G071RBT6"
+cpu = "cortex-m0plus"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "libopencm3",
+    "stm32cube",
+]
+probe_rs_chip = "STM32G071RB"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 131072
+ram_bytes = 36864

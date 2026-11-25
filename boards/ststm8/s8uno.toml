@@ -1,0 +1,14 @@
+id = "s8uno"
+name = "sduino UNO (STM8S105K6)"
+vendor = "sduino"
+platform = "ststm8"
+mcu = "STM8S105K6T6"
+cpu = "stm8"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "spl",
+]
+probe_rs_chip = "STM8S105K6T6"
+flash_bytes = 32768
+ram_bytes = 2048

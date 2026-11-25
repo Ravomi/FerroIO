@@ -1,0 +1,15 @@
+id = "genericGD32F103ZE"
+name = "GD32F103ZE (64k RAM, 512k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32F103ZET6"
+cpu = "cortex-m3"
+default_framework = "spl"
+frameworks = [
+    "spl",
+    "arduino",
+]
+probe_rs_chip = "GD32F103ZE"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 524288
+ram_bytes = 65536

@@ -1,0 +1,10 @@
+id = "ATmega8515"
+name = "ATmega8515"
+vendor = "Microchip"
+platform = "atmelavr"
+mcu = "ATMEGA8515"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA8515"
+flash_bytes = 8192
+ram_bytes = 512

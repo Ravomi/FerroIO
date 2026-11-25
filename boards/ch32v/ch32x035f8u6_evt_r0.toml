@@ -1,0 +1,17 @@
+id = "ch32x035f8u6_evt_r0"
+name = "CH32X035F8U6-EVT-R0"
+vendor = "W.CH"
+platform = "ch32v"
+mcu = "CH32X035F8U6"
+default_framework = "noneos-sdk"
+frameworks = [
+    "noneos-sdk",
+    "freertos",
+    "harmony-liteos",
+    "rt-thread",
+    "tencent-os",
+    "ch32v003fun",
+]
+probe_rs_chip = "CH32X035F8U6"
+flash_bytes = 63488
+ram_bytes = 20480

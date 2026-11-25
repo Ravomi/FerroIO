@@ -1,0 +1,10 @@
+id = "ATmega88"
+name = "ATmega88/A"
+vendor = "Microchip"
+platform = "atmelavr"
+mcu = "ATMEGA88"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA88"
+flash_bytes = 8192
+ram_bytes = 1024

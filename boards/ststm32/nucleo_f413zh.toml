@@ -1,0 +1,18 @@
+id = "nucleo_f413zh"
+name = "ST Nucleo F413ZH"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32F413ZHT6"
+cpu = "cortex-m4"
+default_framework = "cmsis"
+frameworks = [
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+    "mbed",
+    "zephyr",
+]
+probe_rs_chip = "STM32F413ZH"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 1572864
+ram_bytes = 327680

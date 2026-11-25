@@ -1,0 +1,17 @@
+id = "nucleo_f303ze"
+name = "ST Nucleo F303ZE"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32F303ZET6"
+cpu = "cortex-m4"
+default_framework = "cmsis"
+frameworks = [
+    "cmsis",
+    "mbed",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32F303ZE"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 524288
+ram_bytes = 65536

@@ -1,0 +1,14 @@
+id = "franzininho_wifi_msc_esp32s2"
+name = "Franzininho WiFi MSC"
+vendor = "Franzininho"
+platform = "espressif32"
+mcu = "ESP32S2"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "espidf",
+]
+probe_rs_chip = "ESP32S2"
+rust_target = "xtensa-esp32s2-none-elf"
+flash_bytes = 4194304
+ram_bytes = 327680

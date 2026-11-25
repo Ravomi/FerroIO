@@ -1,0 +1,10 @@
+id = "sodaq_mbili"
+name = "SODAQ Mbili"
+vendor = "SODAQ"
+platform = "atmelavr"
+mcu = "ATMEGA1284P"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA1284P"
+flash_bytes = 130048
+ram_bytes = 16384

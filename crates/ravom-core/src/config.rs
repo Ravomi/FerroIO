@@ -86,6 +86,15 @@ pub struct BoardInfo {
 pub fn builtin_boards() -> &'static [BoardInfo] {
     &[
         BoardInfo {
+            id: "bluepill_f103c8",
+            name: "BluePill F103C8 (STM32F103C8T6)",
+            platform: "ststm32",
+            mcu: "STM32F103C8T6",
+            default_framework: "embassy",
+            probe_rs_chip: Some("STM32F103C8"),
+            rust_target: Some("thumbv7m-none-eabi"),
+        },
+        BoardInfo {
             id: "stm32f401ccu6",
             name: "WeAct BlackPill V3.0 (STM32F401CCU6)",
             platform: "ststm32",

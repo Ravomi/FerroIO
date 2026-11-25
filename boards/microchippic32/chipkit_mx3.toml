@@ -1,0 +1,10 @@
+id = "chipkit_mx3"
+name = "Digilent chipKIT MX3"
+vendor = "Digilent"
+platform = "microchippic32"
+mcu = "32MX320F128H"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "32MX320F128H"
+flash_bytes = 126976
+ram_bytes = 16384

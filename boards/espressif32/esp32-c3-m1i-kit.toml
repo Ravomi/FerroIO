@@ -1,0 +1,14 @@
+id = "esp32-c3-m1i-kit"
+name = "Ai-Thinker ESP-C3-M1-I-Kit"
+vendor = "Ai-Thinker"
+platform = "espressif32"
+mcu = "ESP32C3"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "espidf",
+]
+probe_rs_chip = "ESP32C3"
+rust_target = "riscv32imc-unknown-none-elf"
+flash_bytes = 4194304
+ram_bytes = 327680

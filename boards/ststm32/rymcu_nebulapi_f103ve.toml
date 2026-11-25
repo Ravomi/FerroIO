@@ -1,0 +1,17 @@
+id = "rymcu_nebulapi_f103ve"
+name = "RYMCU Nebula Pi F103VE (64k RAM. 512k Flash)"
+vendor = "RYMCU"
+platform = "ststm32"
+mcu = "STM32F103VET6"
+cpu = "cortex-m3"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "libopencm3",
+    "stm32cube",
+]
+probe_rs_chip = "STM32F103VE"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 524288
+ram_bytes = 65536

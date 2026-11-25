@@ -1,0 +1,12 @@
+id = "vbluno51"
+name = "VNG VBLUNO51"
+vendor = "VNG"
+platform = "nordicnrf51"
+mcu = "NRF51822"
+cpu = "cortex-m0"
+default_framework = "zephyr"
+frameworks = ["zephyr"]
+probe_rs_chip = "NRF51822"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 131072
+ram_bytes = 32768

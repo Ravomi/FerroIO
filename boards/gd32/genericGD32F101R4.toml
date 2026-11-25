@@ -1,0 +1,12 @@
+id = "genericGD32F101R4"
+name = "GD32F101R4 (4k RAM, 16k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32F101R4T6"
+cpu = "cortex-m3"
+default_framework = "spl"
+frameworks = ["spl"]
+probe_rs_chip = "GD32F101R4"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 16384
+ram_bytes = 4096

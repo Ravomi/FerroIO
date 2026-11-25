@@ -1,0 +1,10 @@
+id = "genericCH643Q"
+name = "Generic CH643Q"
+vendor = "W.CH"
+platform = "ch32v"
+mcu = "CH643Q"
+default_framework = "noneos-sdk"
+frameworks = ["noneos-sdk"]
+probe_rs_chip = "CH643Q"
+flash_bytes = 63488
+ram_bytes = 20480

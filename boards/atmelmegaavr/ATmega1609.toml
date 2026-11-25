@@ -1,0 +1,10 @@
+id = "ATmega1609"
+name = "ATmega1609"
+vendor = "Microchip"
+platform = "atmelmegaavr"
+mcu = "ATMEGA1609"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA1609"
+flash_bytes = 16384
+ram_bytes = 2048

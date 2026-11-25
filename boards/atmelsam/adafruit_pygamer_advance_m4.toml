@@ -1,0 +1,12 @@
+id = "adafruit_pygamer_advance_m4"
+name = "Adafruit PyGamer Advance M4"
+vendor = "Adafruit"
+platform = "atmelsam"
+mcu = "SAMD51J20A"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATSAMD51J20"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 1048576
+ram_bytes = 262144

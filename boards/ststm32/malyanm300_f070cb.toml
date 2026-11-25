@@ -1,0 +1,17 @@
+id = "malyanm300_f070cb"
+name = "M300"
+vendor = "Malyan"
+platform = "ststm32"
+mcu = "STM32F070CBT6"
+cpu = "cortex-m0"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32F070CB"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 122880
+ram_bytes = 15168

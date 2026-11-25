@@ -1,0 +1,19 @@
+id = "disco_l475vg_iot01a"
+name = "ST B-L475E-IOT01A Discovery kit"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32L475VGT6"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "mbed",
+    "stm32cube",
+    "libopencm3",
+    "zephyr",
+]
+probe_rs_chip = "STM32L475VG"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 1048576
+ram_bytes = 98304

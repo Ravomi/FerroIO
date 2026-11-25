@@ -1,0 +1,17 @@
+id = "nucleo_l552ze_q"
+name = "ST Nucleo L552ZE-Q"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32L552ZET6"
+cpu = "cortex-m33"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+    "zephyr",
+]
+probe_rs_chip = "STM32L552ZE"
+rust_target = "thumbv8m.main-none-eabihf"
+flash_bytes = 524288
+ram_bytes = 196608

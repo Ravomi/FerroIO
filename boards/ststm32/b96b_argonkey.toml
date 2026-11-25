@@ -1,0 +1,17 @@
+id = "b96b_argonkey"
+name = "96Boards Argonkey (STEVAL-MKI187V1)"
+vendor = "96Boards"
+platform = "ststm32"
+mcu = "STM32F412CG"
+cpu = "cortex-m4"
+default_framework = "cmsis"
+frameworks = [
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+    "zephyr",
+]
+probe_rs_chip = "STM32G412CG"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 1048576
+ram_bytes = 262144

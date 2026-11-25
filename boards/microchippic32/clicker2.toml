@@ -1,0 +1,10 @@
+id = "clicker2"
+name = "MikroElektronika Clicker 2"
+vendor = "MikroElektronika"
+platform = "microchippic32"
+mcu = "32MX460F512L"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "32MX460F512L"
+flash_bytes = 520192
+ram_bytes = 32768

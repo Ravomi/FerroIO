@@ -1,0 +1,10 @@
+id = "digispark-pro64"
+name = "Digispark Pro (16 MHz) (64 byte buffer)"
+vendor = "Digistump"
+platform = "atmelavr"
+mcu = "ATTINY167"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATTINY167"
+flash_bytes = 14844
+ram_bytes = 512

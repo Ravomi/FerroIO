@@ -1,0 +1,17 @@
+id = "disco_g071rb"
+name = "ST STM32G071B Discovery"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32G071RBT6"
+cpu = "cortex-m0plus"
+default_framework = "cmsis"
+frameworks = [
+    "cmsis",
+    "libopencm3",
+    "stm32cube",
+    "zephyr",
+]
+probe_rs_chip = "STM32G071RB"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 131072
+ram_bytes = 36864

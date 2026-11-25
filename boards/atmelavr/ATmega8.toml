@@ -1,0 +1,10 @@
+id = "ATmega8"
+name = "ATmega8/A"
+vendor = "Microchip"
+platform = "atmelavr"
+mcu = "ATMEGA8"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA8"
+flash_bytes = 8192
+ram_bytes = 1024

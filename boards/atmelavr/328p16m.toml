@@ -1,0 +1,10 @@
+id = "328p16m"
+name = "Microduino Core (Atmega328P@16M,5V)"
+vendor = "Microduino"
+platform = "atmelavr"
+mcu = "ATMEGA328P"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA328P"
+flash_bytes = 32256
+ram_bytes = 2048

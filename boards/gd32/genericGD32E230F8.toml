@@ -1,0 +1,14 @@
+id = "genericGD32E230F8"
+name = "GD32E230F8 (8k RAM, 64k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32E230F8V6"
+cpu = "cortex-m23"
+default_framework = "spl"
+frameworks = [
+    "spl",
+    "arduino",
+]
+probe_rs_chip = "GD32E230F8"
+flash_bytes = 65536
+ram_bytes = 8192

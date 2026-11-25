@@ -1,0 +1,17 @@
+id = "genericSTM32F103RC"
+name = "STM32F103RC (48k RAM. 256k Flash)"
+vendor = "Generic"
+platform = "ststm32"
+mcu = "STM32F103RCT6"
+cpu = "cortex-m3"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "libopencm3",
+    "stm32cube",
+]
+probe_rs_chip = "STM32F103RC"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 262144
+ram_bytes = 49152

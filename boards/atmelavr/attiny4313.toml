@@ -1,0 +1,10 @@
+id = "attiny4313"
+name = "Generic ATtiny4313"
+vendor = "Atmel"
+platform = "atmelavr"
+mcu = "ATTINY4313"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATTINY4313"
+flash_bytes = 4096
+ram_bytes = 256

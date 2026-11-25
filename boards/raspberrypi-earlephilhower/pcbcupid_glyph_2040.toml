@@ -1,0 +1,15 @@
+id = "pcbcupid_glyph_2040"
+name = "GLYPH 2040"
+vendor = "Pcbcupid"
+platform = "raspberrypi-earlephilhower"
+mcu = "RP2040"
+cpu = "cortex-m0plus"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "picosdk",
+]
+probe_rs_chip = "RP2040_M0_0"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 8388608
+ram_bytes = 262144

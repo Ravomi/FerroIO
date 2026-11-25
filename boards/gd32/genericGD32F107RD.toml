@@ -1,0 +1,12 @@
+id = "genericGD32F107RD"
+name = "GD32F107RD (96k RAM, 384k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32F107RDT6"
+cpu = "cortex-m3"
+default_framework = "spl"
+frameworks = ["spl"]
+probe_rs_chip = "GD32F107RD"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 393216
+ram_bytes = 98304

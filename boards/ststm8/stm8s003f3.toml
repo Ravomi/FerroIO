@@ -1,0 +1,14 @@
+id = "stm8s003f3"
+name = "ST STM8S003F3 chip"
+vendor = "ST"
+platform = "ststm8"
+mcu = "STM8S003F3P6"
+cpu = "stm8"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "spl",
+]
+probe_rs_chip = "STM8S003F3P6"
+flash_bytes = 8192
+ram_bytes = 1024

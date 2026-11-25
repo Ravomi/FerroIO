@@ -1,0 +1,12 @@
+id = "frdm_kl46z"
+name = "Freescale Kinetis FRDM-KL46Z"
+vendor = "Freescale"
+platform = "freescalekinetis"
+mcu = "MKL46Z256VLL4"
+cpu = "cortex-m0plus"
+default_framework = "mbed"
+frameworks = ["mbed"]
+probe_rs_chip = "MKL46Z256xxx4"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 262144
+ram_bytes = 32768

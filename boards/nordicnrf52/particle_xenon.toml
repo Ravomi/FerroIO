@@ -1,0 +1,15 @@
+id = "particle_xenon"
+name = "Particle Xenon"
+vendor = "Particle"
+platform = "nordicnrf52"
+mcu = "NRF52840"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "zephyr",
+]
+probe_rs_chip = "nRF52840_xxAA"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 815104
+ram_bytes = 248832

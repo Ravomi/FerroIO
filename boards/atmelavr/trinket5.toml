@@ -1,0 +1,10 @@
+id = "trinket5"
+name = "Adafruit Trinket 5V/16MHz"
+vendor = "Adafruit"
+platform = "atmelavr"
+mcu = "ATTINY85"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATTINY85"
+flash_bytes = 8192
+ram_bytes = 512

@@ -1,0 +1,10 @@
+id = "attiny441"
+name = "Generic ATtiny441"
+vendor = "Atmel"
+platform = "atmelavr"
+mcu = "ATTINY441"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATTINY441"
+flash_bytes = 4096
+ram_bytes = 256

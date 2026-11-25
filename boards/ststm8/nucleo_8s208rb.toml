@@ -1,0 +1,11 @@
+id = "nucleo_8s208rb"
+name = "NUCLEO-8S208RB"
+vendor = "STMicroelectronics"
+platform = "ststm8"
+mcu = "STM8S208RBT6"
+cpu = "stm8"
+default_framework = "spl"
+frameworks = ["spl"]
+probe_rs_chip = "STM8S208RBT6"
+flash_bytes = 131072
+ram_bytes = 6144

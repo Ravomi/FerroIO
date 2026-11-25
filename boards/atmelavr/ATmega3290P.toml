@@ -1,0 +1,10 @@
+id = "ATmega3290P"
+name = "ATmega3290P/PA"
+vendor = "Microchip"
+platform = "atmelavr"
+mcu = "ATMEGA3290P"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA3290P"
+flash_bytes = 32768
+ram_bytes = 2048

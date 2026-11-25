@@ -1,0 +1,14 @@
+id = "ttgo-t-oi-plus"
+name = "TTGO T-OI PLUS RISC-V ESP32-C3"
+vendor = "TTGO"
+platform = "espressif32"
+mcu = "ESP32C3"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "espidf",
+]
+probe_rs_chip = "ESP32C3"
+rust_target = "riscv32imc-unknown-none-elf"
+flash_bytes = 4194304
+ram_bytes = 327680

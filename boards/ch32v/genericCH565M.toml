@@ -1,0 +1,13 @@
+id = "genericCH565M"
+name = "Generic CH565M"
+vendor = "W.CH"
+platform = "ch32v"
+mcu = "CH565M"
+default_framework = "noneos-sdk"
+frameworks = [
+    "noneos-sdk",
+    "ch32v003fun",
+]
+probe_rs_chip = "CH565M"
+flash_bytes = 491520
+ram_bytes = 49152

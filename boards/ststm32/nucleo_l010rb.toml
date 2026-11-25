@@ -1,0 +1,16 @@
+id = "nucleo_l010rb"
+name = "ST Nucleo L010RB"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32L010RBT6"
+cpu = "cortex-m0plus"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32L010RB"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 131072
+ram_bytes = 20480

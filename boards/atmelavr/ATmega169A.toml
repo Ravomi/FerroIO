@@ -1,0 +1,10 @@
+id = "ATmega169A"
+name = "ATmega169A"
+vendor = "Microchip"
+platform = "atmelavr"
+mcu = "ATMEGA169A"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA169A"
+flash_bytes = 16384
+ram_bytes = 1024

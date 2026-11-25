@@ -1,0 +1,17 @@
+id = "nucleo_l011k4"
+name = "ST Nucleo L011K4"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32L011K4T6"
+cpu = "cortex-m0plus"
+default_framework = "cmsis"
+frameworks = [
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+    "zephyr",
+]
+probe_rs_chip = "STM32L011K4"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 16384
+ram_bytes = 2048

@@ -1,0 +1,10 @@
+id = "ATmega48P"
+name = "ATmega48P/PA"
+vendor = "Microchip"
+platform = "atmelavr"
+mcu = "ATMEGA48P"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA48P"
+flash_bytes = 4096
+ram_bytes = 512

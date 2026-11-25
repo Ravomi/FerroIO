@@ -1,0 +1,15 @@
+id = "genericGD32F330F4"
+name = "GD32F330F4 (4k RAM, 16k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32F330F4P6"
+cpu = "cortex-m4"
+default_framework = "spl"
+frameworks = [
+    "spl",
+    "arduino",
+]
+probe_rs_chip = "GD32F330F4"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 16384
+ram_bytes = 4096

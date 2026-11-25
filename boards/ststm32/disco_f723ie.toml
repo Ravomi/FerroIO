@@ -1,0 +1,17 @@
+id = "disco_f723ie"
+name = "32F723EDISCOVERY"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32F723IEK6"
+cpu = "cortex-m7"
+default_framework = "cmsis"
+frameworks = [
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+    "zephyr",
+]
+probe_rs_chip = "STM32F723IE"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 524288
+ram_bytes = 196608

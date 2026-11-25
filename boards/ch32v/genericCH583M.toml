@@ -1,0 +1,15 @@
+id = "genericCH583M"
+name = "Generic CH583M"
+vendor = "W.CH"
+platform = "ch32v"
+mcu = "CH583M"
+default_framework = "noneos-sdk"
+frameworks = [
+    "noneos-sdk",
+    "freertos",
+    "rt-thread",
+    "ch32v003fun",
+]
+probe_rs_chip = "CH583M"
+flash_bytes = 491520
+ram_bytes = 32768

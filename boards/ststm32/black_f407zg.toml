@@ -1,0 +1,18 @@
+id = "black_f407zg"
+name = "Black STM32F407ZG"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32F407ZGT6"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+    "zephyr",
+]
+probe_rs_chip = "STM32F407ZG"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 1048576
+ram_bytes = 131072

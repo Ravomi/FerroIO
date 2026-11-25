@@ -1,0 +1,12 @@
+id = "lpc546xx"
+name = "NXP LPCXpresso54608"
+vendor = "NXP"
+platform = "nxplpc"
+mcu = "LPC54608ET512"
+cpu = "cortex-m4"
+default_framework = "mbed"
+frameworks = ["mbed"]
+probe_rs_chip = "LPC54608J512"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 524288
+ram_bytes = 204800

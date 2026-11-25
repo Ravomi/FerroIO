@@ -1,0 +1,14 @@
+id = "um_feathers3"
+name = "Unexpected Maker FeatherS3"
+vendor = "Unexpected Maker"
+platform = "espressif32"
+mcu = "ESP32S3"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "espidf",
+]
+probe_rs_chip = "ESP32S3"
+rust_target = "xtensa-esp32s3-none-elf"
+flash_bytes = 16777216
+ram_bytes = 327680

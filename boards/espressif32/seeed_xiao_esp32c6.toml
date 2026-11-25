@@ -1,0 +1,14 @@
+id = "seeed_xiao_esp32c6"
+name = "Seeed Studio XIAO ESP32C6"
+vendor = "Seeed Studio"
+platform = "espressif32"
+mcu = "ESP32C6"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "espidf",
+]
+probe_rs_chip = "ESP32C6"
+rust_target = "riscv32imac-unknown-none-elf"
+flash_bytes = 4194304
+ram_bytes = 327680

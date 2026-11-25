@@ -1,0 +1,10 @@
+id = "elektor_uno_r4"
+name = "Elektor Uno R4"
+vendor = "Elektor"
+platform = "atmelavr"
+mcu = "ATMEGA328PB"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA328PB"
+flash_bytes = 32256
+ram_bytes = 2048

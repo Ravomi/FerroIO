@@ -1,0 +1,17 @@
+id = "mote_l152rc"
+name = "NAMote72"
+vendor = "Semtech"
+platform = "ststm32"
+mcu = "STM32L152RC"
+cpu = "cortex-m3"
+default_framework = "mbed"
+frameworks = [
+    "mbed",
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32L152RC"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 262144
+ram_bytes = 32768

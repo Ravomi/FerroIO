@@ -1,0 +1,18 @@
+id = "ch32v203c8t6_evt_r0"
+name = "CH32V203C8T6-EVT-R0"
+vendor = "W.CH"
+platform = "ch32v"
+mcu = "CH32V203C8T6"
+default_framework = "noneos-sdk"
+frameworks = [
+    "noneos-sdk",
+    "freertos",
+    "harmony-liteos",
+    "rt-thread",
+    "tencent-os",
+    "ch32v003fun",
+    "arduino",
+]
+probe_rs_chip = "CH32V203C8T6"
+flash_bytes = 65536
+ram_bytes = 20480

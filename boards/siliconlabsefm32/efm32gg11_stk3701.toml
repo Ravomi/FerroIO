@@ -1,0 +1,12 @@
+id = "efm32gg11_stk3701"
+name = "SLSTK3701A Giant Gecko S1"
+vendor = "Silicon Labs"
+platform = "siliconlabsefm32"
+mcu = "EFM32GG11B820F2048GL192"
+cpu = "cortex-m3"
+default_framework = "mbed"
+frameworks = ["mbed"]
+probe_rs_chip = "EFM32GG11B820F2048"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 2097152
+ram_bytes = 524288

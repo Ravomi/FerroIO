@@ -1,0 +1,15 @@
+id = "waveshare_rp2350b_plus_w"
+name = "RP2350B Plus W"
+vendor = "Waveshare"
+platform = "raspberrypi-earlephilhower"
+mcu = "RP2350"
+cpu = "cortex-m33"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "picosdk",
+]
+probe_rs_chip = "RP2350_M33_0"
+rust_target = "thumbv8m.main-none-eabihf"
+flash_bytes = 16777216
+ram_bytes = 524288

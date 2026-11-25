@@ -1,0 +1,10 @@
+id = "ATmega6450P"
+name = "ATmega6450P"
+vendor = "Microchip"
+platform = "atmelavr"
+mcu = "ATMEGA6450P"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA6450P"
+flash_bytes = 65536
+ram_bytes = 4096

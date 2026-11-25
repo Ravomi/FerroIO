@@ -1,0 +1,10 @@
+id = "the_things_uno"
+name = "The Things Uno"
+vendor = "The Things Network"
+platform = "atmelavr"
+mcu = "ATMEGA32U4"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA32U4"
+flash_bytes = 28672
+ram_bytes = 2560

@@ -1,0 +1,17 @@
+id = "disco_f100rb"
+name = "ST STM32VLDISCOVERY"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32F100RBT6"
+cpu = "cortex-m3"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "libopencm3",
+    "stm32cube",
+]
+probe_rs_chip = "STM32F100RB"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 131072
+ram_bytes = 8192

@@ -1,0 +1,17 @@
+id = "blues_cygnet"
+name = "Blues Cygnet"
+vendor = "Blues"
+platform = "ststm32"
+mcu = "STM32L433CCT6"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32L433CC"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 262144
+ram_bytes = 65536

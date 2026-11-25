@@ -1,0 +1,14 @@
+id = "nina_w10"
+name = "u-blox NINA-W10 series"
+vendor = "u-blox"
+platform = "espressif32"
+mcu = "ESP32"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "espidf",
+]
+probe_rs_chip = "ESP32"
+rust_target = "xtensa-esp32-none-elf"
+flash_bytes = 2097152
+ram_bytes = 327680

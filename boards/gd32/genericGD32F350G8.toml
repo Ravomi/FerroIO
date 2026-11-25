@@ -1,0 +1,15 @@
+id = "genericGD32F350G8"
+name = "GD32F350G8 (8k RAM, 64k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32F350G8U6"
+cpu = "cortex-m4"
+default_framework = "spl"
+frameworks = [
+    "spl",
+    "arduino",
+]
+probe_rs_chip = "GD32F350G8"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 65536
+ram_bytes = 8192

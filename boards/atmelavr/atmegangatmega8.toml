@@ -1,0 +1,10 @@
+id = "atmegangatmega8"
+name = "Arduino NG or older ATmega8"
+vendor = "Arduino"
+platform = "atmelavr"
+mcu = "ATMEGA8"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA8"
+flash_bytes = 7168
+ram_bytes = 1024

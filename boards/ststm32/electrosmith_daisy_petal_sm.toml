@@ -1,0 +1,16 @@
+id = "electrosmith_daisy_petal_sm"
+name = "Electrosmith Daisy Petal SM"
+vendor = "Electrosmith"
+platform = "ststm32"
+mcu = "STM32H750IBK6"
+cpu = "cortex-m7"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+]
+probe_rs_chip = "STM32H750IB"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 131072
+ram_bytes = 524288

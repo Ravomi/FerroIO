@@ -1,0 +1,14 @@
+id = "mb208"
+name = "sduino MB (STM8S208MBT6B)"
+vendor = "sduino"
+platform = "ststm8"
+mcu = "STM8S208MBT6"
+cpu = "stm8"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "spl",
+]
+probe_rs_chip = "STM8S208MBT6"
+flash_bytes = 131072
+ram_bytes = 6144

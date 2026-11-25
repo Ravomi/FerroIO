@@ -1,0 +1,12 @@
+id = "Sinobit"
+name = "Sino:Bit"
+vendor = "sino:bit"
+platform = "nordicnrf51"
+mcu = "NRF51822"
+cpu = "cortex-m0"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "nRF51802_xxAA"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 262144
+ram_bytes = 32768

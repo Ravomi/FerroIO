@@ -1,0 +1,12 @@
+id = "96b_nitrogen"
+name = "96Boards Nitrogen"
+vendor = "96Boards"
+platform = "nordicnrf52"
+mcu = "NRF52832"
+cpu = "cortex-m4"
+default_framework = "zephyr"
+frameworks = ["zephyr"]
+probe_rs_chip = "nRF52832_xxAA"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 524288
+ram_bytes = 65536

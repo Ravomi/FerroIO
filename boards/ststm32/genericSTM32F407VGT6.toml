@@ -1,0 +1,17 @@
+id = "genericSTM32F407VGT6"
+name = "STM32F407VG (128k RAM. 1024k Flash)"
+vendor = "Generic"
+platform = "ststm32"
+mcu = "STM32F407VGT6"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32F407VG"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 1048576
+ram_bytes = 131072

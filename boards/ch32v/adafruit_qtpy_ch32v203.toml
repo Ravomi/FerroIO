@@ -1,0 +1,18 @@
+id = "adafruit_qtpy_ch32v203"
+name = "Adafruit QT Py CH32V203"
+vendor = "Adafruit"
+platform = "ch32v"
+mcu = "CH32V203G6U6"
+default_framework = "noneos-sdk"
+frameworks = [
+    "noneos-sdk",
+    "freertos",
+    "harmony-liteos",
+    "rt-thread",
+    "tencent-os",
+    "ch32v003fun",
+    "arduino",
+]
+probe_rs_chip = "CH32V203G6U6"
+flash_bytes = 229376
+ram_bytes = 10240

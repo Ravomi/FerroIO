@@ -1,0 +1,17 @@
+id = "acsip_s76s"
+name = "ACSIP S76S"
+vendor = "ACSIP"
+platform = "ststm32"
+mcu = "STM32L073RZ"
+cpu = "cortex-m0plus"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32L073RZ"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 196608
+ram_bytes = 20480

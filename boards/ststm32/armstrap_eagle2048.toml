@@ -1,0 +1,17 @@
+id = "armstrap_eagle2048"
+name = "Armstrap Eagle 2048"
+vendor = "Armstrap"
+platform = "ststm32"
+mcu = "STM32F427VIT6"
+cpu = "cortex-m4"
+default_framework = "cmsis"
+frameworks = [
+    "cmsis",
+    "spl",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32F427VI"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 2091752
+ram_bytes = 262144

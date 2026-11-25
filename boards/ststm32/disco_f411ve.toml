@@ -1,0 +1,17 @@
+id = "disco_f411ve"
+name = "ST 32F411EDISCOVERY"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32F411VET6"
+cpu = "cortex-m4"
+default_framework = "cmsis"
+frameworks = [
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+    "zephyr",
+]
+probe_rs_chip = "STM32F411VE"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 524288
+ram_bytes = 131072

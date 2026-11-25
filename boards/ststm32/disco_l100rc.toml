@@ -1,0 +1,16 @@
+id = "disco_l100rc"
+name = "ST 32L100DISCOVERY"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32L100RCT6"
+cpu = "cortex-m3"
+default_framework = "cmsis"
+frameworks = [
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32L100RC"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 262144
+ram_bytes = 16384

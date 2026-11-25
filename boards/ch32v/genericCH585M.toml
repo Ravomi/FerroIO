@@ -1,0 +1,16 @@
+id = "genericCH585M"
+name = "Generic CH585M"
+vendor = "W.CH"
+platform = "ch32v"
+mcu = "CH585M"
+default_framework = "noneos-sdk"
+frameworks = [
+    "noneos-sdk",
+    "freertos",
+    "rt-thread",
+    "harmony-liteos",
+    "ch32v003fun",
+]
+probe_rs_chip = "CH585M"
+flash_bytes = 491520
+ram_bytes = 131072

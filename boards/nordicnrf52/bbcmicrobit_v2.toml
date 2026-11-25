@@ -1,0 +1,15 @@
+id = "bbcmicrobit_v2"
+name = "BBC micro:bit V2"
+vendor = "BBC"
+platform = "nordicnrf52"
+mcu = "NRF52833"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "zephyr",
+]
+probe_rs_chip = "nRF52833_xxAA"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 524288
+ram_bytes = 131072

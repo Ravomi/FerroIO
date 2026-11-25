@@ -1,0 +1,10 @@
+id = "zumbt328"
+name = "BQ ZUM BT-328"
+vendor = "BQ"
+platform = "atmelavr"
+mcu = "ATMEGA328P"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA328P"
+flash_bytes = 28672
+ram_bytes = 2048

@@ -1,0 +1,14 @@
+id = "d1_mini_pro"
+name = "WeMos D1 mini Pro"
+vendor = "WEMOS"
+platform = "espressif8266"
+mcu = "ESP8266"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "esp8266-rtos-sdk",
+    "esp8266-nonos-sdk",
+]
+probe_rs_chip = "ESP8266"
+flash_bytes = 16777216
+ram_bytes = 81920

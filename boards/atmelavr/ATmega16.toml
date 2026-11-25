@@ -1,0 +1,10 @@
+id = "ATmega16"
+name = "ATmega16"
+vendor = "Microchip"
+platform = "atmelavr"
+mcu = "ATMEGA16"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA16"
+flash_bytes = 16384
+ram_bytes = 1024

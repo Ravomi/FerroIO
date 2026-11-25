@@ -1,0 +1,15 @@
+id = "disco_c031c6"
+name = "ST STM32C0316-DK Discovery Kit"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32C031C6T6"
+cpu = "cortex-m0plus"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "stm32cube",
+]
+probe_rs_chip = "STM32C031C6"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 32768
+ram_bytes = 12288

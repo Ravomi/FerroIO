@@ -1,0 +1,10 @@
+id = "sanguino_atmega644_8m"
+name = "Sanguino ATmega644 or ATmega644A (8 MHz)"
+vendor = "Sanguino"
+platform = "atmelavr"
+mcu = "ATMEGA644"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA644"
+flash_bytes = 64512
+ram_bytes = 4096

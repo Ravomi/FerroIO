@@ -1,0 +1,10 @@
+id = "AVR32DB32"
+name = "AVR32DB32"
+vendor = "Microchip"
+platform = "atmelmegaavr"
+mcu = "AVR32DB32"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "AVR32DB32"
+flash_bytes = 32768
+ram_bytes = 4096

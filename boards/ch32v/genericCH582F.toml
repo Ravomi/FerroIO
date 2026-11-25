@@ -1,0 +1,15 @@
+id = "genericCH582F"
+name = "Generic CH582F"
+vendor = "W.CH"
+platform = "ch32v"
+mcu = "CH582F"
+default_framework = "noneos-sdk"
+frameworks = [
+    "noneos-sdk",
+    "freertos",
+    "rt-thread",
+    "ch32v003fun",
+]
+probe_rs_chip = "CH582F"
+flash_bytes = 491520
+ram_bytes = 32768

@@ -1,0 +1,17 @@
+id = "genericSTM32G431CB"
+name = "STM32G431CB (32k RAM. 128k Flash)"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32G431CBU6"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "libopencm3",
+    "stm32cube",
+]
+probe_rs_chip = "STM32G431CB"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 131072
+ram_bytes = 32768

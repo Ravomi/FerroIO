@@ -1,0 +1,17 @@
+id = "genericSTM32F103VG"
+name = "STM32F103VG (96k RAM. 1024k Flash)"
+vendor = "Generic"
+platform = "ststm32"
+mcu = "STM32F103VGT6"
+cpu = "cortex-m3"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32F103VG"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 1048576
+ram_bytes = 98304

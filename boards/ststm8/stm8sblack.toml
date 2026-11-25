@@ -1,0 +1,14 @@
+id = "stm8sblack"
+name = "ST STM8S105K4T6 Breakout Board"
+vendor = "ST"
+platform = "ststm8"
+mcu = "STM8S105K4T6"
+cpu = "stm8"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "spl",
+]
+probe_rs_chip = "STM8S105K4T6"
+flash_bytes = 16384
+ram_bytes = 2048

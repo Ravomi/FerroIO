@@ -1,0 +1,10 @@
+id = "lpmsp430g2452"
+name = "TI LaunchPad MSP-EXP430G2 w/ MSP430G2452"
+vendor = "TI"
+platform = "timsp430"
+mcu = "MSP430G2452"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "MSP430G2452"
+flash_bytes = 8192
+ram_bytes = 256

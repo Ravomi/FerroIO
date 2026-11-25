@@ -1,0 +1,16 @@
+id = "genericCH32X315CCU6"
+name = "Generic CH32X315CCU6"
+vendor = "W.CH"
+platform = "ch32v"
+mcu = "CH32X315CCU6"
+default_framework = "noneos-sdk"
+frameworks = [
+    "noneos-sdk",
+    "freertos",
+    "harmony-liteos",
+    "rt-thread",
+    "tencent-os",
+]
+probe_rs_chip = "CH32X315CCU6"
+flash_bytes = 196608
+ram_bytes = 65536

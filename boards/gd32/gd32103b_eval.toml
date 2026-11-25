@@ -1,0 +1,12 @@
+id = "gd32103b_eval"
+name = "GD32103B_EVAL"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32F103VBT6"
+cpu = "cortex-m3"
+default_framework = "spl"
+frameworks = ["spl"]
+probe_rs_chip = "GD32F103VB"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 131072
+ram_bytes = 20480

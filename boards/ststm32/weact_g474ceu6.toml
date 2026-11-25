@@ -1,0 +1,17 @@
+id = "weact_g474ceu6"
+name = "WeAct Studio STM32G474 CoreBoard"
+vendor = "WeAct Studio"
+platform = "ststm32"
+mcu = "STM32G474CEU6"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "libopencm3",
+    "stm32cube",
+]
+probe_rs_chip = "STM32G474CE"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 524288
+ram_bytes = 131072

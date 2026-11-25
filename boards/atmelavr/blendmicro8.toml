@@ -1,0 +1,10 @@
+id = "blendmicro8"
+name = "RedBearLab Blend Micro 3.3V/8MHz"
+vendor = "RedBearLab"
+platform = "atmelavr"
+mcu = "ATMEGA32U4"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA32U4"
+flash_bytes = 28672
+ram_bytes = 2560

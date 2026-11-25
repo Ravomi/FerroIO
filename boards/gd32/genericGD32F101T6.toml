@@ -1,0 +1,12 @@
+id = "genericGD32F101T6"
+name = "GD32F101T6 (6k RAM, 32k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32F101T6U6"
+cpu = "cortex-m3"
+default_framework = "spl"
+frameworks = ["spl"]
+probe_rs_chip = "GD32F101T6"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 32768
+ram_bytes = 6144

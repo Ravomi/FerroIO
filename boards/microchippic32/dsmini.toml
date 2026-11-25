@@ -1,0 +1,10 @@
+id = "dsmini"
+name = "DataStation Mini"
+vendor = "Makerology"
+platform = "microchippic32"
+mcu = "32MX150F128C"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "32MX150F128C"
+flash_bytes = 122880
+ram_bytes = 32768

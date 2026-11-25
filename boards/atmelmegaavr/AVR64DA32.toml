@@ -1,0 +1,10 @@
+id = "AVR64DA32"
+name = "AVR64DA32"
+vendor = "Microchip"
+platform = "atmelmegaavr"
+mcu = "AVR64DA32"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "AVR64DA32"
+flash_bytes = 65536
+ram_bytes = 8192

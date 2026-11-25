@@ -1,0 +1,11 @@
+id = "alksesp32"
+name = "ALKS ESP32"
+vendor = "RoboticsBrno"
+platform = "espressif32"
+mcu = "ESP32"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ESP32"
+rust_target = "xtensa-esp32-none-elf"
+flash_bytes = 4194304
+ram_bytes = 327680

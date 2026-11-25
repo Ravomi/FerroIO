@@ -1,0 +1,12 @@
+id = "digix"
+name = "Digistump DigiX"
+vendor = "Digistump"
+platform = "atmelsam"
+mcu = "AT91SAM3X8E"
+cpu = "cortex-m3"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATSAM3X8E"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 524288
+ram_bytes = 98304

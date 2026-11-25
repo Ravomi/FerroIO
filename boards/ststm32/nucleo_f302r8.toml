@@ -1,0 +1,18 @@
+id = "nucleo_f302r8"
+name = "ST Nucleo F302R8"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32F302R8T6"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+    "zephyr",
+]
+probe_rs_chip = "STM32F302R8"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 65536
+ram_bytes = 16384

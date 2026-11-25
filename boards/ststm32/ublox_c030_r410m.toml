@@ -1,0 +1,12 @@
+id = "ublox_c030_r410m"
+name = "u-blox C030-R410M IoT"
+vendor = "u-blox"
+platform = "ststm32"
+mcu = "STM32F437VG"
+cpu = "cortex-m4"
+default_framework = "stm32cube"
+frameworks = ["stm32cube"]
+probe_rs_chip = "STM32F437VG"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 1048576
+ram_bytes = 262144

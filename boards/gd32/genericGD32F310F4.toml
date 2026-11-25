@@ -1,0 +1,12 @@
+id = "genericGD32F310F4"
+name = "GD32F310F4 (4k RAM, 16k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32F310F4P6"
+cpu = "cortex-m4"
+default_framework = "spl"
+frameworks = ["spl"]
+probe_rs_chip = "GD32F310F4"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 16384
+ram_bytes = 4096

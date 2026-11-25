@@ -1,0 +1,13 @@
+id = "genericCH572R"
+name = "Generic CH572R"
+vendor = "W.CH"
+platform = "ch32v"
+mcu = "CH572R"
+default_framework = "noneos-sdk"
+frameworks = [
+    "noneos-sdk",
+    "ch32v003fun",
+]
+probe_rs_chip = "CH572R"
+flash_bytes = 253952
+ram_bytes = 12288

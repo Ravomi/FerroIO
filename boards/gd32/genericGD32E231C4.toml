@@ -1,0 +1,11 @@
+id = "genericGD32E231C4"
+name = "GD32E231C4 (4k RAM, 16k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32E231C4T6"
+cpu = "cortex-m23"
+default_framework = "spl"
+frameworks = ["spl"]
+probe_rs_chip = "GD32E231C4"
+flash_bytes = 16384
+ram_bytes = 4096

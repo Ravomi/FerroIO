@@ -1,0 +1,14 @@
+id = "thingdev"
+name = "SparkFun ESP8266 Thing Dev"
+vendor = "SparkFun"
+platform = "espressif8266"
+mcu = "ESP8266"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "esp8266-rtos-sdk",
+    "esp8266-nonos-sdk",
+]
+probe_rs_chip = "ESP8266"
+flash_bytes = 524288
+ram_bytes = 81920

@@ -1,0 +1,18 @@
+id = "disco_f413zh"
+name = "ST 32F413HDISCOVERY"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32F413ZHT6"
+cpu = "cortex-m4"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+    "mbed",
+]
+probe_rs_chip = "STM32F413ZH"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 1572864
+ram_bytes = 327680

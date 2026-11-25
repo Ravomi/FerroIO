@@ -1,0 +1,19 @@
+id = "nucleo_f091rc"
+name = "ST Nucleo F091RC"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32F091RCT6"
+cpu = "cortex-m0"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "mbed",
+    "stm32cube",
+    "libopencm3",
+    "zephyr",
+]
+probe_rs_chip = "STM32F091RC"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 262144
+ram_bytes = 32768

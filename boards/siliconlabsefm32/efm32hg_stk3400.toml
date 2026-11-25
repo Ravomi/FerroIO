@@ -1,0 +1,12 @@
+id = "efm32hg_stk3400"
+name = "SLSTK3400A USB-enabled Happy Gecko"
+vendor = "Silicon Labs"
+platform = "siliconlabsefm32"
+mcu = "EFM32HG322F64"
+cpu = "cortex-m0plus"
+default_framework = "zephyr"
+frameworks = ["zephyr"]
+probe_rs_chip = "EFM32HG322F64"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 65536
+ram_bytes = 8192

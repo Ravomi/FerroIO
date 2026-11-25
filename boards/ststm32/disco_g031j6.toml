@@ -1,0 +1,17 @@
+id = "disco_g031j6"
+name = "ST STM32G0316-DISCO"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32G031J6"
+cpu = "cortex-m0plus"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "libopencm3",
+    "stm32cube",
+]
+probe_rs_chip = "STM32G031J6"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 32768
+ram_bytes = 8192

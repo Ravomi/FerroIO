@@ -1,0 +1,12 @@
+id = "samd21_xpro"
+name = "Atmel SAMD21-XPRO"
+vendor = "Atmel"
+platform = "atmelsam"
+mcu = "SAMD21J18A"
+cpu = "cortex-m0plus"
+default_framework = "zephyr"
+frameworks = ["zephyr"]
+probe_rs_chip = "ATSAMD21J18"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 262144
+ram_bytes = 32768

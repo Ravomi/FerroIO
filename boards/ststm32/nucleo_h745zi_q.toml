@@ -1,0 +1,17 @@
+id = "nucleo_h745zi_q"
+name = "ST Nucleo H745ZI-Q"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32H745ZIT6"
+cpu = "cortex-m7"
+default_framework = "cmsis"
+frameworks = [
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+    "zephyr",
+]
+probe_rs_chip = "STM32H745ZI"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 1048576
+ram_bytes = 524288

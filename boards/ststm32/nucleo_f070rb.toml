@@ -1,0 +1,18 @@
+id = "nucleo_f070rb"
+name = "ST Nucleo F070RB"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32F070RBT6"
+cpu = "cortex-m0"
+default_framework = "cmsis"
+frameworks = [
+    "cmsis",
+    "mbed",
+    "stm32cube",
+    "libopencm3",
+    "zephyr",
+]
+probe_rs_chip = "STM32F070RB"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 131072
+ram_bytes = 16384

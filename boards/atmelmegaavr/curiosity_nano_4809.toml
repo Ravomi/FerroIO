@@ -1,0 +1,10 @@
+id = "curiosity_nano_4809"
+name = "Curiosity Nano ATmega4809"
+vendor = "Microchip"
+platform = "atmelmegaavr"
+mcu = "ATMEGA4809"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "ATMEGA4809"
+flash_bytes = 49152
+ram_bytes = 6144

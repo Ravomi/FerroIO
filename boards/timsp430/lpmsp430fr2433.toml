@@ -1,0 +1,10 @@
+id = "lpmsp430fr2433"
+name = "TI LaunchPad MSP-EXP430FR2433LP"
+vendor = "TI"
+platform = "timsp430"
+mcu = "MSP430FR2433"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "MSP430FR2433"
+flash_bytes = 15360
+ram_bytes = 4096

@@ -1,0 +1,18 @@
+id = "disco_f429zi"
+name = "ST 32F429IDISCOVERY"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32F429ZIT6"
+cpu = "cortex-m4"
+default_framework = "cmsis"
+frameworks = [
+    "cmsis",
+    "mbed",
+    "stm32cube",
+    "libopencm3",
+    "zephyr",
+]
+probe_rs_chip = "STM32F429ZI"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 2097152
+ram_bytes = 262144

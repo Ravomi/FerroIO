@@ -1,0 +1,16 @@
+id = "nucleo_u575zi_q"
+name = "ST Nucleo U575ZI-Q"
+vendor = "ST"
+platform = "ststm32"
+mcu = "STM32U575ZIT6Q"
+cpu = "cortex-m33"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "mbed",
+    "zephyr",
+]
+probe_rs_chip = "STM32U575ZI"
+rust_target = "thumbv8m.main-none-eabihf"
+flash_bytes = 2097152
+ram_bytes = 786432

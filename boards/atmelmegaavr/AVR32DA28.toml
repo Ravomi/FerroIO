@@ -1,0 +1,10 @@
+id = "AVR32DA28"
+name = "AVR32DA28"
+vendor = "Microchip"
+platform = "atmelmegaavr"
+mcu = "AVR32DA28"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "AVR32DA28"
+flash_bytes = 32768
+ram_bytes = 4096

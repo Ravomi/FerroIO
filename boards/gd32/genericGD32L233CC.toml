@@ -1,0 +1,11 @@
+id = "genericGD32L233CC"
+name = "GD32L233CC (32k RAM, 256k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32L233CCT6"
+cpu = "cortex-m23"
+default_framework = "spl"
+frameworks = ["spl"]
+probe_rs_chip = "GD32L233CC"
+flash_bytes = 262144
+ram_bytes = 32768

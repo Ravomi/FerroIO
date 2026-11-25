@@ -1,0 +1,12 @@
+id = "genericGD32F450IK"
+name = "GD32F450IK (256k RAM, 3072k Flash)"
+vendor = "GigaDevice"
+platform = "gd32"
+mcu = "GD32F450IKH6"
+cpu = "cortex-m4"
+default_framework = "spl"
+frameworks = ["spl"]
+probe_rs_chip = "GD32F450IK"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 3145728
+ram_bytes = 196608

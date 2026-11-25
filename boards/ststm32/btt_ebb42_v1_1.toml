@@ -1,0 +1,15 @@
+id = "btt_ebb42_v1_1"
+name = "Big Tree Tech EBB42 V1.1"
+vendor = "Big Tree Tech"
+platform = "ststm32"
+mcu = "STM32G0B1RET6"
+cpu = "cortex-m0plus"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "stm32cube",
+]
+probe_rs_chip = "STM32G0B1RE"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 131072
+ram_bytes = 147456

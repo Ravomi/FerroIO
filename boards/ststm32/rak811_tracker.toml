@@ -1,0 +1,17 @@
+id = "rak811_tracker"
+name = "RAK811 LoRa Tracker"
+vendor = "RAK"
+platform = "ststm32"
+mcu = "STM32L151RBT6"
+cpu = "cortex-m3"
+default_framework = "arduino"
+frameworks = [
+    "arduino",
+    "cmsis",
+    "stm32cube",
+    "libopencm3",
+]
+probe_rs_chip = "STM32L151CC"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 131072
+ram_bytes = 16384

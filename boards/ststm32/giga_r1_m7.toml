@@ -1,0 +1,12 @@
+id = "giga_r1_m7"
+name = "Arduino Giga R1 (M7 core)"
+vendor = "Arduino"
+platform = "ststm32"
+mcu = "STM32H747XIH6"
+cpu = "cortex-m7"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "STM32H747XI_M7"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 786432
+ram_bytes = 523624
