@@ -36,8 +36,8 @@ pub fn flash_project(
 ) -> Result<FlashResult> {
     let cfg = RavomConfig::load_from_dir(dir)?;
     let (resolved_env, env_cfg) = cfg.resolve_env(env_name)?;
-    let board = find_board(&env_cfg.board)
-        .ok_or_else(|| CoreError::UnknownBoard(env_cfg.board.clone()))?;
+    let board =
+        find_board(&env_cfg.board).ok_or_else(|| CoreError::UnknownBoard(env_cfg.board.clone()))?;
 
     let chip = board
         .probe_rs_chip

@@ -16,8 +16,8 @@ pub struct BuildResult {
 pub fn build_project(dir: &Path, env_name: Option<&str>, release: bool) -> Result<BuildResult> {
     let cfg = RavomConfig::load_from_dir(dir)?;
     let (resolved_env, env_cfg) = cfg.resolve_env(env_name)?;
-    let board = find_board(&env_cfg.board)
-        .ok_or_else(|| CoreError::UnknownBoard(env_cfg.board.clone()))?;
+    let board =
+        find_board(&env_cfg.board).ok_or_else(|| CoreError::UnknownBoard(env_cfg.board.clone()))?;
 
     let mut cmd = Command::new("cargo");
     cmd.arg("build").current_dir(dir);
@@ -56,13 +56,14 @@ mod tests {
     fn build_fails_gracefully_without_cargo_toml() {
         let nanos = SystemTime::now()
             .duration_since(UNIX_EPOCH)
-            .unwrap()
+            .expect("system clock should be after UNIX_EPOCH")
             .as_nanos();
         let tmp = std::env::temp_dir().join(format!("ravomio_build_test_{nanos}"));
-        init_project(&tmp, "rp2040", None).unwrap();
+        init_project(&tmp, "rp2040", None).expect("init_project should succeed in temp dir");
         let _ = fs::remove_file(tmp.join("Cargo.toml"));
 
-        let err = build_project(&tmp, None, false).unwrap_err();
+        let err = build_project(&tmp, None, false)
+            .expect_err("build should fail when Cargo.toml is missing");
         assert!(matches!(err, CoreError::BuildFailed(_)));
 
         let _ = fs::remove_dir_all(&tmp);

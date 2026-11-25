@@ -9,3 +9,6 @@ ravom-core.workspace = true
 ravom-plugin.workspace = true
 eframe.workspace = true
 egui.workspace = true
+
+[lints]
+workspace = true

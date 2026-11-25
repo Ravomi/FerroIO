@@ -116,7 +116,9 @@ pub fn builtin_boards() -> &'static [BoardInfo] {
 }
 
 pub fn find_board(id: &str) -> Option<&'static BoardInfo> {
-    builtin_boards().iter().find(|b| b.id.eq_ignore_ascii_case(id))
+    builtin_boards()
+        .iter()
+        .find(|b| b.id.eq_ignore_ascii_case(id))
 }
 
 #[cfg(test)]
@@ -145,8 +147,11 @@ mod tests {
             },
             env,
         };
-        let s = cfg.to_toml_string().unwrap();
-        let parsed = RavomConfig::from_toml_str(&s).unwrap();
+        let s = cfg
+            .to_toml_string()
+            .expect("RavomConfig should serialize to TOML");
+        let parsed = RavomConfig::from_toml_str(&s)
+            .expect("serialized RavomConfig should deserialize cleanly");
         assert_eq!(cfg, parsed);
     }
 }

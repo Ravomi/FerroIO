@@ -140,11 +140,8 @@ fn run(cli: Cli) -> Result<(), Box<dyn std::error::Error>> {
             }
         }
         Commands::Build { env, release } => {
-            let res = ravom_core::build::build_project(
-                &PathBuf::from("."),
-                env.as_deref(),
-                release,
-            )?;
+            let res =
+                ravom_core::build::build_project(&PathBuf::from("."), env.as_deref(), release)?;
             println!(
                 "Built environment '{}' (board: {}, target: {}, release: {})",
                 res.env_name,
@@ -201,7 +198,7 @@ fn run(cli: Cli) -> Result<(), Box<dyn std::error::Error>> {
         }
         Commands::Boards { query } => {
             let q = query.unwrap_or_default().to_lowercase();
-            println!("{:<16} {:<12} {:<14} {}", "ID", "PLATFORM", "MCU", "NAME");
+            println!("{:<16} {:<12} {:<14} NAME", "ID", "PLATFORM", "MCU");
             for b in builtin_boards() {
                 if q.is_empty()
                     || b.id.to_lowercase().contains(&q)

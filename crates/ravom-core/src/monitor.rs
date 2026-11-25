@@ -28,8 +28,8 @@ pub fn list_serial_ports() -> Vec<String> {
 pub fn monitor_rtt(dir: &Path, env_name: Option<&str>, release: bool) -> Result<()> {
     let cfg = RavomConfig::load_from_dir(dir)?;
     let (_resolved_env, env_cfg) = cfg.resolve_env(env_name)?;
-    let board = find_board(&env_cfg.board)
-        .ok_or_else(|| CoreError::UnknownBoard(env_cfg.board.clone()))?;
+    let board =
+        find_board(&env_cfg.board).ok_or_else(|| CoreError::UnknownBoard(env_cfg.board.clone()))?;
 
     let chip = board
         .probe_rs_chip

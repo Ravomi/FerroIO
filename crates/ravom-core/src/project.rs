@@ -15,8 +15,8 @@ pub struct InitResult {
 
 /// Initialize a PlatformIO-style project layout (`ravom.toml`, `src/`, `include/`, `lib/`).
 pub fn init_project(dir: &Path, board_id: &str, framework: Option<&str>) -> Result<InitResult> {
-    let board = find_board(board_id)
-        .ok_or_else(|| CoreError::UnknownBoard(board_id.to_string()))?;
+    let board =
+        find_board(board_id).ok_or_else(|| CoreError::UnknownBoard(board_id.to_string()))?;
 
     let fw = framework.unwrap_or(board.default_framework).to_string();
     fs::create_dir_all(dir)?;
@@ -96,10 +96,11 @@ mod tests {
     fn init_creates_platformio_like_layout() {
         let nanos = SystemTime::now()
             .duration_since(UNIX_EPOCH)
-            .unwrap()
+            .expect("system clock should be after UNIX_EPOCH")
             .as_nanos();
         let tmp = std::env::temp_dir().join(format!("ravomio_test_{nanos}"));
-        let res = init_project(&tmp, "stm32f401ccu6", None).unwrap();
+        let res = init_project(&tmp, "stm32f401ccu6", None)
+            .expect("init_project should succeed for stm32f401ccu6");
 
         assert!(res.manifest_path.exists());
         assert!(tmp.join("Cargo.toml").exists());
