@@ -40,10 +40,9 @@ pub fn flash_project(
     let board = find_board_record(&env_cfg.board)
         .ok_or_else(|| CoreError::UnknownBoard(env_cfg.board.clone()))?;
 
-    let chip = board
-        .probe_rs_chip
-        .clone()
-        .ok_or_else(|| CoreError::MissingProbeRsChip(board.id.clone()))?;
+    let is_fpga = board.platform.starts_with("lattice_")
+        || board.platform == "gowin_fpga"
+        || board.platform.starts_with("xilinx_");
 
     let project_name = cfg
         .project
@@ -52,6 +51,31 @@ pub fn flash_project(
         .unwrap_or("ravomio-app")
         .replace(' ', "-");
     let firmware = resolve_firmware_path(dir, &project_name, board.rust_target.as_deref(), release);
+
+    if is_fpga {
+        let status = Command::new("openFPGALoader")
+            .args(["-b", &board.id])
+            .arg(&firmware)
+            .current_dir(dir)
+            .status()
+            .map_err(|_| CoreError::FlashFailed(None))?;
+
+        if !status.success() {
+            return Err(CoreError::FlashFailed(status.code()));
+        }
+
+        return Ok(FlashResult {
+            env_name: resolved_env.to_string(),
+            chip: board.mcu,
+            firmware,
+            monitor: false,
+        });
+    }
+
+    let chip = board
+        .probe_rs_chip
+        .clone()
+        .ok_or_else(|| CoreError::MissingProbeRsChip(board.id.clone()))?;
 
     let subcmd = if monitor { "run" } else { "download" };
     let status = Command::new("probe-rs")

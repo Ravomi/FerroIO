@@ -1,0 +1,8 @@
+id = "raspberrypi_zero2w"
+name = "Raspberry Pi Zero 2 W (ARM64 Linux)"
+vendor = "Raspberry Pi"
+platform = "linux_sbc"
+mcu = "BCM2710A1"
+default_framework = "linux"
+frameworks = ["linux"]
+rust_target = "aarch64-unknown-linux-gnu"

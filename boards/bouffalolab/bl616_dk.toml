@@ -1,0 +1,8 @@
+id = "bl616_dk"
+name = "Bouffalo Lab BL616/BL618 DK (RISC-V)"
+vendor = "Bouffalo Lab"
+platform = "bouffalolab"
+mcu = "BL616"
+default_framework = "bare-metal"
+frameworks = ["bare-metal", "freertos"]
+rust_target = "riscv32imafc-unknown-none-elf"

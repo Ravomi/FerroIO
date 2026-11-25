@@ -96,6 +96,36 @@ enum Commands {
         #[arg(short, long, default_value = ".")]
         dir: PathBuf,
     },
+    /// Run firmware in a hardware simulator (renode / qemu / wokwi)
+    Sim {
+        /// Environment name from ravom.toml
+        #[arg(short, long)]
+        env: Option<String>,
+        /// Simulator backend (renode, qemu, wokwi)
+        #[arg(short, long, default_value = "renode")]
+        backend: String,
+        /// Use release build artifact
+        #[arg(short, long)]
+        release: bool,
+    },
+    /// Deploy a built Linux SBC binary over SSH/SCP
+    Deploy {
+        /// Target SSH host (e.g. root@192.168.42.1)
+        #[arg(long)]
+        host: String,
+        /// Remote destination directory
+        #[arg(long, default_value = "/tmp")]
+        remote_dir: String,
+        /// Execute the binary after uploading
+        #[arg(long)]
+        run: bool,
+        /// Environment name from ravom.toml
+        #[arg(short, long)]
+        env: Option<String>,
+        /// Deploy release build artifact
+        #[arg(short, long)]
+        release: bool,
+    },
     /// Launch the RavomIO egui desktop workbench
     Ui,
 }
@@ -239,6 +269,36 @@ fn run(cli: Cli) -> Result<(), Box<dyn std::error::Error>> {
         Commands::Migrate { dir } => {
             let out = ravom_core::migrate::migrate_platformio_project(&dir)?;
             println!("Migrated platformio.ini -> {}", out.display());
+        }
+        Commands::Sim {
+            env,
+            backend,
+            release,
+        } => {
+            let sim_backend = ravom_core::sim::SimBackend::parse(&backend)?;
+            ravom_core::sim::simulate_project(
+                &PathBuf::from("."),
+                env.as_deref(),
+                release,
+                sim_backend,
+            )?;
+        }
+        Commands::Deploy {
+            host,
+            remote_dir,
+            run,
+            env,
+            release,
+        } => {
+            let dest = ravom_core::deploy::deploy_ssh(
+                &PathBuf::from("."),
+                env.as_deref(),
+                release,
+                &host,
+                &remote_dir,
+                run,
+            )?;
+            println!("Deployed binary to {dest}");
         }
         Commands::Ui => {
             println!("Run `cargo run -p ravom-ui` to launch the RavomIO desktop workbench.");

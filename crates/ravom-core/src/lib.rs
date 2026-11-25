@@ -2,11 +2,13 @@
 
 pub mod build;
 pub mod config;
+pub mod deploy;
 pub mod flash;
 pub mod migrate;
 pub mod monitor;
 pub mod project;
 pub mod registry;
+pub mod sim;
 
 use std::path::PathBuf;
 use thiserror::Error;
@@ -56,6 +58,15 @@ pub enum CoreError {
 
     #[error("monitor failed with exit code {0:?} (is `probe-rs` installed and in PATH?)")]
     MonitorFailed(Option<i32>),
+
+    #[error("unsupported simulator backend '{0}' (expected: renode, qemu, wokwi)")]
+    UnsupportedSimBackend(String),
+
+    #[error("simulation failed with exit code {0:?}")]
+    SimFailed(Option<i32>),
+
+    #[error("SSH deploy failed with exit code {0:?}")]
+    DeployFailed(Option<i32>),
 }
 
 pub fn version() -> &'static str {

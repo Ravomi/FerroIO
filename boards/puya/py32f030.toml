@@ -1,0 +1,12 @@
+id = "py32f030"
+name = "Puya PY32F030 (Cortex-M0+)"
+vendor = "Puya"
+platform = "puya"
+mcu = "PY32F030F18"
+cpu = "cortex-m0plus"
+default_framework = "embassy"
+frameworks = ["embassy", "bare-metal"]
+probe_rs_chip = "PY32F030x8"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 65536
+ram_bytes = 8192

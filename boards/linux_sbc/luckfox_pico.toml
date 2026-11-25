@@ -1,0 +1,8 @@
+id = "luckfox_pico"
+name = "Luckfox Pico (Rockchip RV1106 Linux)"
+vendor = "Luckfox"
+platform = "linux_sbc"
+mcu = "RV1106"
+default_framework = "linux"
+frameworks = ["linux"]
+rust_target = "armv7-unknown-linux-musleabihf"

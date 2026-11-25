@@ -1,0 +1,12 @@
+id = "pico2_rp2350"
+name = "Raspberry Pi Pico 2 (RP2350)"
+vendor = "Raspberry Pi"
+platform = "raspberrypi"
+mcu = "RP2350"
+cpu = "cortex-m33"
+default_framework = "embassy"
+frameworks = ["embassy", "bare-metal"]
+probe_rs_chip = "RP235x"
+rust_target = "thumbv8m.main-none-eabihf"
+flash_bytes = 4194304
+ram_bytes = 532480

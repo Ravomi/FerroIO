@@ -1,0 +1,8 @@
+id = "milkv_duo"
+name = "Milk-V Duo (CV1800B RISC-V Linux)"
+vendor = "Milk-V"
+platform = "linux_sbc"
+mcu = "CV1800B"
+default_framework = "linux"
+frameworks = ["linux"]
+rust_target = "riscv64gc-unknown-linux-musl"

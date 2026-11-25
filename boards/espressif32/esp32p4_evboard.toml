@@ -1,0 +1,9 @@
+id = "esp32p4_evboard"
+name = "Espressif ESP32-P4 Function EV Board"
+vendor = "Espressif"
+platform = "espressif32"
+mcu = "ESP32P4"
+default_framework = "esp-idf"
+frameworks = ["esp-idf", "embassy"]
+probe_rs_chip = "ESP32P4"
+rust_target = "riscv32imafc-unknown-none-elf"

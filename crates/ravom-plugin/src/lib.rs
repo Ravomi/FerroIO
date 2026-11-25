@@ -124,6 +124,16 @@ static BUILTIN_FRAMEWORKS: &[BuiltinFramework] = &[
         display_name: "RustHDL (FPGA: Rust -> Verilog -> yosys/nextpnr)",
         is_rtos: false,
     },
+    BuiltinFramework {
+        id: "spade",
+        display_name: "Spade HDL (Rust-inspired FPGA HDL)",
+        is_rtos: false,
+    },
+    BuiltinFramework {
+        id: "veryl",
+        display_name: "Veryl HDL (Modern SystemVerilog alternative)",
+        is_rtos: false,
+    },
 ];
 
 /// Return all built-in framework/RTOS plugins.

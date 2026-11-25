@@ -1,0 +1,8 @@
+id = "hpm6750evkmini"
+name = "HPMicro HPM6750EVKMINI (RISC-V)"
+vendor = "HPMicro"
+platform = "hpmicro"
+mcu = "HPM6750IVM1"
+default_framework = "embassy"
+frameworks = ["embassy", "bare-metal"]
+rust_target = "riscv32imafc-unknown-none-elf"
