@@ -1,0 +1,11 @@
+id = "ML54MD1AE"
+name = "Generic ML54MD1AE"
+vendor = "Nuvoton"
+platform = "intel_mcs51"
+mcu = "ML54MD1AE"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "ML54MD1AE"
+flash_bytes = 65536
+ram_bytes = 4352

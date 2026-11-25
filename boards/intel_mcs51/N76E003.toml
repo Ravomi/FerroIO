@@ -1,0 +1,11 @@
+id = "N76E003"
+name = "Generic N76E003"
+vendor = "Nuvoton"
+platform = "intel_mcs51"
+mcu = "N76E003"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "N76E003"
+flash_bytes = 18432
+ram_bytes = 1024

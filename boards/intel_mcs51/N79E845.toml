@@ -1,0 +1,11 @@
+id = "N79E845"
+name = "Generic N79E845"
+vendor = "Nuvoton"
+platform = "intel_mcs51"
+mcu = "N79E845"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "N79E845"
+flash_bytes = 16384
+ram_bytes = 512

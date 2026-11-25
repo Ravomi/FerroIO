@@ -1,0 +1,11 @@
+id = "STC15W410S"
+name = "Generic STC15W410S"
+vendor = "STC"
+platform = "intel_mcs51"
+mcu = "STC15W410S"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "STC15W410S"
+flash_bytes = 10240
+ram_bytes = 512

@@ -1,0 +1,11 @@
+id = "STC15F101E"
+name = "Generic STC15F101E"
+vendor = "STC"
+platform = "intel_mcs51"
+mcu = "STC15F101E"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "STC15F101E"
+flash_bytes = 1024
+ram_bytes = 128

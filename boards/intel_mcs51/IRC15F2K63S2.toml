@@ -1,0 +1,11 @@
+id = "IRC15F2K63S2"
+name = "Generic IRC15F2K63S2"
+vendor = "STC"
+platform = "intel_mcs51"
+mcu = "IRC15F2K63S2"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "IRC15F2K63S2"
+flash_bytes = 65024
+ram_bytes = 2048

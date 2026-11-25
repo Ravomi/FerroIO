@@ -1,0 +1,11 @@
+id = "W79E658"
+name = "Generic W79E658"
+vendor = "Nuvoton"
+platform = "intel_mcs51"
+mcu = "W79E658"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "W79E658"
+flash_bytes = 65536
+ram_bytes = 1280

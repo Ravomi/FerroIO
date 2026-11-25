@@ -1,0 +1,11 @@
+id = "IRC15W1K31S"
+name = "Generic IRC15W1K31S"
+vendor = "STC"
+platform = "intel_mcs51"
+mcu = "IRC15W1K31S"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "IRC15W1K31S"
+flash_bytes = 32256
+ram_bytes = 1024

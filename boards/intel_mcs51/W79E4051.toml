@@ -1,0 +1,11 @@
+id = "W79E4051"
+name = "Generic W79E4051"
+vendor = "Nuvoton"
+platform = "intel_mcs51"
+mcu = "W79E4051"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "W79E4051"
+flash_bytes = 4096
+ram_bytes = 256

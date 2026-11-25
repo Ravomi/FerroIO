@@ -1,0 +1,11 @@
+id = "IAP15W205S"
+name = "Generic IAP15W205S"
+vendor = "STC"
+platform = "intel_mcs51"
+mcu = "IAP15W205S"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "IAP15W205S"
+flash_bytes = 5120
+ram_bytes = 256

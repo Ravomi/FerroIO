@@ -1,0 +1,11 @@
+id = "STC15W404S"
+name = "Generic STC15W404S"
+vendor = "STC"
+platform = "intel_mcs51"
+mcu = "STC15W404S"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "STC15W404S"
+flash_bytes = 4096
+ram_bytes = 512

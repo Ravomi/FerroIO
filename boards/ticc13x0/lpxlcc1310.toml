@@ -1,0 +1,12 @@
+id = "lpxlcc1310"
+name = "TI LaunchPadXL (SimpleLink) w/ CC1310 (48MHz)"
+vendor = "TI"
+platform = "ticc13x0"
+mcu = "CC1310F128"
+cpu = "cortex-m3"
+default_framework = "arduino"
+frameworks = ["arduino"]
+probe_rs_chip = "CC1310F128"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 131072
+ram_bytes = 20480

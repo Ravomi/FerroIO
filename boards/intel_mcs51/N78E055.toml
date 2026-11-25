@@ -1,0 +1,11 @@
+id = "N78E055"
+name = "Generic N78E055"
+vendor = "Nuvoton"
+platform = "intel_mcs51"
+mcu = "N78E055"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "N78E055"
+flash_bytes = 16384
+ram_bytes = 1280

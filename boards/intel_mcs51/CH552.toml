@@ -1,0 +1,11 @@
+id = "CH552"
+name = "Generic CH552"
+vendor = "WCH"
+platform = "intel_mcs51"
+mcu = "CH552"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "CH552"
+flash_bytes = 14336
+ram_bytes = 1280

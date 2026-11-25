@@ -1,0 +1,11 @@
+id = "Generic8052"
+name = "Generic 8052"
+vendor = "Intel & licensees"
+platform = "intel_mcs51"
+mcu = "8052"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "8052"
+flash_bytes = 8192
+ram_bytes = 256

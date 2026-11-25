@@ -1,0 +1,12 @@
+id = "max32625mbed"
+name = "MAX32625MBED"
+vendor = "Maxim"
+platform = "maxim32"
+mcu = "MAX32625"
+cpu = "cortex-m4"
+default_framework = "mbed"
+frameworks = ["mbed"]
+probe_rs_chip = "MAX32625"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 524288
+ram_bytes = 163840

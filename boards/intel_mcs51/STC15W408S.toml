@@ -1,0 +1,11 @@
+id = "STC15W408S"
+name = "Generic STC15W408S"
+vendor = "STC"
+platform = "intel_mcs51"
+mcu = "STC15W408S"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "STC15W408S"
+flash_bytes = 8192
+ram_bytes = 512

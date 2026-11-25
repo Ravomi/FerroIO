@@ -1,0 +1,12 @@
+id = "max32620hsp"
+name = "Maxim Health Sensor Platform"
+vendor = "Maxim"
+platform = "maxim32"
+mcu = "MAX32620"
+cpu = "cortex-m4"
+default_framework = "mbed"
+frameworks = ["mbed"]
+probe_rs_chip = "MAX32620"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 2097152
+ram_bytes = 262144

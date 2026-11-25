@@ -1,0 +1,11 @@
+id = "N76E616"
+name = "Generic N76E616"
+vendor = "Nuvoton"
+platform = "intel_mcs51"
+mcu = "N76E616"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "N76E616"
+flash_bytes = 18432
+ram_bytes = 512

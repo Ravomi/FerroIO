@@ -1,0 +1,11 @@
+id = "STC89C53RC"
+name = "Generic STC89C53RC"
+vendor = "STC"
+platform = "intel_mcs51"
+mcu = "STC89C53RC"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "STC89C53RC"
+flash_bytes = 13312
+ram_bytes = 512

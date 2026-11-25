@@ -1,0 +1,11 @@
+id = "STC8H1K32S2A10"
+name = "Generic STC8H1K32S2A10"
+vendor = "STC"
+platform = "intel_mcs51"
+mcu = "STC8H1K32S2A10"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "STC8H1K32S2A10"
+flash_bytes = 32768
+ram_bytes = 1280

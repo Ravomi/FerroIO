@@ -1,0 +1,11 @@
+id = "AT89S52"
+name = "Generic AT89S52"
+vendor = "Microchip & Atmel"
+platform = "intel_mcs51"
+mcu = "AT89S52"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "AT89S52"
+flash_bytes = 8192
+ram_bytes = 256

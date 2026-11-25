@@ -1,0 +1,12 @@
+id = "maxwsnenv"
+name = "Maxim Wireless Sensor Node Demonstrator"
+vendor = "Maxim"
+platform = "maxim32"
+mcu = "MAX32610"
+cpu = "cortex-m3"
+default_framework = "mbed"
+frameworks = ["mbed"]
+probe_rs_chip = "MAX32610"
+rust_target = "thumbv7m-none-eabi"
+flash_bytes = 262144
+ram_bytes = 32768

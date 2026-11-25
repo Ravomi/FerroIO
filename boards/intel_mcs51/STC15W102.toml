@@ -1,0 +1,11 @@
+id = "STC15W102"
+name = "Generic STC15W102"
+vendor = "STC"
+platform = "intel_mcs51"
+mcu = "STC15W102"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "STC15W102"
+flash_bytes = 2048
+ram_bytes = 128

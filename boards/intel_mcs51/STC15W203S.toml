@@ -1,0 +1,11 @@
+id = "STC15W203S"
+name = "Generic STC15W203S"
+vendor = "STC"
+platform = "intel_mcs51"
+mcu = "STC15W203S"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "STC15W203S"
+flash_bytes = 3072
+ram_bytes = 256

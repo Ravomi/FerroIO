@@ -1,0 +1,13 @@
+id = "gapuino"
+name = "GAPuino GAP8"
+vendor = "GreenWaves Technologies"
+platform = "riscv_gap"
+mcu = "GAP8"
+default_framework = "mbed"
+frameworks = [
+    "mbed",
+    "pulp-os",
+]
+probe_rs_chip = "GAP8"
+flash_bytes = 67108864
+ram_bytes = 8388608

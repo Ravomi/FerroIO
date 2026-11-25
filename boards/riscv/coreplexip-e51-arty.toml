@@ -1,0 +1,10 @@
+id = "coreplexip-e51-arty"
+name = "E51 Arty (Artix-7) FPGA Dev Kit"
+vendor = "Xilinx"
+platform = "riscv"
+mcu = "E51"
+default_framework = "freedom-e-sdk"
+frameworks = ["freedom-e-sdk"]
+probe_rs_chip = "E51"
+flash_bytes = 16777216
+ram_bytes = 268435456

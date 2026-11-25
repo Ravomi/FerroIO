@@ -1,0 +1,11 @@
+id = "STC8H4K32TLR"
+name = "Generic STC8H4K32TLR"
+vendor = "STC"
+platform = "intel_mcs51"
+mcu = "STC8H4K32TLR"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "STC8H4K32TLR"
+flash_bytes = 32768
+ram_bytes = 4352

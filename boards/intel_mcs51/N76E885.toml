@@ -1,0 +1,11 @@
+id = "N76E885"
+name = "Generic N76E885"
+vendor = "Nuvoton"
+platform = "intel_mcs51"
+mcu = "N76E885"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "N76E885"
+flash_bytes = 18432
+ram_bytes = 512

@@ -1,0 +1,13 @@
+id = "nexys_a7"
+name = "Digilent Nexys A7"
+vendor = "Digilent"
+platform = "openhw"
+mcu = "NEXYS_A7"
+default_framework = "pulp-sdk"
+frameworks = [
+    "pulp-sdk",
+    "pulp-runtime",
+]
+probe_rs_chip = "NEXYS_A7"
+flash_bytes = 16777216
+ram_bytes = 1216512

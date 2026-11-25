@@ -1,0 +1,11 @@
+id = "IAP15F2K61S2"
+name = "Generic IAP15F2K61S2"
+vendor = "STC"
+platform = "intel_mcs51"
+mcu = "IAP15F2K61S2"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "IAP15F2K61S2"
+flash_bytes = 62464
+ram_bytes = 2048

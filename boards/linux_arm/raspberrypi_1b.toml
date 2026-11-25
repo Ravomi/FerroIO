@@ -1,0 +1,10 @@
+id = "raspberrypi_1b"
+name = "Raspberry Pi 1 Model B"
+vendor = "Raspberry Pi"
+platform = "linux_arm"
+mcu = "BCM2835"
+default_framework = "wiringpi"
+frameworks = ["wiringpi"]
+probe_rs_chip = "BCM2835"
+flash_bytes = 536870912
+ram_bytes = 536870912

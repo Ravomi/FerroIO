@@ -1,0 +1,11 @@
+id = "icestick"
+name = "Lattice iCEstick FPGA Evaluation Kit"
+vendor = "Lattice"
+platform = "lattice_ice40"
+mcu = "ICE40-HX1K-TQ144"
+cpu = "fpga"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "ICE40-HX1K-TQ144"
+flash_bytes = 32768
+ram_bytes = 32768

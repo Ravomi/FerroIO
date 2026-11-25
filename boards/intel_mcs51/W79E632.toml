@@ -1,0 +1,11 @@
+id = "W79E632"
+name = "Generic W79E632"
+vendor = "Nuvoton"
+platform = "intel_mcs51"
+mcu = "W79E632"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "W79E632"
+flash_bytes = 65536
+ram_bytes = 1280

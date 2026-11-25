@@ -1,0 +1,11 @@
+id = "IAP15F206A"
+name = "Generic IAP15F206A"
+vendor = "STC"
+platform = "intel_mcs51"
+mcu = "IAP15F206A"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "IAP15F206A"
+flash_bytes = 6144
+ram_bytes = 256

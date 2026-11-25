@@ -1,0 +1,11 @@
+id = "STC15W402AS"
+name = "Generic STC15W402AS"
+vendor = "STC"
+platform = "intel_mcs51"
+mcu = "STC15W402AS"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "STC15W402AS"
+flash_bytes = 2048
+ram_bytes = 512

@@ -1,0 +1,11 @@
+id = "MS51XB9BE"
+name = "Generic MS51XB9BE"
+vendor = "Nuvoton"
+platform = "intel_mcs51"
+mcu = "MS51XB9BE"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "MS51XB9BE"
+flash_bytes = 16384
+ram_bytes = 1280

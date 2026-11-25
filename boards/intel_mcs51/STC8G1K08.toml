@@ -1,0 +1,11 @@
+id = "STC8G1K08"
+name = "Generic STC8G1K08"
+vendor = "STC"
+platform = "intel_mcs51"
+mcu = "STC8G1K08"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "STC8G1K08"
+flash_bytes = 8192
+ram_bytes = 1280

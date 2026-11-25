@@ -1,0 +1,11 @@
+id = "STC15F2K60S2"
+name = "Generic STC15F2K60S2"
+vendor = "STC"
+platform = "intel_mcs51"
+mcu = "STC15F2K60S2"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "STC15F2K60S2"
+flash_bytes = 61440
+ram_bytes = 2048

@@ -1,0 +1,11 @@
+id = "STC15W1K24S"
+name = "Generic STC15W1K24S"
+vendor = "STC"
+platform = "intel_mcs51"
+mcu = "STC15W1K24S"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "STC15W1K24S"
+flash_bytes = 24576
+ram_bytes = 1024

@@ -1,0 +1,11 @@
+id = "ML51PB9AE"
+name = "Generic ML51PB9AE"
+vendor = "Nuvoton"
+platform = "intel_mcs51"
+mcu = "ML51PB9AE"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "ML51PB9AE"
+flash_bytes = 16384
+ram_bytes = 2304

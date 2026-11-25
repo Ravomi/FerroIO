@@ -1,0 +1,11 @@
+id = "IRC15W415AS"
+name = "Generic IRC15W415AS"
+vendor = "STC"
+platform = "intel_mcs51"
+mcu = "IRC15W415AS"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "IRC15W415AS"
+flash_bytes = 15872
+ram_bytes = 512

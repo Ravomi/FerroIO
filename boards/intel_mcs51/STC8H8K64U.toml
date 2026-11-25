@@ -1,0 +1,11 @@
+id = "STC8H8K64U"
+name = "Generic STC8H8K64U"
+vendor = "STC"
+platform = "intel_mcs51"
+mcu = "STC8H8K64U"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "STC8H8K64U"
+flash_bytes = 65536
+ram_bytes = 8448

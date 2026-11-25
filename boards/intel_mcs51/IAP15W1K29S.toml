@@ -1,0 +1,11 @@
+id = "IAP15W1K29S"
+name = "Generic IAP15W1K29S"
+vendor = "STC"
+platform = "intel_mcs51"
+mcu = "IAP15W1K29S"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "IAP15W1K29S"
+flash_bytes = 29696
+ram_bytes = 1024

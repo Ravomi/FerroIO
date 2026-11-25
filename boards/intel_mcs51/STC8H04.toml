@@ -1,0 +1,11 @@
+id = "STC8H04"
+name = "Generic STC8H04"
+vendor = "STC"
+platform = "intel_mcs51"
+mcu = "STC8H04"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "STC8H04"
+flash_bytes = 4096
+ram_bytes = 256

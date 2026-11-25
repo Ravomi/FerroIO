@@ -1,0 +1,10 @@
+id = "pinaka"
+name = "Pinaka on Artix-7 35T Arty FPGA Evaluation Kit"
+vendor = "Xilinx"
+platform = "shakti"
+mcu = "E-CLASS"
+default_framework = "shakti-sdk"
+frameworks = ["shakti-sdk"]
+probe_rs_chip = "E-CLASS"
+flash_bytes = 0
+ram_bytes = 131072

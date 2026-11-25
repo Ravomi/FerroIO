@@ -1,0 +1,11 @@
+id = "STC89C58RD"
+name = "Generic STC89C58RD+"
+vendor = "STC"
+platform = "intel_mcs51"
+mcu = "STC89C58RD+"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "STC89C58RD+"
+flash_bytes = 32768
+ram_bytes = 1280

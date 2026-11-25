@@ -1,0 +1,11 @@
+id = "IAP15W413AS"
+name = "Generic IAP15W413AS"
+vendor = "STC"
+platform = "intel_mcs51"
+mcu = "IAP15W413AS"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "IAP15W413AS"
+flash_bytes = 13312
+ram_bytes = 512

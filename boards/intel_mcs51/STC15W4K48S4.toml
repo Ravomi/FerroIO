@@ -1,0 +1,11 @@
+id = "STC15W4K48S4"
+name = "Generic STC15W4K48S4"
+vendor = "STC"
+platform = "intel_mcs51"
+mcu = "STC15W4K48S4"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "STC15W4K48S4"
+flash_bytes = 49152
+ram_bytes = 4096

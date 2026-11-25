@@ -1,0 +1,11 @@
+id = "N79E822"
+name = "Generic N79E822"
+vendor = "Nuvoton"
+platform = "intel_mcs51"
+mcu = "N79E822"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "N79E822"
+flash_bytes = 2048
+ram_bytes = 256

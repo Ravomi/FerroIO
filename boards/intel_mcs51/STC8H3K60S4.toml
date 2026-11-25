@@ -1,0 +1,11 @@
+id = "STC8H3K60S4"
+name = "Generic STC8H3K60S4"
+vendor = "STC"
+platform = "intel_mcs51"
+mcu = "STC8H3K60S4"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "STC8H3K60S4"
+flash_bytes = 61440
+ram_bytes = 3328

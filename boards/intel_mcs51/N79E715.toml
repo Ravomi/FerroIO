@@ -1,0 +1,11 @@
+id = "N79E715"
+name = "Generic N79E715"
+vendor = "Nuvoton"
+platform = "intel_mcs51"
+mcu = "N79E715"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "N79E715"
+flash_bytes = 16384
+ram_bytes = 512

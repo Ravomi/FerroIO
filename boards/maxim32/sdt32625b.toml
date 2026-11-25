@@ -1,0 +1,12 @@
+id = "sdt32625b"
+name = "SDT32625B"
+vendor = "Sigma Delta Technologies"
+platform = "maxim32"
+mcu = "MAX32625ITK"
+cpu = "cortex-m4"
+default_framework = "mbed"
+frameworks = ["mbed"]
+probe_rs_chip = "MAX32625ITK"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 524288
+ram_bytes = 163840

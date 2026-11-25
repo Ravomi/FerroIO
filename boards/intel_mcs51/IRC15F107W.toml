@@ -1,0 +1,11 @@
+id = "IRC15F107W"
+name = "Generic IRC15F107W"
+vendor = "STC"
+platform = "intel_mcs51"
+mcu = "IRC15F107W"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "IRC15F107W"
+flash_bytes = 6144
+ram_bytes = 128

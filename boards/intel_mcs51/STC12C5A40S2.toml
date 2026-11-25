@@ -1,0 +1,11 @@
+id = "STC12C5A40S2"
+name = "Generic STC12C5A40S2"
+vendor = "STC"
+platform = "intel_mcs51"
+mcu = "STC12C5A40S2"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "STC12C5A40S2"
+flash_bytes = 40960
+ram_bytes = 1280

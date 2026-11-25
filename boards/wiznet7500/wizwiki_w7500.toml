@@ -1,0 +1,12 @@
+id = "wizwiki_w7500"
+name = "WIZwiki-W7500"
+vendor = "WIZNet"
+platform = "wiznet7500"
+mcu = "WIZNET7500"
+cpu = "cortex-m0"
+default_framework = "mbed"
+frameworks = ["mbed"]
+probe_rs_chip = "cortex-m0"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 131072
+ram_bytes = 49152

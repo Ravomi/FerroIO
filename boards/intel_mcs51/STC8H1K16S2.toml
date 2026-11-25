@@ -1,0 +1,11 @@
+id = "STC8H1K16S2"
+name = "Generic STC8H1K16S2"
+vendor = "STC"
+platform = "intel_mcs51"
+mcu = "STC8H1K16S2"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "STC8H1K16S2"
+flash_bytes = 16384
+ram_bytes = 1280

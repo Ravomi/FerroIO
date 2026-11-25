@@ -1,0 +1,10 @@
+id = "artix7_100t"
+name = "Arty A7-100: Artix-7 FPGA Development Board"
+vendor = "Xilinx"
+platform = "shakti"
+mcu = "C-CLASS"
+default_framework = "shakti-sdk"
+frameworks = ["shakti-sdk"]
+probe_rs_chip = "C-CLASS"
+flash_bytes = 0
+ram_bytes = 134217728

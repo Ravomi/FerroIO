@@ -1,0 +1,11 @@
+id = "W79E8213"
+name = "Generic W79E8213"
+vendor = "Nuvoton"
+platform = "intel_mcs51"
+mcu = "W79E8213"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "W79E8213"
+flash_bytes = 4096
+ram_bytes = 128

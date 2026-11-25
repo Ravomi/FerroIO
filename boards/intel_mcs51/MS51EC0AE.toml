@@ -1,0 +1,11 @@
+id = "MS51EC0AE"
+name = "Generic MS51EC0AE"
+vendor = "Nuvoton"
+platform = "intel_mcs51"
+mcu = "MS51EC0AE"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "MS51EC0AE"
+flash_bytes = 32768
+ram_bytes = 2304

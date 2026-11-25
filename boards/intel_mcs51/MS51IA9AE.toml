@@ -1,0 +1,11 @@
+id = "MS51IA9AE"
+name = "Generic MS51IA9AE"
+vendor = "Nuvoton"
+platform = "intel_mcs51"
+mcu = "MS51IA9AE"
+cpu = "mcs51"
+default_framework = "embassy"
+frameworks = []
+probe_rs_chip = "MS51IA9AE"
+flash_bytes = 8192
+ram_bytes = 1280
