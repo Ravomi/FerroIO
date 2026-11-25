@@ -5,6 +5,7 @@ pub mod config;
 pub mod flash;
 pub mod monitor;
 pub mod project;
+pub mod registry;
 
 use std::path::PathBuf;
 use thiserror::Error;
@@ -27,6 +28,9 @@ pub enum CoreError {
 
     #[error("failed to parse ravom.toml: {0}")]
     TomlDe(#[from] toml::de::Error),
+
+    #[error("failed to parse PlatformIO board JSON: {0}")]
+    JsonDe(#[from] serde_json::Error),
 
     #[error("ravom.toml not found in {0}")]
     ManifestNotFound(PathBuf),

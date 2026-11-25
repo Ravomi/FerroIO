@@ -1,4 +1,5 @@
-use crate::config::{find_board, EnvConfig, ProjectMeta, RavomConfig};
+use crate::config::{EnvConfig, ProjectMeta, RavomConfig};
+use crate::registry::find_board_record;
 use crate::{CoreError, Result};
 use std::collections::BTreeMap;
 use std::fs;
@@ -16,9 +17,9 @@ pub struct InitResult {
 /// Initialize a PlatformIO-style project layout (`ravom.toml`, `src/`, `include/`, `lib/`).
 pub fn init_project(dir: &Path, board_id: &str, framework: Option<&str>) -> Result<InitResult> {
     let board =
-        find_board(board_id).ok_or_else(|| CoreError::UnknownBoard(board_id.to_string()))?;
+        find_board_record(board_id).ok_or_else(|| CoreError::UnknownBoard(board_id.to_string()))?;
 
-    let fw = framework.unwrap_or(board.default_framework).to_string();
+    let fw = framework.unwrap_or(&board.default_framework).to_string();
     fs::create_dir_all(dir)?;
 
     let manifest_path = dir.join("ravom.toml");
@@ -66,7 +67,7 @@ pub fn init_project(dir: &Path, board_id: &str, framework: Option<&str>) -> Resu
             project_name.replace(' ', "-")
         ),
     )?;
-    if let Some(target) = board.rust_target {
+    if let Some(target) = &board.rust_target {
         fs::create_dir_all(dir.join(".cargo"))?;
         fs::write(
             dir.join(".cargo/config.toml"),

@@ -1,4 +1,5 @@
-use crate::config::{find_board, RavomConfig};
+use crate::config::RavomConfig;
+use crate::registry::find_board_record;
 use crate::{CoreError, Result};
 use std::path::Path;
 use std::process::Command;
@@ -16,13 +17,13 @@ pub struct BuildResult {
 pub fn build_project(dir: &Path, env_name: Option<&str>, release: bool) -> Result<BuildResult> {
     let cfg = RavomConfig::load_from_dir(dir)?;
     let (resolved_env, env_cfg) = cfg.resolve_env(env_name)?;
-    let board =
-        find_board(&env_cfg.board).ok_or_else(|| CoreError::UnknownBoard(env_cfg.board.clone()))?;
+    let board = find_board_record(&env_cfg.board)
+        .ok_or_else(|| CoreError::UnknownBoard(env_cfg.board.clone()))?;
 
     let mut cmd = Command::new("cargo");
     cmd.arg("build").current_dir(dir);
 
-    if let Some(target) = board.rust_target {
+    if let Some(target) = &board.rust_target {
         cmd.args(["--target", target]);
     }
     if release {
@@ -39,8 +40,8 @@ pub fn build_project(dir: &Path, env_name: Option<&str>, release: bool) -> Resul
 
     Ok(BuildResult {
         env_name: resolved_env.to_string(),
-        board_id: board.id.to_string(),
-        target: board.rust_target.map(str::to_string),
+        board_id: board.id,
+        target: board.rust_target,
         release,
     })
 }

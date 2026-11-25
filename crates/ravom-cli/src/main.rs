@@ -1,6 +1,6 @@
 use clap::{Parser, Subcommand};
-use ravom_core::config::builtin_boards;
 use ravom_core::project::init_project;
+use ravom_core::registry::{default_boards_dir, import_pio_boards_dir, load_all_boards};
 use std::path::PathBuf;
 use std::process::ExitCode;
 
@@ -79,10 +79,16 @@ enum Commands {
         #[arg(short, long)]
         list: bool,
     },
-    /// List built-in supported boards
+    /// List supported boards or import PlatformIO `boards/*.json` definitions
     Boards {
         /// Optional filter query
         query: Option<String>,
+        /// Import PlatformIO `boards/` directory into local RavomIO registry
+        #[arg(long)]
+        import: Option<PathBuf>,
+        /// Platform name for imported boards (e.g. ststm32, espressif32, nordicnrf52)
+        #[arg(long, default_value = "custom")]
+        platform: String,
     },
     /// Launch the RavomIO egui desktop workbench
     Ui,
@@ -196,16 +202,31 @@ fn run(cli: Cli) -> Result<(), Box<dyn std::error::Error>> {
                 }
             }
         }
-        Commands::Boards { query } => {
+        Commands::Boards {
+            query,
+            import,
+            platform,
+        } => {
+            if let Some(src_dir) = import {
+                let dest = default_boards_dir();
+                let count = import_pio_boards_dir(&src_dir, &platform, &dest)?;
+                println!(
+                    "Imported {count} PlatformIO board(s) for platform '{platform}' into {}",
+                    dest.display()
+                );
+                return Ok(());
+            }
+
             let q = query.unwrap_or_default().to_lowercase();
-            println!("{:<16} {:<12} {:<14} NAME", "ID", "PLATFORM", "MCU");
-            for b in builtin_boards() {
+            println!("{:<22} {:<14} {:<16} NAME", "ID", "PLATFORM", "MCU");
+            for b in load_all_boards() {
                 if q.is_empty()
                     || b.id.to_lowercase().contains(&q)
                     || b.name.to_lowercase().contains(&q)
                     || b.mcu.to_lowercase().contains(&q)
+                    || b.platform.to_lowercase().contains(&q)
                 {
-                    println!("{:<16} {:<12} {:<14} {}", b.id, b.platform, b.mcu, b.name);
+                    println!("{:<22} {:<14} {:<16} {}", b.id, b.platform, b.mcu, b.name);
                 }
             }
         }

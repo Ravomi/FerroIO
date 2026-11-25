@@ -1,4 +1,5 @@
-use crate::config::{find_board, RavomConfig};
+use crate::config::RavomConfig;
+use crate::registry::find_board_record;
 use crate::{CoreError, Result};
 use std::path::{Path, PathBuf};
 use std::process::Command;
@@ -36,12 +37,13 @@ pub fn flash_project(
 ) -> Result<FlashResult> {
     let cfg = RavomConfig::load_from_dir(dir)?;
     let (resolved_env, env_cfg) = cfg.resolve_env(env_name)?;
-    let board =
-        find_board(&env_cfg.board).ok_or_else(|| CoreError::UnknownBoard(env_cfg.board.clone()))?;
+    let board = find_board_record(&env_cfg.board)
+        .ok_or_else(|| CoreError::UnknownBoard(env_cfg.board.clone()))?;
 
     let chip = board
         .probe_rs_chip
-        .ok_or_else(|| CoreError::MissingProbeRsChip(board.id.to_string()))?;
+        .clone()
+        .ok_or_else(|| CoreError::MissingProbeRsChip(board.id.clone()))?;
 
     let project_name = cfg
         .project
@@ -49,11 +51,11 @@ pub fn flash_project(
         .as_deref()
         .unwrap_or("ravomio-app")
         .replace(' ', "-");
-    let firmware = resolve_firmware_path(dir, &project_name, board.rust_target, release);
+    let firmware = resolve_firmware_path(dir, &project_name, board.rust_target.as_deref(), release);
 
     let subcmd = if monitor { "run" } else { "download" };
     let status = Command::new("probe-rs")
-        .args([subcmd, "--chip", chip])
+        .args([subcmd, "--chip", &chip])
         .arg(&firmware)
         .current_dir(dir)
         .status()
@@ -65,7 +67,7 @@ pub fn flash_project(
 
     Ok(FlashResult {
         env_name: resolved_env.to_string(),
-        chip: chip.to_string(),
+        chip,
         firmware,
         monitor,
     })

@@ -1,5 +1,6 @@
-use crate::config::{find_board, RavomConfig};
+use crate::config::RavomConfig;
 use crate::flash::resolve_firmware_path;
+use crate::registry::find_board_record;
 use crate::{CoreError, Result};
 use std::fs;
 use std::path::Path;
@@ -28,12 +29,13 @@ pub fn list_serial_ports() -> Vec<String> {
 pub fn monitor_rtt(dir: &Path, env_name: Option<&str>, release: bool) -> Result<()> {
     let cfg = RavomConfig::load_from_dir(dir)?;
     let (_resolved_env, env_cfg) = cfg.resolve_env(env_name)?;
-    let board =
-        find_board(&env_cfg.board).ok_or_else(|| CoreError::UnknownBoard(env_cfg.board.clone()))?;
+    let board = find_board_record(&env_cfg.board)
+        .ok_or_else(|| CoreError::UnknownBoard(env_cfg.board.clone()))?;
 
     let chip = board
         .probe_rs_chip
-        .ok_or_else(|| CoreError::MissingProbeRsChip(board.id.to_string()))?;
+        .clone()
+        .ok_or_else(|| CoreError::MissingProbeRsChip(board.id.clone()))?;
 
     let project_name = cfg
         .project
@@ -41,10 +43,10 @@ pub fn monitor_rtt(dir: &Path, env_name: Option<&str>, release: bool) -> Result<
         .as_deref()
         .unwrap_or("ravomio-app")
         .replace(' ', "-");
-    let firmware = resolve_firmware_path(dir, &project_name, board.rust_target, release);
+    let firmware = resolve_firmware_path(dir, &project_name, board.rust_target.as_deref(), release);
 
     let status = Command::new("probe-rs")
-        .args(["attach", "--chip", chip])
+        .args(["attach", "--chip", &chip])
         .arg(&firmware)
         .current_dir(dir)
         .status()
