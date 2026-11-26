@@ -162,6 +162,12 @@ RavomIO stands on the shoulders of the open-source embedded, FPGA, and Rust comm
 
 ---
 
+## Community
+
+- **QQ 交流群**: [点击加入【RavomIO交流群】](https://qm.qq.com/q/hZVzfJmAVy)
+
+---
+
 ## License
 
 Dual-licensed under **MIT** or **Apache-2.0** (matching the Rust ecosystem standard).
