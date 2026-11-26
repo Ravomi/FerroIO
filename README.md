@@ -1,7 +1,16 @@
+<div align="center">
+
 # RavomIO
 
-> **A next-generation, Rust-powered cross-platform ecosystem for embedded development.**  
-> Unified toolchain & library management, native `probe-rs` flashing and debugging, extensible plugin architecture, and a fast **egui**-based desktop workbench.
+**A next-generation, Rust-powered cross-platform ecosystem for embedded & FPGA development.**  
+Unified toolchain & board management, native `probe-rs` flashing, **AI-native MCP server (HIL + PID tuning + anti-reversing)**, and an **egui** desktop workbench.
+
+[![CI](https://github.com/Ravomi/RavomIO/actions/workflows/ci.yml/badge.svg)](https://github.com/Ravomi/RavomIO/actions/workflows/ci.yml)
+[![License: MIT OR Apache-2.0](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](#license)
+[![Rust](https://img.shields.io/badge/rust-2021%20edition-orange.svg)](https://www.rust-lang.org/)
+[![Boards](https://img.shields.io/badge/boards-2%2C340%2B%20across%2044%20platforms-brightgreen.svg)](#feature-status)
+
+</div>
 
 ---
 
@@ -36,7 +45,9 @@ Embedded development shouldn't be slowed down by fragmented toolchains, brittle 
 | Zephyr RTOS (`west`, C & Rust) | Beta | `mio init --framework zephyr [--lang rust]`, `ravom.toml` Kconfig/DeviceTree/Shields, `west build`, `probe-rs` / `west` flashing, `mio zephyr setup/status/menuconfig` |
 | `probe-rs` flash / RTT | Beta | Command plans unit-tested, chip names validated against probe-rs 0.31; physical-board runs via the HIL suite (`hil/`) |
 | Serial monitor | Beta | Cross-platform `serialport` backend (Linux / macOS / Windows) |
-| C/C++ (`arm-none-eabi-gcc`, `esp-idf`) | Experimental | Single-file compile, no linker-script / Arduino core management yet |
+| MCP Server (`mio mcp`) | Beta | Stdio JSON-RPC 2.0 with 3 permission tiers (`read-only`, `build`, `hardware`), async background tasks, bounded HIL telemetry, and clamped PID tuning |
+| Anti-Reversing & ELF Audit | Beta | Stage-separated `hil` vs. `release-hardened` profiles (`-C strip=symbols`, `--remap-path-prefix`, `-C panic=abort`, LLVM obfuscation) + `audit_firmware` ELF leak scanner |
+| C/C++ (`arm-none-eabi-gcc`, `avr-gcc`, `esp-idf`) | Experimental | Plugin-driven `init -> build` routing without spurious `Cargo.toml` |
 | FPGA (`yosys` → bitstream) | Experimental | Synthesis only; `nextpnr` place-and-route + packing not wired yet |
 | Simulators (Renode / QEMU / Wokwi) | Experimental | Only MCUs with a known Renode platform / QEMU machine |
 | Plugins | Experimental | Built-in framework templates only; WASM / RPC plugin loading is planned |
@@ -79,7 +90,19 @@ mio flash --monitor
 
 # Launch the desktop workbench
 mio ui
+
+# Start the stdio MCP server for AI agents (default: build mode; add --allow-hardware for HIL/PID)
+mio mcp --allow-hardware
 ```
+
+---
+
+## AI & MCP Integration
+
+RavomIO is built to be **AI-agent native** (see [AGENTS.md](./AGENTS.md) for the full Google Rust Style, MCP, and Skill contract):
+
+- **Three-Tier Permission Isolation**: Run `mio mcp --mode read-only` for discovery/audits, `--mode build` (default) for scaffolding and async background builds (`task_start` / `task_poll` / `task_cancel`), or `--allow-hardware` for physical flashing, bounded serial sampling (`monitor_sample`), and clamped PID gain injection (`pid_tune`).
+- **Stage-Separated Anti-Reversing**: Tune control loops deterministically with the `hil` profile, then switch to `release-hardened` (`-C strip=symbols`, `-C panic=abort`, `--remap-path-prefix`, fat LTO, optional LLVM obfuscation passes), verify with `audit_firmware`, and generate reversible chip read-protection plans via `plan_chip_protection`.
 
 ---
 
