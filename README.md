@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./docs/assets/ravomio-banner.jpg" alt="RavomIO — Rust-Powered Embedded & FPGA Ecosystem" width="100%" />
+<img src="./docs/assets/ravomio-icon.jpg" alt="RavomIO Logo" width="120" />
 
 # RavomIO
 
