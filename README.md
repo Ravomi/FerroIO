@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="./docs/assets/ravomio-banner.jpg" alt="RavomIO — Rust-Powered Embedded & FPGA Ecosystem" width="100%" />
+
 # RavomIO
 
 **A next-generation, Rust-powered cross-platform ecosystem for embedded & FPGA development.**  

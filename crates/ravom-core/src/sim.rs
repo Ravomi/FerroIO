@@ -123,7 +123,9 @@ mod tests {
         let bp = EnvContext::from_config(Path::new("/w"), cfg.clone(), Some("bp")).expect("ctx");
         let spec = plan_sim(&bp, false, SimBackend::Renode).expect("plan");
         assert!(spec.args[3].contains("stm32f103.repl"), "{spec}");
-        assert!(spec.args[3].contains("sysbus LoadELF @/w/target/thumbv7m-none-eabi/debug/blink"));
+        assert!(spec.args[3]
+            .replace('\\', "/")
+            .contains("sysbus LoadELF @/w/target/thumbv7m-none-eabi/debug/blink"));
 
         let pico = EnvContext::from_config(Path::new("/w"), cfg, Some("pico")).expect("ctx");
         assert!(matches!(

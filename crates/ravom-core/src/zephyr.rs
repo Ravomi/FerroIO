@@ -812,7 +812,9 @@ mod tests {
         opts.enable_rust = true;
         let plan = plan_zephyr_setup(&opts);
         let rendered: Vec<String> = plan.iter().map(ToString::to_string).collect();
-        assert!(rendered.iter().any(|s| s.contains("west init")));
+        assert!(rendered
+            .iter()
+            .any(|s| s.contains("west init") || s.contains("west.exe init")));
         assert!(rendered
             .iter()
             .any(|s| s.contains("manifest.project-filter +zephyr-lang-rust")));
