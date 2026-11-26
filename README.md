@@ -166,6 +166,8 @@ RavomIO stands on the shoulders of the open-source embedded, FPGA, and Rust comm
 
 - **QQ 交流群**: [点击加入【RavomIO交流群】](https://qm.qq.com/q/hZVzfJmAVy)
 
+<img src="./assets/qq-group-qr.jpg" width="220" alt="RavomIO QQ 交流群二维码" />
+
 ---
 
 ## License
