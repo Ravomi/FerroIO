@@ -5,6 +5,5 @@ platform = "timsp430"
 mcu = "MSP430F5529"
 default_framework = "arduino"
 frameworks = ["arduino"]
-probe_rs_chip = "MSP430F5529"
 flash_bytes = 48128
 ram_bytes = 8192

@@ -5,6 +5,5 @@ platform = "atmelavr"
 mcu = "ATTINY1634"
 default_framework = "arduino"
 frameworks = ["arduino"]
-probe_rs_chip = "ATTINY1634"
 flash_bytes = 16384
 ram_bytes = 1024

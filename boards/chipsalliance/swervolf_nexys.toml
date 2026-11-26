@@ -8,6 +8,5 @@ frameworks = [
     "wd-riscv-sdk",
     "freertos",
 ]
-probe_rs_chip = "SWERVOLF_NEXYS"
 flash_bytes = 16777216
 ram_bytes = 1216512

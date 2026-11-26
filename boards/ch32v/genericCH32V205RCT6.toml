@@ -5,6 +5,5 @@ platform = "ch32v"
 mcu = "CH32V205RCT6"
 default_framework = "noneos-sdk"
 frameworks = ["noneos-sdk"]
-probe_rs_chip = "CH32V205RCT6"
 flash_bytes = 262144
 ram_bytes = 32768

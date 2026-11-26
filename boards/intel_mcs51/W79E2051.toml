@@ -6,6 +6,5 @@ mcu = "W79E2051"
 cpu = "mcs51"
 default_framework = "embassy"
 frameworks = []
-probe_rs_chip = "W79E2051"
 flash_bytes = 2048
 ram_bytes = 256

@@ -6,7 +6,6 @@ mcu = "GD32F427VET6"
 cpu = "cortex-m4"
 default_framework = "spl"
 frameworks = ["spl"]
-probe_rs_chip = "GD32F427VE"
 rust_target = "thumbv7em-none-eabihf"
 flash_bytes = 524288
 ram_bytes = 196608

@@ -5,6 +5,5 @@ platform = "atmelavr"
 mcu = "AT90USB646"
 default_framework = "arduino"
 frameworks = ["arduino"]
-probe_rs_chip = "AT90USB646"
 flash_bytes = 61440
 ram_bytes = 2048

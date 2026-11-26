@@ -1,0 +1,25 @@
+name: Sync boards from PlatformIO
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 4 1 * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Re-import upstream boards
+        run: scripts/sync-pio-boards.sh
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          branch: chore/sync-boards
+          title: "chore(boards): sync board definitions from PlatformIO"
+          commit-message: "chore(boards): sync board definitions from PlatformIO"
+          body: Automated monthly re-import via `scripts/sync-pio-boards.sh`; validated with `mio boards --check`.

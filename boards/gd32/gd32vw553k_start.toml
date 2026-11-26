@@ -6,6 +6,5 @@ mcu = "GD32VW553KMQ6"
 cpu = "rv32imac_zba_zbb_zbc_zbs_xxldspn1x"
 default_framework = "spl"
 frameworks = ["spl"]
-probe_rs_chip = "GD32VW553HM"
 flash_bytes = 2097152
 ram_bytes = 294912

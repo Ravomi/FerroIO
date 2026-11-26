@@ -8,6 +8,5 @@ frameworks = [
     "mbed",
     "pulp-os",
 ]
-probe_rs_chip = "GAP8"
 flash_bytes = 67108864
 ram_bytes = 8388608

@@ -6,7 +6,6 @@ mcu = "SAMC21J18A"
 cpu = "cortex-m0plus"
 default_framework = "embassy"
 frameworks = []
-probe_rs_chip = "ATSAMC21J18"
 rust_target = "thumbv6m-none-eabi"
 flash_bytes = 262144
 ram_bytes = 32768

@@ -5,6 +5,5 @@ platform = "atmelmegaavr"
 mcu = "AVR128DB64"
 default_framework = "arduino"
 frameworks = ["arduino"]
-probe_rs_chip = "AVR128DB64"
 flash_bytes = 131072
 ram_bytes = 16384

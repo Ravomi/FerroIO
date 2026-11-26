@@ -6,7 +6,6 @@ mcu = "GD32F205RKT6"
 cpu = "cortex-m3"
 default_framework = "spl"
 frameworks = ["spl"]
-probe_rs_chip = "GD32F205RK"
 rust_target = "thumbv7m-none-eabi"
 flash_bytes = 3145728
 ram_bytes = 262144

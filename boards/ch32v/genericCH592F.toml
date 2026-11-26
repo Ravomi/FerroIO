@@ -10,6 +10,5 @@ frameworks = [
     "rt-thread",
     "ch32v003fun",
 ]
-probe_rs_chip = "CH592F"
 flash_bytes = 516096
 ram_bytes = 26624

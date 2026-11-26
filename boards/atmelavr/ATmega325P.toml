@@ -5,6 +5,5 @@ platform = "atmelavr"
 mcu = "ATMEGA325P"
 default_framework = "arduino"
 frameworks = ["arduino"]
-probe_rs_chip = "ATMEGA325P"
 flash_bytes = 32768
 ram_bytes = 2048

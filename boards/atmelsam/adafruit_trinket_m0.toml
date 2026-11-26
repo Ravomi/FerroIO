@@ -9,7 +9,7 @@ frameworks = [
     "arduino",
     "zephyr",
 ]
-probe_rs_chip = "ATSAMD21E18"
+probe_rs_chip = "ATSAMD21E18A"
 rust_target = "thumbv6m-none-eabi"
 flash_bytes = 262144
 ram_bytes = 32768

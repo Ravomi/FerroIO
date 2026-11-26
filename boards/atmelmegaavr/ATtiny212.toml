@@ -5,6 +5,5 @@ platform = "atmelmegaavr"
 mcu = "ATTINY212"
 default_framework = "arduino"
 frameworks = ["arduino"]
-probe_rs_chip = "ATTINY212"
 flash_bytes = 2048
 ram_bytes = 128

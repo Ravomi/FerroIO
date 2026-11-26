@@ -9,6 +9,5 @@ frameworks = [
     "arduino",
     "spl",
 ]
-probe_rs_chip = "STM8S208MBT6"
 flash_bytes = 131072
 ram_bytes = 6144

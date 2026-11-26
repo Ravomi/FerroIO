@@ -6,6 +6,5 @@ mcu = "ARCV2EM"
 cpu = "quarkse_em"
 default_framework = "arduino"
 frameworks = ["arduino"]
-probe_rs_chip = "ARCV2EM"
 flash_bytes = 155648
 ram_bytes = 81920

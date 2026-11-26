@@ -5,6 +5,5 @@ platform = "microchippic32"
 mcu = "32MX440F256H"
 default_framework = "arduino"
 frameworks = ["arduino"]
-probe_rs_chip = "32MX440F256H"
 flash_bytes = 258048
 ram_bytes = 32768

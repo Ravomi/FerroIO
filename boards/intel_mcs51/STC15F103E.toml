@@ -6,6 +6,5 @@ mcu = "STC15F103E"
 cpu = "mcs51"
 default_framework = "embassy"
 frameworks = []
-probe_rs_chip = "STC15F103E"
 flash_bytes = 3072
 ram_bytes = 128

@@ -10,7 +10,7 @@ frameworks = [
     "cmsis",
     "stm32cube",
 ]
-probe_rs_chip = "STM32F401VG"
+probe_rs_chip = "STM32F401VE"
 rust_target = "thumbv7em-none-eabihf"
 flash_bytes = 524288
 ram_bytes = 98304

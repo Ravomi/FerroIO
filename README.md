@@ -19,10 +19,28 @@ Embedded development shouldn't be slowed down by fragmented toolchains, brittle 
 
 ## Key Features
 
-- **Multi-Ecosystem Support**: First-class support for **Rust** (`cargo`, `embassy`, `rtic`, `embedded-hal`, [`mirui`](https://github.com/W-Mai/mirui) `no_std` embedded UI), **C/C++** (`arm-none-eabi-gcc`, `esp-idf`, Arduino), and **Open-Source FPGA** (`rust-hdl`, `spade`, `veryl` + `yosys` / `nextpnr` / `openFPGALoader`).
-- **Board & Registry Compatibility**: Reuse and parse community board metadata to support hundreds of popular development boards.
+- **Multi-Ecosystem Support**: **Rust** (`cargo`, `embassy`, `rtic`, `embedded-hal`, [`mirui`](https://github.com/W-Mai/mirui) `no_std` embedded UI), **C/C++** (`arm-none-eabi-gcc`, `esp-idf`), and **Open-Source FPGA** (`rust-hdl`, `spade`, `veryl` + `yosys` / `openFPGALoader`) — see the status matrix below for what is production-ready vs. experimental.
+- **Board & Registry Compatibility**: 2,342 boards across 44 platforms, embedded into the binary at build time and validated in CI; every `probe_rs_chip` is checked against the real `probe-rs` target database (1,225 boards flashable via `probe-rs`).
 - **Decoupled Core & UI**: Run `ravom-cli` (`mio`) headlessly in CI/CD pipelines and terminals, or launch `ravom-ui` for a full interactive desktop experience.
 - **Cross-Platform**: Works consistently across Linux, macOS, and Windows.
+
+---
+
+## Feature Status
+
+| Area | Status | Notes |
+| --- | --- | --- |
+| Board registry (`mio boards`) | Stable | Embedded in the binary (works from any directory), overridable via `~/.ravom/boards` / `$RAVOM_BOARDS_DIR`, `mio boards --check` validation, `<platform>/<id>` for ambiguous ids |
+| `platformio.ini` migration | Stable | `[env]` inheritance, `extends`, `${section.option}` / `${this.*}` / `${sysenv.*}` interpolation, unmapped options kept under `extra` with warnings |
+| Rust build (`cargo`) | Stable | Real cross-compilation covered by tests (`thumbv7m-none-eabi`) |
+| Zephyr RTOS (`west`, C & Rust) | Beta | `mio init --framework zephyr [--lang rust]`, `ravom.toml` Kconfig/DeviceTree/Shields, `west build`, `probe-rs` / `west` flashing, `mio zephyr setup/status/menuconfig` |
+| `probe-rs` flash / RTT | Beta | Command plans unit-tested, chip names validated against probe-rs 0.31; physical-board runs via the HIL suite (`hil/`) |
+| Serial monitor | Beta | Cross-platform `serialport` backend (Linux / macOS / Windows) |
+| C/C++ (`arm-none-eabi-gcc`, `esp-idf`) | Experimental | Single-file compile, no linker-script / Arduino core management yet |
+| FPGA (`yosys` → bitstream) | Experimental | Synthesis only; `nextpnr` place-and-route + packing not wired yet |
+| Simulators (Renode / QEMU / Wokwi) | Experimental | Only MCUs with a known Renode platform / QEMU machine |
+| Plugins | Experimental | Built-in framework templates only; WASM / RPC plugin loading is planned |
+| Toolchain provisioning | Partial | `mio doctor` (versions, udev / probe-rs checks) + `--install-target`; no automatic compiler/SDK download yet |
 
 ---
 
@@ -32,11 +50,13 @@ Embedded development shouldn't be slowed down by fragmented toolchains, brittle 
 RavomIO/
 ├── Cargo.toml              # Workspace configuration
 ├── crates/
-│   ├── ravom-core/         # Core engine: project parsing, toolchain manager, builder, probe-rs, serial
-│   ├── ravom-plugin/       # Plugin protocol & loader (declarative / WASM / RPC)
-│   ├── ravom-cli/          # CLI tool `mio` (init / build / flash / monitor / boards / ui)
-│   └── ravom-ui/           # Native egui desktop workbench
-└── plugins/                # Built-in platform & tool plugins
+│   ├── ravom-core/         # Core engine: registry, chip mapping, command plans, build / flash / monitor
+│   ├── ravom-plugin/       # Framework plugin trait + built-in templates
+│   ├── ravom-cli/          # CLI tool `mio` (src/commands/* per area, tests/ end-to-end + HIL)
+│   └── ravom-ui/           # Native egui desktop workbench (app / panels / tasks / console / plotter)
+├── boards/                 # Board registry source (<platform>/<id>.toml), embedded at build time
+├── hil/                    # Hardware-in-the-loop bench matrix + firmware fixtures
+└── scripts/                # probe-rs snapshot + PlatformIO board sync tooling
 ```
 
 ---
@@ -44,13 +64,14 @@ RavomIO/
 ## Quick Start
 
 ```bash
-# List built-in supported boards
+# List built-in supported boards (and validate the registry)
 mio boards
+mio boards --check
 
 # Initialize a new project for a target board
 mio init --board stm32f401ccu6
 
-# Build firmware
+# Build firmware (add --dry-run to print the exact toolchain commands)
 mio build
 
 # Flash firmware and open RTT monitor
@@ -73,11 +94,15 @@ mio ui
 
 ## TODO
 
-- [x] **C/C++ Build Pipeline**: Integrate `arm-none-eabi-gcc`, `esp-idf`, and Arduino build runners into `mio build` alongside `cargo`.
-- [x] **FPGA Synthesis Pipeline**: Wire `rust-hdl` / `spade` / `veryl` → `yosys` → `nextpnr` → `ecppack` / `icepack` bitstream generation into `mio build`.
-- [x] **Interactive Serial Terminal**: Add real-time serial TX/RX backend (`stty` + raw device I/O) to `mio monitor` and serial port discovery in `ravom-ui`.
-- [ ] **Hardware-in-the-Loop Verification**: End-to-end `probe-rs` flashing, RTT (`defmt`) logging, and `openFPGALoader` bitstream verification on physical boards (STM32, ESP32, RP2040/RP2350, STEP-MXO2-LPC, Tang Nano).
-- [x] **Automated Toolchain Provisioning**: `mio doctor` toolchain checker + `--install-target` Rust target provisioning.
+- [x] **Interactive Serial Terminal**: Cross-platform `serialport` backend for `mio monitor` and port discovery (with USB VID/PID) in `ravom-ui`.
+- [x] **Registry Quality Gates**: Embedded registry, `mio boards --check`, probe-rs target snapshot (`scripts/update-probe-rs-targets.sh`), monthly PlatformIO sync PR (`scripts/sync-pio-boards.sh`).
+- [x] **HIL Harness**: `hil/boards.toml` bench matrix, RTT marker firmware fixture, `cargo test -p ravom-cli --test hil -- --ignored` + self-hosted `hil.yml` workflow.
+- [ ] **Hardware-in-the-Loop Runs**: Wire a bench (STM32, ESP32, RP2040/RP2350, STEP-MXO2-LPC, Tang Nano) to the HIL runner and add one fixture per family.
+- [ ] **C/C++ Build Pipeline**: Linker scripts, startup code and Arduino core management for `arm-none-eabi-gcc`; `esp-idf` env bootstrap.
+- [ ] **FPGA Place & Route**: `nextpnr-{ice40,ecp5,gowin}` + `icepack` / `ecppack` / `gowin_pack`, per-board device/package/constraints in the registry.
+- [ ] **Bootable Rust Templates**: `cortex-m-rt` + generated `memory.x` (from `flash_bytes` / `ram_bytes`) + `defmt` instead of the current minimal `_start` stub.
+- [ ] **Toolchain Provisioning**: Download and pin `arm-none-eabi-gcc`, `probe-rs`, `oss-cad-suite` per project (lockfile under `.ravom/`).
+- [ ] **Plugin Runtime**: Load out-of-tree plugins (WASM component or JSON-RPC subprocess).
 
 ---
 
@@ -93,6 +118,24 @@ RavomIO stands on the shoulders of the open-source embedded, FPGA, and Rust comm
 - **[RustHDL](https://github.com/samitbasu/rust-hdl)**, **[rust-on-step-mxo2-lpc](https://github.com/y5c4l3/rust-on-step-mxo2-lpc)**, **[Yosys](https://github.com/YosysHQ/yosys)**, **[nextpnr](https://github.com/YosysHQ/nextpnr)**, and **[openFPGALoader](https://github.com/trabucayre/openFPGALoader)** — open-source Rust & Verilog FPGA synthesis and bitstream programming.
 - **[Renode](https://github.com/renode/renode)**, **[QEMU](https://www.qemu.org/)**, and **[Wokwi](https://wokwi.com/)** — hardware simulation backends.
 - Core Rust crates: **[clap](https://github.com/clap-rs/clap)**, **[serde](https://github.com/serde-rs/serde)**, **[serde_json](https://github.com/serde-rs/json)**, **[toml](https://github.com/toml-rs/toml)**, and **[thiserror](https://github.com/dtolnay/thiserror)**.
+
+---
+
+## Subdirectories & System Boundaries
+- `crates`: [./crates/README.md](./crates/README.md) — Workspace crates (`ravom-core`, `ravom-plugin`, `ravom-cli`, `ravom-ui`).
+- `hil`: [./hil/README.md](./hil/README.md) — Hardware-in-the-loop bench matrix and firmware fixtures (`./hil/fixtures/rtt-hello-stm32f103/README.md`).
+- `scripts`: [./scripts/README.md](./scripts/README.md) — PlatformIO board sync and `probe-rs` target snapshot maintenance scripts.
+
+## Global Invariants
+- Board definitions in `boards/` are embedded into `ravom-core` at build time and validated against `crates/ravom-core/data/probe-rs-targets.txt` via `mio boards --check`.
+- `ravom-core` and `ravom-plugin` remain UI-agnostic; both `ravom-cli` (`mio`) and `ravom-ui` delegate project, build, flash, and monitor operations to `ravom-core`.
+
+## Global Side Effects
+- Reads/writes project manifests (`ravom.toml`, `platformio.ini`) and build artifacts on disk.
+- Invokes external toolchains (`cargo`, `probe-rs`, `openFPGALoader`, `arm-none-eabi-gcc`, `yosys`, simulators, SSH) and accesses host serial ports.
+
+## System Verification
+- Run: `cargo test`
 
 ---
 

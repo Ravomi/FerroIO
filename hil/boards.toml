@@ -1,0 +1,13 @@
+# Hardware-in-the-loop bench matrix.
+#
+# Each entry is a physical board wired to the HIL runner. `fixture` is a
+# project under hil/fixtures/ that prints `marker` over RTT after boot.
+# Select boards with RAVOM_HIL_BOARDS=<id>[,<id>...] (or `all`) and pin a
+# probe with `probe` (passed to probe-rs as --probe VID:PID[:SERIAL]).
+
+[[board]]
+id = "ststm32/bluepill_f103c8"
+fixture = "rtt-hello-stm32f103"
+marker = "RAVOM-HIL-OK"
+probe = "0483:3748"   # ST-Link V2 clone
+timeout_secs = 30

@@ -9,6 +9,5 @@ frameworks = [
     "esp8266-rtos-sdk",
     "esp8266-nonos-sdk",
 ]
-probe_rs_chip = "ESP8266"
 flash_bytes = 16777216
 ram_bytes = 81920

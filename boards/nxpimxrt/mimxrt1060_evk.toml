@@ -6,7 +6,6 @@ mcu = "MIMXRT1062DVL6A"
 cpu = "cortex-m7"
 default_framework = "zephyr"
 frameworks = ["zephyr"]
-probe_rs_chip = "MIMXRT1062DVL6A"
 rust_target = "thumbv7em-none-eabihf"
 flash_bytes = 8388608
 ram_bytes = 33554432

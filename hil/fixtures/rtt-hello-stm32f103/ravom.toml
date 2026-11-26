@@ -1,0 +1,9 @@
+[project]
+name = "rtt-hello"
+default_envs = ["bluepill"]
+
+[env.bluepill]
+platform = "ststm32"
+board = "bluepill_f103c8"
+framework = "bare-metal"
+upload_protocol = "probe-rs"

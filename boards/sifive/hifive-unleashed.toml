@@ -8,6 +8,5 @@ frameworks = [
     "freedom-e-sdk",
     "freertos",
 ]
-probe_rs_chip = "FU540"
 flash_bytes = 33554432
 ram_bytes = 8589934592

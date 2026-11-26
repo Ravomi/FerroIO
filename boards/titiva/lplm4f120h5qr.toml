@@ -9,7 +9,6 @@ frameworks = [
     "arduino",
     "libopencm3",
 ]
-probe_rs_chip = "LPLM4F120H5QR"
 rust_target = "thumbv7em-none-eabihf"
 flash_bytes = 262144
 ram_bytes = 32768

@@ -5,6 +5,5 @@ platform = "atmelavr"
 mcu = "ATTINY43U"
 default_framework = "arduino"
 frameworks = ["arduino"]
-probe_rs_chip = "ATTINY43U"
 flash_bytes = 4096
 ram_bytes = 256

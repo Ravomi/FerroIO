@@ -6,6 +6,5 @@ mcu = "IRC15W107"
 cpu = "mcs51"
 default_framework = "embassy"
 frameworks = []
-probe_rs_chip = "IRC15W107"
 flash_bytes = 7168
 ram_bytes = 128

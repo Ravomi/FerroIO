@@ -6,7 +6,6 @@ mcu = "GD32E502KCU7"
 cpu = "cortex-m33"
 default_framework = "spl"
 frameworks = ["spl"]
-probe_rs_chip = "GD32E502KC"
 rust_target = "thumbv8m.main-none-eabihf"
 flash_bytes = 262144
 ram_bytes = 32768

@@ -1,0 +1,25 @@
+name: Hardware-in-the-loop
+
+# Runs on a self-hosted bench machine with boards + probes attached
+# (runner labels: self-hosted, hil). See hil/README.md for bench setup.
+on:
+  workflow_dispatch:
+    inputs:
+      boards:
+        description: "Comma separated board ids from hil/boards.toml, or 'all'"
+        default: all
+  schedule:
+    - cron: "0 3 * * *"
+
+jobs:
+  hil:
+    runs-on: [self-hosted, hil]
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Toolchain report
+        run: cargo run -q -p ravom-cli -- doctor
+      - name: Flash + RTT smoke test
+        env:
+          RAVOM_HIL_BOARDS: ${{ github.event.inputs.boards || 'all' }}
+        run: cargo test -p ravom-cli --test hil -- --ignored --nocapture

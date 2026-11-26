@@ -6,6 +6,5 @@ mcu = "ML51EB9AE"
 cpu = "mcs51"
 default_framework = "embassy"
 frameworks = []
-probe_rs_chip = "ML51EB9AE"
 flash_bytes = 16384
 ram_bytes = 1280

@@ -12,6 +12,5 @@ frameworks = [
     "tencent-os",
     "ch32v003fun",
 ]
-probe_rs_chip = "CH32X035F8U6"
 flash_bytes = 63488
 ram_bytes = 20480

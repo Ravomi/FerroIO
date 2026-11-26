@@ -1,80 +1,91 @@
-use crate::config::RavomConfig;
-use crate::flash::resolve_firmware_path;
-use crate::registry::find_board_record;
+use crate::context::EnvContext;
+use crate::process::CommandSpec;
 use crate::{CoreError, Result};
-use std::fs::{self, OpenOptions};
-use std::io::{self, Read, Write};
+use std::io::{self, BufRead, Read, Write};
 use std::path::Path;
-use std::process::Command;
 use std::thread;
+use std::time::{Duration, Instant};
 
-/// Discover likely USB/ACM serial ports on Unix-like systems without native dependencies.
-pub fn list_serial_ports() -> Vec<String> {
-    let mut ports = Vec::new();
-    if let Ok(entries) = fs::read_dir("/dev") {
-        for entry in entries.flatten() {
-            if let Some(name) = entry.file_name().to_str() {
-                if name.starts_with("ttyUSB")
-                    || name.starts_with("ttyACM")
-                    || name.starts_with("cu.usb")
-                {
-                    ports.push(entry.path().display().to_string());
-                }
-            }
-        }
-    }
-    ports.sort();
+/// A serial port detected on the host.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct SerialPortEntry {
+    pub path: String,
+    /// Human readable description (`USB 0483:5740 STMicroelectronics ...`).
+    pub description: String,
+}
+
+/// Discover serial ports (USB CDC/ACM, USB-UART bridges, PCI, ...) on Linux, macOS and Windows.
+pub fn list_serial_port_details() -> Vec<SerialPortEntry> {
+    let mut ports: Vec<SerialPortEntry> = serialport::available_ports()
+        .unwrap_or_default()
+        .into_iter()
+        .filter_map(|p| {
+            let description = match p.port_type {
+                serialport::SerialPortType::UsbPort(usb) => format!(
+                    "USB {:04x}:{:04x} {} {}",
+                    usb.vid,
+                    usb.pid,
+                    usb.manufacturer.unwrap_or_default(),
+                    usb.product.unwrap_or_default()
+                )
+                .trim()
+                .to_string(),
+                serialport::SerialPortType::PciPort => "PCI".to_string(),
+                serialport::SerialPortType::BluetoothPort => "Bluetooth".to_string(),
+                // Legacy on-board UARTs (`/dev/ttyS*`) are almost never a dev board.
+                serialport::SerialPortType::Unknown => return None,
+            };
+            Some(SerialPortEntry {
+                path: p.port_name,
+                description,
+            })
+        })
+        .collect();
+    ports.sort_by(|a, b| a.path.cmp(&b.path));
+    ports.dedup_by(|a, b| a.path == b.path);
     ports
+}
+
+/// Paths of detected serial ports, sorted.
+pub fn list_serial_ports() -> Vec<String> {
+    list_serial_port_details()
+        .into_iter()
+        .map(|p| p.path)
+        .collect()
+}
+
+/// Build the `probe-rs attach` command used for RTT / defmt logging.
+pub fn plan_rtt(ctx: &EnvContext, release: bool) -> Result<CommandSpec> {
+    let chip = ctx.board.probe_rs_chip.clone().ok_or_else(|| {
+        CoreError::MissingProbeRsChip(ctx.board.qualified_id(), ctx.board.mcu.clone())
+    })?;
+    Ok(CommandSpec::new("probe-rs")
+        .args(["attach", "--chip", chip.as_str()])
+        .path_arg(&ctx.firmware_path(release))
+        .cwd(&ctx.root))
 }
 
 /// Attach to an RTT session using `probe-rs attach --chip <chip> <elf>`.
 pub fn monitor_rtt(dir: &Path, env_name: Option<&str>, release: bool) -> Result<()> {
-    let cfg = RavomConfig::load_from_dir(dir)?;
-    let (_resolved_env, env_cfg) = cfg.resolve_env(env_name)?;
-    let board = find_board_record(&env_cfg.board)
-        .ok_or_else(|| CoreError::UnknownBoard(env_cfg.board.clone()))?;
-
-    let chip = board
-        .probe_rs_chip
-        .clone()
-        .ok_or_else(|| CoreError::MissingProbeRsChip(board.id.clone()))?;
-
-    let project_name = cfg
-        .project
-        .name
-        .as_deref()
-        .unwrap_or("ravomio-app")
-        .replace(' ', "-");
-    let firmware = resolve_firmware_path(dir, &project_name, board.rust_target.as_deref(), release);
-
-    let status = Command::new("probe-rs")
-        .args(["attach", "--chip", &chip])
-        .arg(&firmware)
-        .current_dir(dir)
-        .status()
-        .map_err(|_| CoreError::MonitorFailed(None))?;
-
-    if !status.success() {
-        return Err(CoreError::MonitorFailed(status.code()));
+    let ctx = EnvContext::load(dir, env_name)?;
+    let firmware = ctx.firmware_path(release);
+    if !firmware.exists() {
+        return Err(CoreError::ArtifactNotFound(firmware));
     }
-    Ok(())
+    plan_rtt(&ctx, release)?.run(CoreError::MonitorFailed)
 }
 
-/// Open an interactive serial terminal on `port` at `baud` using `stty` + raw device I/O.
+/// Open an interactive serial terminal: device output to stdout, stdin to the device.
 pub fn monitor_serial(port: &str, baud: u32) -> Result<()> {
-    let baud_str = baud.to_string();
-    let stty_status = Command::new("stty")
-        .args(["-F", port, &baud_str, "raw", "-echo"])
-        .status()
-        .map_err(|_| CoreError::MonitorFailed(None))?;
-    if !stty_status.success() {
-        return Err(CoreError::MonitorFailed(stty_status.code()));
-    }
+    let mut reader = serialport::new(port, baud)
+        .timeout(Duration::from_millis(100))
+        .open()
+        .map_err(|err| CoreError::SerialPort(port.to_string(), err.to_string()))?;
+    let mut writer = reader
+        .try_clone()
+        .map_err(|err| CoreError::SerialPort(port.to_string(), err.to_string()))?;
 
-    let mut reader = OpenOptions::new().read(true).open(port)?;
-    let mut writer = OpenOptions::new().write(true).open(port)?;
-
-    let tx_handle = thread::spawn(move || {
+    thread::spawn(move || {
         let mut stdin = io::stdin().lock();
         let mut buf = [0u8; 256];
         while let Ok(n) = stdin.read(&mut buf) {
@@ -86,28 +97,105 @@ pub fn monitor_serial(port: &str, baud: u32) -> Result<()> {
     });
 
     let mut stdout = io::stdout().lock();
-    let mut buf = [0u8; 256];
-    while let Ok(n) = reader.read(&mut buf) {
-        if n == 0 {
-            break;
+    let mut buf = [0u8; 1024];
+    loop {
+        match reader.read(&mut buf) {
+            Ok(0) => return Ok(()),
+            Ok(n) => {
+                stdout.write_all(&buf[..n])?;
+                stdout.flush()?;
+            }
+            Err(err) if err.kind() == io::ErrorKind::TimedOut => continue,
+            Err(err) if err.kind() == io::ErrorKind::Interrupted => continue,
+            Err(err) => return Err(CoreError::SerialPort(port.to_string(), err.to_string())),
         }
-        stdout.write_all(&buf[..n])?;
-        stdout.flush()?;
     }
+}
 
-    drop(tx_handle);
+/// Sample bounded lines from a serial port until `duration_ms`, `max_lines`, or `until_pattern` is reached.
+pub fn sample_serial_lines(
+    port_name: &str,
+    baud: u32,
+    duration_ms: u64,
+    max_lines: usize,
+    until_pattern: Option<&str>,
+) -> Result<(Vec<String>, bool)> {
+    let port = serialport::new(port_name, baud)
+        .timeout(Duration::from_millis(100))
+        .open()
+        .map_err(|err| CoreError::SerialPort(port_name.to_string(), err.to_string()))?;
+    let mut reader = io::BufReader::new(port);
+    let deadline = Instant::now() + Duration::from_millis(duration_ms.min(15_000));
+    let cap = max_lines.min(500);
+    let mut lines = Vec::new();
+    let mut matched = false;
+
+    while Instant::now() < deadline && lines.len() < cap {
+        let mut buf = String::new();
+        match reader.read_line(&mut buf) {
+            Ok(0) => break,
+            Ok(_) => {
+                let line = buf.trim_end().to_string();
+                if let Some(pat) = until_pattern {
+                    if line.contains(pat) {
+                        matched = true;
+                    }
+                }
+                lines.push(line);
+                if matched {
+                    break;
+                }
+            }
+            Err(e) if e.kind() == io::ErrorKind::TimedOut => continue,
+            Err(_) => break,
+        }
+    }
+    Ok((lines, matched))
+}
+
+/// Write a single command frame (e.g. clamped PID tuning parameters) to a serial port.
+pub fn write_serial_frame(port_name: &str, baud: u32, frame: &str) -> Result<()> {
+    let mut port = serialport::new(port_name, baud)
+        .timeout(Duration::from_millis(500))
+        .open()
+        .map_err(|err| CoreError::SerialPort(port_name.to_string(), err.to_string()))?;
+    port.write_all(frame.as_bytes())
+        .map_err(|err| CoreError::SerialPort(port_name.to_string(), err.to_string()))?;
+    port.flush()
+        .map_err(|err| CoreError::SerialPort(port_name.to_string(), err.to_string()))?;
     Ok(())
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::config::RavomConfig;
 
     #[test]
-    fn list_serial_ports_returns_sorted_paths() {
+    fn list_serial_ports_returns_sorted_unique_paths() {
         let ports = list_serial_ports();
         let mut sorted = ports.clone();
         sorted.sort();
+        sorted.dedup();
         assert_eq!(ports, sorted);
+    }
+
+    #[test]
+    fn opening_missing_serial_port_is_a_typed_error() {
+        let err = monitor_serial("/dev/ravomio-no-such-port", 115200).expect_err("must fail");
+        assert!(matches!(err, CoreError::SerialPort(..)));
+    }
+
+    #[test]
+    fn plans_rtt_attach() {
+        let cfg = RavomConfig::from_toml_str(
+            "[project]\nname = \"blink\"\n[env.pico]\nplatform = \"raspberrypi\"\n\
+             board = \"pico\"\nframework = \"embassy\"\n",
+        )
+        .expect("manifest");
+        let ctx = EnvContext::from_config(Path::new("/w"), cfg, None).expect("ctx");
+        let spec = plan_rtt(&ctx, false).expect("plan");
+        assert_eq!(spec.program, "probe-rs");
+        assert_eq!(&spec.args[..3], ["attach", "--chip", "RP2040"]);
     }
 }

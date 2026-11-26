@@ -5,6 +5,5 @@ platform = "atmelavr"
 mcu = "ATMEGA2561"
 default_framework = "arduino"
 frameworks = ["arduino"]
-probe_rs_chip = "ATMEGA2561"
 flash_bytes = 262144
 ram_bytes = 8192

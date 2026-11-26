@@ -5,6 +5,5 @@ platform = "atmelmegaavr"
 mcu = "AVR64DD20"
 default_framework = "arduino"
 frameworks = ["arduino"]
-probe_rs_chip = "AVR64DD20"
 flash_bytes = 65536
 ram_bytes = 8192

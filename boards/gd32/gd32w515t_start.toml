@@ -9,7 +9,6 @@ frameworks = [
     "spl",
     "wifi-sdk",
 ]
-probe_rs_chip = "GD32W515TI"
 rust_target = "thumbv8m.main-none-eabihf"
 flash_bytes = 2097152
 ram_bytes = 458752

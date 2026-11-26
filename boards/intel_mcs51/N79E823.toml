@@ -6,6 +6,5 @@ mcu = "N79E823"
 cpu = "mcs51"
 default_framework = "embassy"
 frameworks = []
-probe_rs_chip = "N79E823"
 flash_bytes = 4096
 ram_bytes = 256

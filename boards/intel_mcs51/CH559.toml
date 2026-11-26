@@ -6,6 +6,5 @@ mcu = "CH559"
 cpu = "mcs51"
 default_framework = "embassy"
 frameworks = []
-probe_rs_chip = "CH559"
 flash_bytes = 65536
 ram_bytes = 6400

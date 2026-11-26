@@ -5,6 +5,5 @@ platform = "atmelavr"
 mcu = "ATMEGA88P"
 default_framework = "arduino"
 frameworks = ["arduino"]
-probe_rs_chip = "ATMEGA88P"
 flash_bytes = 8192
 ram_bytes = 1024

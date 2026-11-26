@@ -9,6 +9,5 @@ frameworks = [
     "spl",
     "arduino",
 ]
-probe_rs_chip = "GD32E230G4"
 flash_bytes = 16384
 ram_bytes = 4096

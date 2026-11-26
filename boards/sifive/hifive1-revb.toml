@@ -9,6 +9,5 @@ frameworks = [
     "freertos",
     "zephyr",
 ]
-probe_rs_chip = "FE310"
 flash_bytes = 16777216
 ram_bytes = 16384

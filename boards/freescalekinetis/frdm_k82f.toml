@@ -9,7 +9,6 @@ frameworks = [
     "mbed",
     "zephyr",
 ]
-probe_rs_chip = "MK82FN256xxx15"
 rust_target = "thumbv7em-none-eabihf"
 flash_bytes = 262144
 ram_bytes = 262144

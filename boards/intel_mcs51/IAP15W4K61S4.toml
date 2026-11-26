@@ -6,6 +6,5 @@ mcu = "IAP15W4K61S4"
 cpu = "mcs51"
 default_framework = "embassy"
 frameworks = []
-probe_rs_chip = "IAP15W4K61S4"
 flash_bytes = 62464
 ram_bytes = 4096

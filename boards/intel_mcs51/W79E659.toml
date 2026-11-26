@@ -6,6 +6,5 @@ mcu = "W79E659"
 cpu = "mcs51"
 default_framework = "embassy"
 frameworks = []
-probe_rs_chip = "W79E659"
 flash_bytes = 32768
 ram_bytes = 1280

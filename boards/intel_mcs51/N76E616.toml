@@ -6,6 +6,5 @@ mcu = "N76E616"
 cpu = "mcs51"
 default_framework = "embassy"
 frameworks = []
-probe_rs_chip = "N76E616"
 flash_bytes = 18432
 ram_bytes = 512

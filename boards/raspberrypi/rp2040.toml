@@ -1,0 +1,15 @@
+id = "rp2040"
+name = "Raspberry Pi Pico (RP2040)"
+vendor = "Raspberry Pi"
+platform = "raspberrypi"
+mcu = "RP2040"
+cpu = "cortex-m0plus"
+default_framework = "embassy"
+frameworks = [
+    "embassy",
+    "rtic",
+]
+probe_rs_chip = "RP2040"
+rust_target = "thumbv6m-none-eabi"
+flash_bytes = 2097152
+ram_bytes = 270336

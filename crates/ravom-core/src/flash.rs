@@ -1,10 +1,11 @@
-use crate::config::RavomConfig;
-use crate::registry::find_board_record;
+use crate::context::EnvContext;
+use crate::process::CommandSpec;
 use crate::{CoreError, Result};
 use std::path::{Path, PathBuf};
-use std::process::Command;
 
-/// Result of a firmware flash invocation via `probe-rs`.
+pub use crate::context::resolve_firmware_path;
+
+/// Result of a firmware flash invocation.
 #[derive(Debug, Clone)]
 pub struct FlashResult {
     pub env_name: String,
@@ -13,93 +14,162 @@ pub struct FlashResult {
     pub monitor: bool,
 }
 
-/// Resolve the expected ELF path for the given project, target, and profile.
-pub fn resolve_firmware_path(
-    dir: &Path,
-    project_name: &str,
-    target: Option<&str>,
-    release: bool,
-) -> PathBuf {
-    let profile = if release { "release" } else { "debug" };
-    let mut p = dir.join("target");
-    if let Some(t) = target {
-        p = p.join(t);
-    }
-    p.join(profile).join(project_name)
+/// A resolved flash operation: which artifact goes to which chip with which command.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct FlashPlan {
+    pub chip: String,
+    pub artifact: PathBuf,
+    pub command: CommandSpec,
+    /// Optional follow-up command (e.g. `probe-rs reset` after `probe-rs download`
+    /// so the newly flashed firmware starts running immediately).
+    pub post_command: Option<CommandSpec>,
+    pub monitor: bool,
 }
 
-/// Flash firmware to the target board using `probe-rs` CLI (`run` if `monitor` is true, else `download`).
+/// Build the flash command without executing it.
+///
+/// * FPGA boards: `openFPGALoader -b <board> <bitstream>`.
+/// * MCU boards: `probe-rs download --chip <chip> <elf>` followed by
+///   `probe-rs reset --chip <chip>`, or `probe-rs run --chip <chip> <elf>` when
+///   `monitor` is true.
+pub fn plan_flash(ctx: &EnvContext, release: bool, monitor: bool) -> Result<FlashPlan> {
+    if ctx.board.is_fpga() {
+        let artifact = ctx.bitstream_path();
+        let command = CommandSpec::new("openFPGALoader")
+            .args(["-b", ctx.board.id.as_str()])
+            .path_arg(&artifact)
+            .cwd(&ctx.root);
+        return Ok(FlashPlan {
+            chip: ctx.board.mcu.clone(),
+            artifact,
+            command,
+            post_command: None,
+            monitor: false,
+        });
+    }
+
+    let protocol = ctx.env.upload_protocol.as_deref().unwrap_or("probe-rs");
+    if protocol == "west" {
+        let artifact = ctx.firmware_path(release);
+        let command = crate::zephyr::plan_zephyr_flash(ctx);
+        return Ok(FlashPlan {
+            chip: crate::zephyr::resolve_zephyr_board(&ctx.env, &ctx.board),
+            artifact,
+            command,
+            post_command: None,
+            monitor: false,
+        });
+    }
+    if !matches!(
+        protocol,
+        "probe-rs" | "stlink" | "jlink" | "cmsis-dap" | "custom"
+    ) {
+        return Err(CoreError::UnsupportedUploadProtocol(protocol.to_string()));
+    }
+
+    let chip = ctx.board.probe_rs_chip.clone().ok_or_else(|| {
+        CoreError::MissingProbeRsChip(ctx.board.qualified_id(), ctx.board.mcu.clone())
+    })?;
+    let artifact = ctx.firmware_path(release);
+    let probe_selector = std::env::var("RAVOM_PROBE")
+        .ok()
+        .map(|s| s.trim().to_string())
+        .filter(|s| !s.is_empty());
+
+    let mut command = CommandSpec::new("probe-rs").args([
+        if monitor { "run" } else { "download" },
+        "--chip",
+        chip.as_str(),
+    ]);
+    if let Some(ref selector) = probe_selector {
+        command = command.args(["--probe", selector.as_str()]);
+    }
+    let command = command.path_arg(&artifact).cwd(&ctx.root);
+
+    let post_command = if monitor {
+        None
+    } else {
+        let mut reset = CommandSpec::new("probe-rs").args(["reset", "--chip", chip.as_str()]);
+        if let Some(ref selector) = probe_selector {
+            reset = reset.args(["--probe", selector.as_str()]);
+        }
+        Some(reset.cwd(&ctx.root))
+    };
+
+    Ok(FlashPlan {
+        chip,
+        artifact,
+        command,
+        post_command,
+        monitor,
+    })
+}
+
+/// Flash firmware to the target board (`probe-rs run` if `monitor`, else `download`).
 pub fn flash_project(
     dir: &Path,
     env_name: Option<&str>,
     release: bool,
     monitor: bool,
 ) -> Result<FlashResult> {
-    let cfg = RavomConfig::load_from_dir(dir)?;
-    let (resolved_env, env_cfg) = cfg.resolve_env(env_name)?;
-    let board = find_board_record(&env_cfg.board)
-        .ok_or_else(|| CoreError::UnknownBoard(env_cfg.board.clone()))?;
+    flash_project_impl(dir, env_name, release, monitor, None)
+}
 
-    let is_fpga = board.platform.starts_with("lattice_")
-        || board.platform == "gowin_fpga"
-        || board.platform.starts_with("xilinx_");
+/// Like [`flash_project`] (without RTT) but streams tool output into `log`.
+pub fn flash_project_with_log(
+    dir: &Path,
+    env_name: Option<&str>,
+    release: bool,
+    log: &mut dyn FnMut(&str),
+) -> Result<FlashResult> {
+    flash_project_impl(dir, env_name, release, false, Some(log))
+}
 
-    let project_name = cfg
-        .project
-        .name
-        .as_deref()
-        .unwrap_or("ravomio-app")
-        .replace(' ', "-");
-    let firmware = resolve_firmware_path(dir, &project_name, board.rust_target.as_deref(), release);
-
-    if is_fpga {
-        let status = Command::new("openFPGALoader")
-            .args(["-b", &board.id])
-            .arg(&firmware)
-            .current_dir(dir)
-            .status()
-            .map_err(|_| CoreError::FlashFailed(None))?;
-
-        if !status.success() {
-            return Err(CoreError::FlashFailed(status.code()));
+fn flash_project_impl(
+    dir: &Path,
+    env_name: Option<&str>,
+    release: bool,
+    monitor: bool,
+    log: Option<&mut dyn FnMut(&str)>,
+) -> Result<FlashResult> {
+    let ctx = EnvContext::load(dir, env_name)?;
+    let plan = plan_flash(&ctx, release, monitor)?;
+    if !plan.artifact.exists() {
+        return Err(CoreError::ArtifactNotFound(plan.artifact));
+    }
+    match log {
+        Some(sink) => {
+            sink(&format!("$ {}", plan.command));
+            plan.command.run_streaming(CoreError::FlashFailed, sink)?;
+            if let Some(post) = &plan.post_command {
+                sink(&format!("$ {post}"));
+                post.run_streaming(CoreError::FlashFailed, sink)?;
+            }
         }
-
-        return Ok(FlashResult {
-            env_name: resolved_env.to_string(),
-            chip: board.mcu,
-            firmware,
-            monitor: false,
-        });
+        None => {
+            plan.command.run(CoreError::FlashFailed)?;
+            if let Some(post) = &plan.post_command {
+                post.run(CoreError::FlashFailed)?;
+            }
+        }
     }
-
-    let chip = board
-        .probe_rs_chip
-        .clone()
-        .ok_or_else(|| CoreError::MissingProbeRsChip(board.id.clone()))?;
-
-    let subcmd = if monitor { "run" } else { "download" };
-    let status = Command::new("probe-rs")
-        .args([subcmd, "--chip", &chip])
-        .arg(&firmware)
-        .current_dir(dir)
-        .status()
-        .map_err(|_| CoreError::FlashFailed(None))?;
-
-    if !status.success() {
-        return Err(CoreError::FlashFailed(status.code()));
-    }
-
     Ok(FlashResult {
-        env_name: resolved_env.to_string(),
-        chip,
-        firmware,
-        monitor,
+        env_name: ctx.env_name,
+        chip: plan.chip,
+        firmware: plan.artifact,
+        monitor: plan.monitor,
     })
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::config::RavomConfig;
+
+    fn ctx(manifest: &str) -> EnvContext {
+        let cfg = RavomConfig::from_toml_str(manifest).expect("manifest parses");
+        EnvContext::from_config(Path::new("/tmp/demo"), cfg, None).expect("env resolves")
+    }
 
     #[test]
     fn resolves_debug_and_release_firmware_paths() {
@@ -112,5 +182,59 @@ mod tests {
             resolve_firmware_path(root, "blink", Some("thumbv6m-none-eabi"), true),
             PathBuf::from("/tmp/demo/target/thumbv6m-none-eabi/release/blink")
         );
+    }
+
+    #[test]
+    fn plans_probe_rs_download_and_run() {
+        let c = ctx(
+            "[project]\nname = \"blink\"\n[env.bp]\nplatform = \"ststm32\"\n\
+                     board = \"bluepill_f103c8\"\nframework = \"embassy\"\n",
+        );
+        let plan = plan_flash(&c, true, false).expect("plan");
+        assert_eq!(plan.command.program, "probe-rs");
+        assert_eq!(
+            &plan.command.args[..3],
+            ["download", "--chip", "STM32F103C8"]
+        );
+        assert_eq!(
+            plan.artifact,
+            PathBuf::from("/tmp/demo/target/thumbv7m-none-eabi/release/blink")
+        );
+        let post = plan
+            .post_command
+            .as_ref()
+            .expect("download should schedule a post-flash reset");
+        assert_eq!(post.program, "probe-rs");
+        assert_eq!(post.args, ["reset", "--chip", "STM32F103C8"]);
+        let run = plan_flash(&c, false, true).expect("plan");
+        assert_eq!(run.command.args[0], "run");
+        assert!(run.post_command.is_none());
+    }
+
+    #[test]
+    fn plans_openfpgaloader_with_bitstream() {
+        let c = ctx(
+            "[env.fpga]\nplatform = \"lattice_ice40\"\nboard = \"icebreaker\"\n\
+                     framework = \"verilog\"\n",
+        );
+        let plan = plan_flash(&c, false, false).expect("plan");
+        assert_eq!(plan.command.program, "openFPGALoader");
+        assert_eq!(plan.artifact, PathBuf::from("/tmp/demo/build/top.bin"));
+    }
+
+    #[test]
+    fn rejects_boards_without_probe_rs_support() {
+        let c =
+            ctx("[env.uno]\nplatform = \"atmelavr\"\nboard = \"uno\"\nframework = \"arduino\"\n");
+        let err = plan_flash(&c, false, false).expect_err("AVR is not supported by probe-rs");
+        assert!(matches!(err, CoreError::MissingProbeRsChip(..)));
+    }
+
+    #[test]
+    fn missing_artifact_is_reported_before_invoking_probe_rs() {
+        let dir = tempfile::tempdir().expect("tempdir");
+        crate::project::init_project(dir.path(), "bluepill_f103c8", None).expect("init");
+        let err = flash_project(dir.path(), None, false, false).expect_err("no ELF yet");
+        assert!(matches!(err, CoreError::ArtifactNotFound(_)));
     }
 }

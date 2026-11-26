@@ -1,3 +1,4 @@
+use crate::zephyr::ZephyrConfig;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 
@@ -17,17 +18,27 @@ pub struct ProjectMeta {
 }
 
 /// Environment configuration corresponding to `[env:<name>]` in PlatformIO.
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[derive(Debug, Clone, Default, Serialize, Deserialize, PartialEq, Eq)]
 pub struct EnvConfig {
     pub platform: String,
     pub board: String,
     pub framework: String,
-    #[serde(default)]
+    /// C/C++ compiler flags (PlatformIO `build_flags`); not passed to rustc.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub build_flags: Vec<String>,
-    #[serde(default)]
+    /// Extra rustc flags for the Cargo backend (`CARGO_ENCODED_RUSTFLAGS`).
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub rustflags: Vec<String>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub lib_deps: Vec<String>,
     pub upload_protocol: Option<String>,
     pub monitor_speed: Option<u32>,
+    /// Optional Zephyr RTOS configuration (`[env.<name>.zephyr]`).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub zephyr: Option<ZephyrConfig>,
+    /// PlatformIO options without a RavomIO equivalent, preserved verbatim by `mio migrate`.
+    #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
+    pub extra: BTreeMap<String, String>,
 }
 
 impl RavomConfig {
@@ -71,65 +82,6 @@ impl RavomConfig {
     }
 }
 
-/// Built-in board metadata (subset for Phase 1 scaffolding).
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct BoardInfo {
-    pub id: &'static str,
-    pub name: &'static str,
-    pub platform: &'static str,
-    pub mcu: &'static str,
-    pub default_framework: &'static str,
-    pub probe_rs_chip: Option<&'static str>,
-    pub rust_target: Option<&'static str>,
-}
-
-pub fn builtin_boards() -> &'static [BoardInfo] {
-    &[
-        BoardInfo {
-            id: "bluepill_f103c8",
-            name: "BluePill F103C8 (STM32F103C8T6)",
-            platform: "ststm32",
-            mcu: "STM32F103C8T6",
-            default_framework: "embassy",
-            probe_rs_chip: Some("STM32F103C8"),
-            rust_target: Some("thumbv7m-none-eabi"),
-        },
-        BoardInfo {
-            id: "stm32f401ccu6",
-            name: "WeAct BlackPill V3.0 (STM32F401CCU6)",
-            platform: "ststm32",
-            mcu: "STM32F401CCU6",
-            default_framework: "embassy",
-            probe_rs_chip: Some("STM32F401CCUx"),
-            rust_target: Some("thumbv7em-none-eabihf"),
-        },
-        BoardInfo {
-            id: "esp32s3",
-            name: "Espressif ESP32-S3-DevKitC-1",
-            platform: "espressif32",
-            mcu: "ESP32S3",
-            default_framework: "esp-idf",
-            probe_rs_chip: Some("ESP32S3"),
-            rust_target: Some("xtensa-esp32s3-none-elf"),
-        },
-        BoardInfo {
-            id: "rp2040",
-            name: "Raspberry Pi Pico (RP2040)",
-            platform: "raspberrypi",
-            mcu: "RP2040",
-            default_framework: "embassy",
-            probe_rs_chip: Some("RP2040"),
-            rust_target: Some("thumbv6m-none-eabi"),
-        },
-    ]
-}
-
-pub fn find_board(id: &str) -> Option<&'static BoardInfo> {
-    builtin_boards()
-        .iter()
-        .find(|b| b.id.eq_ignore_ascii_case(id))
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -144,9 +96,9 @@ mod tests {
                 board: "stm32f401ccu6".to_string(),
                 framework: "embassy".to_string(),
                 build_flags: vec!["-DDEBUG".to_string()],
-                lib_deps: vec![],
                 upload_protocol: Some("probe-rs".to_string()),
                 monitor_speed: Some(115200),
+                ..EnvConfig::default()
             },
         );
         let cfg = RavomConfig {
@@ -162,5 +114,26 @@ mod tests {
         let parsed = RavomConfig::from_toml_str(&s)
             .expect("serialized RavomConfig should deserialize cleanly");
         assert_eq!(cfg, parsed);
+    }
+
+    #[test]
+    fn resolves_default_and_named_envs() {
+        let cfg = RavomConfig::from_toml_str(
+            "[project]\ndefault_envs = [\"b\"]\n\
+             [env.a]\nplatform = \"p\"\nboard = \"x\"\nframework = \"f\"\n\
+             [env.b]\nplatform = \"p\"\nboard = \"y\"\nframework = \"f\"\n",
+        )
+        .expect("parse");
+        assert_eq!(cfg.resolve_env(None).expect("default").0, "b");
+        assert_eq!(cfg.resolve_env(Some("a")).expect("named").1.board, "x");
+        assert!(matches!(
+            cfg.resolve_env(Some("zzz")),
+            Err(crate::CoreError::UnknownEnv(_))
+        ));
+        let empty = RavomConfig::from_toml_str("").expect("empty manifest");
+        assert!(matches!(
+            empty.resolve_env(None),
+            Err(crate::CoreError::NoEnvironments)
+        ));
     }
 }

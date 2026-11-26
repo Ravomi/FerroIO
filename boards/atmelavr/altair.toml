@@ -5,6 +5,5 @@ platform = "atmelavr"
 mcu = "ATMEGA256RFR2"
 default_framework = "arduino"
 frameworks = ["arduino"]
-probe_rs_chip = "ATMEGA256RFR2"
 flash_bytes = 253952
 ram_bytes = 32768

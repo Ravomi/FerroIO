@@ -11,7 +11,7 @@ frameworks = [
     "libopencm3",
     "zephyr",
 ]
-probe_rs_chip = "STM32G412CG"
+probe_rs_chip = "STM32F412CG"
 rust_target = "thumbv7em-none-eabihf"
 flash_bytes = 1048576
 ram_bytes = 262144

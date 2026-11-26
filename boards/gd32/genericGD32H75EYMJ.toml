@@ -6,7 +6,6 @@ mcu = "GD32H75EYMJ6B"
 cpu = "cortex-m7"
 default_framework = "spl"
 frameworks = ["spl"]
-probe_rs_chip = "GD32H75EYMJ"
 rust_target = "thumbv7em-none-eabihf"
 flash_bytes = 3932160
 ram_bytes = 1048576

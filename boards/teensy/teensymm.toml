@@ -6,7 +6,6 @@ mcu = "IMXRT1062"
 cpu = "cortex-m7"
 default_framework = "arduino"
 frameworks = ["arduino"]
-probe_rs_chip = "MIMXRT1062xxxxA"
 rust_target = "thumbv7em-none-eabihf"
 flash_bytes = 8126464
 ram_bytes = 524288

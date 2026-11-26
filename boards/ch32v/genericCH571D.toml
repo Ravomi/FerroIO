@@ -8,6 +8,5 @@ frameworks = [
     "noneos-sdk",
     "ch32v003fun",
 ]
-probe_rs_chip = "CH571D"
 flash_bytes = 229376
 ram_bytes = 18432

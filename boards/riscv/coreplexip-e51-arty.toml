@@ -5,6 +5,5 @@ platform = "riscv"
 mcu = "E51"
 default_framework = "freedom-e-sdk"
 frameworks = ["freedom-e-sdk"]
-probe_rs_chip = "E51"
 flash_bytes = 16777216
 ram_bytes = 268435456

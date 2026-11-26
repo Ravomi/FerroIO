@@ -5,6 +5,5 @@ platform = "ch32v"
 mcu = "CH643U"
 default_framework = "noneos-sdk"
 frameworks = ["noneos-sdk"]
-probe_rs_chip = "CH643U"
 flash_bytes = 63488
 ram_bytes = 20480

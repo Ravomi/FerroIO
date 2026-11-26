@@ -6,6 +6,5 @@ mcu = "GD32L233C8T6"
 cpu = "cortex-m23"
 default_framework = "spl"
 frameworks = ["spl"]
-probe_rs_chip = "GD32L233C8"
 flash_bytes = 65536
 ram_bytes = 16384

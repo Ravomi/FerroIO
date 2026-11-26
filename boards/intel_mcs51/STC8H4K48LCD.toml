@@ -6,6 +6,5 @@ mcu = "STC8H4K48LCD"
 cpu = "mcs51"
 default_framework = "embassy"
 frameworks = []
-probe_rs_chip = "STC8H4K48LCD"
 flash_bytes = 49152
 ram_bytes = 4352

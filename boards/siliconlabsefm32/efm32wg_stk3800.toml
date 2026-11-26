@@ -6,7 +6,6 @@ mcu = "EFM32WG990F256"
 cpu = "cortex-m4"
 default_framework = "zephyr"
 frameworks = ["zephyr"]
-probe_rs_chip = "EFM32WG990F256"
 rust_target = "thumbv7em-none-eabihf"
 flash_bytes = 262144
 ram_bytes = 32768

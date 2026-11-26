@@ -6,7 +6,6 @@ mcu = "MKL43Z256VLH4"
 cpu = "cortex-m0plus"
 default_framework = "mbed"
 frameworks = ["mbed"]
-probe_rs_chip = "MKL43Z256xxx4"
 rust_target = "thumbv6m-none-eabi"
 flash_bytes = 262144
 ram_bytes = 32768

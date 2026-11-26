@@ -8,6 +8,5 @@ frameworks = [
     "pulp-sdk",
     "pulp-runtime",
 ]
-probe_rs_chip = "NEXYS_A7"
 flash_bytes = 16777216
 ram_bytes = 1216512

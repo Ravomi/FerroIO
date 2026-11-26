@@ -14,6 +14,5 @@ frameworks = [
     "zephyr",
     "arduino",
 ]
-probe_rs_chip = "CH32X035G8U6"
 flash_bytes = 63488
 ram_bytes = 20480

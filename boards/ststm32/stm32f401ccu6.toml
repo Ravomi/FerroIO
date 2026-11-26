@@ -1,0 +1,15 @@
+id = "stm32f401ccu6"
+name = "WeAct BlackPill V3.0 (STM32F401CCU6)"
+vendor = "WeAct Studio"
+platform = "ststm32"
+mcu = "STM32F401CCU6"
+cpu = "cortex-m4"
+default_framework = "embassy"
+frameworks = [
+    "embassy",
+    "rtic",
+]
+probe_rs_chip = "STM32F401CC"
+rust_target = "thumbv7em-none-eabihf"
+flash_bytes = 262144
+ram_bytes = 65536

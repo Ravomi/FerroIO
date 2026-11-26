@@ -5,6 +5,5 @@ platform = "atmelmegaavr"
 mcu = "AVR32DA48"
 default_framework = "arduino"
 frameworks = ["arduino"]
-probe_rs_chip = "AVR32DA48"
 flash_bytes = 32768
 ram_bytes = 4096

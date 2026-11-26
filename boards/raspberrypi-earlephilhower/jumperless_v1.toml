@@ -9,7 +9,7 @@ frameworks = [
     "arduino",
     "picosdk",
 ]
-probe_rs_chip = "RP2040_M0_0"
+probe_rs_chip = "RP2040"
 rust_target = "thumbv6m-none-eabi"
 flash_bytes = 16777216
 ram_bytes = 262144

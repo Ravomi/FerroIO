@@ -6,6 +6,5 @@ mcu = "STM8S207K8T6"
 cpu = "stm8"
 default_framework = "spl"
 frameworks = ["spl"]
-probe_rs_chip = "STM8S207K8T6"
 flash_bytes = 65536
 ram_bytes = 6144

@@ -5,6 +5,5 @@ platform = "linux_arm"
 mcu = "BCM2836"
 default_framework = "wiringpi"
 frameworks = ["wiringpi"]
-probe_rs_chip = "BCM2836"
 flash_bytes = 1073741824
 ram_bytes = 1073741824

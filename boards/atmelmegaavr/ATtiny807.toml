@@ -5,6 +5,5 @@ platform = "atmelmegaavr"
 mcu = "ATTINY807"
 default_framework = "arduino"
 frameworks = ["arduino"]
-probe_rs_chip = "ATTINY807"
 flash_bytes = 8192
 ram_bytes = 512

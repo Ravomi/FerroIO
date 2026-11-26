@@ -24,6 +24,11 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
         with:
           components: rustfmt, clippy
+          # Enables the real cross-compilation tests (init -> build -> ELF, HIL fixtures).
+          targets: thumbv7m-none-eabi
+
+      - name: Rust cache
+        uses: Swatinem/rust-cache@v2
 
       - name: Format check
         run: cargo fmt --all -- --check
@@ -33,3 +38,18 @@ jobs:
 
       - name: Run workspace tests
         run: cargo test --workspace
+
+      - name: Validate board registry
+        run: cargo run -q -p ravom-cli -- boards --check
+
+  cross-platform:
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: Core + CLI tests
+        run: cargo test -p ravom-core -p ravom-cli

@@ -1,0 +1,14 @@
+id = "esp32s3"
+name = "Espressif ESP32-S3-DevKitC-1"
+vendor = "Espressif"
+platform = "espressif32"
+mcu = "ESP32S3"
+default_framework = "esp-idf"
+frameworks = [
+    "esp-idf",
+    "embassy",
+]
+probe_rs_chip = "esp32s3"
+rust_target = "xtensa-esp32s3-none-elf"
+flash_bytes = 8388608
+ram_bytes = 327680

@@ -5,6 +5,5 @@ platform = "teensy"
 mcu = "AT90USB1286"
 default_framework = "arduino"
 frameworks = ["arduino"]
-probe_rs_chip = "AT90USB1286"
 flash_bytes = 130048
 ram_bytes = 8192

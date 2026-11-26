@@ -1,0 +1,18 @@
+[package]
+name = "rtt-hello"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+# Standalone workspace: this fixture is flashed onto real hardware by the HIL suite.
+[workspace]
+
+[dependencies]
+cortex-m = { version = "0.7", features = ["critical-section-single-core"] }
+cortex-m-rt = "0.7"
+panic-halt = "1"
+rtt-target = "0.6"
+
+[profile.release]
+debug = true
+opt-level = "s"

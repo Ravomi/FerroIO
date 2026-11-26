@@ -6,6 +6,5 @@ mcu = "STC8A8K32S4A12"
 cpu = "mcs51"
 default_framework = "embassy"
 frameworks = []
-probe_rs_chip = "STC8A8K32S4A12"
 flash_bytes = 32768
 ram_bytes = 8448

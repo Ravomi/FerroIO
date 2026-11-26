@@ -6,7 +6,6 @@ mcu = "EFM32GG990F1024"
 cpu = "cortex-m3"
 default_framework = "mbed"
 frameworks = ["mbed"]
-probe_rs_chip = "EFM32GG990F1024"
 rust_target = "thumbv7m-none-eabi"
 flash_bytes = 1048576
 ram_bytes = 131072

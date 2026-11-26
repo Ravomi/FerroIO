@@ -6,7 +6,6 @@ mcu = "MK66FX1M0"
 cpu = "cortex-m4"
 default_framework = "arduino"
 frameworks = ["arduino"]
-probe_rs_chip = "MK66FX1M0xxx18"
 rust_target = "thumbv7em-none-eabihf"
 flash_bytes = 1048576
 ram_bytes = 262144

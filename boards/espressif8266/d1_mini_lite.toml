@@ -5,6 +5,5 @@ platform = "espressif8266"
 mcu = "ESP8266"
 default_framework = "arduino"
 frameworks = ["arduino"]
-probe_rs_chip = "ESP8266"
 flash_bytes = 1048576
 ram_bytes = 81920

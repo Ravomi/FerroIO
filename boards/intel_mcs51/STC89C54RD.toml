@@ -6,6 +6,5 @@ mcu = "STC89C54RD+"
 cpu = "mcs51"
 default_framework = "embassy"
 frameworks = []
-probe_rs_chip = "STC89C54RD+"
 flash_bytes = 16384
 ram_bytes = 1280

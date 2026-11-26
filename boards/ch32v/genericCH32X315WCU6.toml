@@ -11,6 +11,5 @@ frameworks = [
     "rt-thread",
     "tencent-os",
 ]
-probe_rs_chip = "CH32X315WCU6"
 flash_bytes = 196608
 ram_bytes = 65536
