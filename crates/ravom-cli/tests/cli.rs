@@ -351,7 +351,10 @@ fn zephyr_c_and_rust_init_build_flash_and_management_commands() {
     );
     assert!(setup.status.success(), "{}", stderr(&setup));
     let setup_out = stdout(&setup);
-    assert!(setup_out.contains("west init"), "{setup_out}");
+    assert!(
+        setup_out.contains("west init") || setup_out.contains("west.exe init"),
+        "{setup_out}"
+    );
     assert!(
         setup_out.contains("manifest.project-filter +zephyr-lang-rust"),
         "{setup_out}"
