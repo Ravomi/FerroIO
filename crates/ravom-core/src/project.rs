@@ -219,21 +219,21 @@ pub fn init_project(dir: &Path, board_id: &str, framework: Option<&str>) -> Resu
                 project_name.replace(' ', "-")
             ),
         )?;
-        let is_linux_userland =
-            matches!(board.platform.as_str(), "linux_sbc" | "linux_arm")
-                || fw.eq_ignore_ascii_case("linux");
+        let is_linux_userland = matches!(board.platform.as_str(), "linux_sbc" | "linux_arm")
+            || fw.eq_ignore_ascii_case("linux");
         if let Some(target) = &board.rust_target {
             fs::create_dir_all(dir.join(".cargo"))?;
-            let has_linker_script = if let (Some((flash_origin, ram_origin)), Some(flash), Some(ram)) = (
-                cortex_m_memory_origins(&board.platform),
-                board.flash_bytes,
-                board.ram_bytes,
-            ) {
-                scaffold_cortex_m_linker_scripts(dir, flash_origin, flash, ram_origin, ram)?;
-                true
-            } else {
-                false
-            };
+            let has_linker_script =
+                if let (Some((flash_origin, ram_origin)), Some(flash), Some(ram)) = (
+                    cortex_m_memory_origins(&board.platform),
+                    board.flash_bytes,
+                    board.ram_bytes,
+                ) {
+                    scaffold_cortex_m_linker_scripts(dir, flash_origin, flash, ram_origin, ram)?;
+                    true
+                } else {
+                    false
+                };
             let cargo_cfg = if has_linker_script {
                 format!(
                     "[build]\ntarget = \"{target}\"\n\n[target.{target}]\nrustflags = [\"-C\", \"link-arg=-Tlink.x\"]\n"

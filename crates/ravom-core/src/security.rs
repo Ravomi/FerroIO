@@ -146,8 +146,8 @@ pub fn audit_firmware_bytes(bytes: &[u8]) -> FirmwareAuditReport {
         }
     }
 
-    let has_panic_strings = contains_subslice(bytes, b"panicked at")
-        || contains_subslice(bytes, b"core::panicking");
+    let has_panic_strings =
+        contains_subslice(bytes, b"panicked at") || contains_subslice(bytes, b"core::panicking");
 
     let mut recommendations = Vec::new();
     if has_debug_sections {
@@ -174,8 +174,11 @@ pub fn audit_firmware_bytes(bytes: &[u8]) -> FirmwareAuditReport {
         );
     }
 
-    let hardened =
-        is_elf && !has_debug_sections && !has_symtab && leaked_host_paths.is_empty() && !has_panic_strings;
+    let hardened = is_elf
+        && !has_debug_sections
+        && !has_symtab
+        && leaked_host_paths.is_empty()
+        && !has_panic_strings;
 
     FirmwareAuditReport {
         file_size_bytes: bytes.len() as u64,

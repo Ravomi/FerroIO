@@ -66,7 +66,11 @@ fn init_build_and_flash_dry_runs_produce_consistent_commands() {
         &["-C", proj_s, "flash", "--release", "--dry-run"],
     );
     assert!(flash.status.success(), "{}", stderr(&flash));
-    let expected_elf = proj.join("target/thumbv7em-none-eabihf/release/blink");
+    let expected_elf = proj
+        .join("target")
+        .join("thumbv7em-none-eabihf")
+        .join("release")
+        .join("blink");
     assert!(
         stdout(&flash).contains(&format!(
             "probe-rs download --chip STM32F401CC {}",
@@ -272,7 +276,11 @@ fn zephyr_c_and_rust_init_build_flash_and_management_commands() {
 
     let flash_c = mio(tmp.path(), tmp.path(), &["-C", c_s, "flash", "--dry-run"]);
     assert!(flash_c.status.success(), "{}", stderr(&flash_c));
-    let expected_elf = c_proj.join("build/stm32f401ccu6/zephyr/zephyr.elf");
+    let expected_elf = c_proj
+        .join("build")
+        .join("stm32f401ccu6")
+        .join("zephyr")
+        .join("zephyr.elf");
     assert!(
         stdout(&flash_c).contains(&format!(
             "probe-rs download --chip STM32F401CC {}",

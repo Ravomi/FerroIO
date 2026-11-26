@@ -151,7 +151,10 @@ impl TaskRegistry {
 }
 
 /// Run the stdio JSON-RPC 2.0 MCP server until EOF.
-pub fn run_mcp_server(mode_str: &str, allow_hardware: bool) -> Result<(), Box<dyn std::error::Error>> {
+pub fn run_mcp_server(
+    mode_str: &str,
+    allow_hardware: bool,
+) -> Result<(), Box<dyn std::error::Error>> {
     let mode = McpMode::parse(mode_str, allow_hardware);
     let tasks = TaskRegistry::default();
     let stdin = io::stdin();
@@ -526,8 +529,7 @@ fn handle_tool_call(
                 .get("release")
                 .and_then(Value::as_bool)
                 .unwrap_or(false);
-            let ctx =
-                EnvContext::load(Path::new(dir), env).map_err(|e| (-32000, e.to_string()))?;
+            let ctx = EnvContext::load(Path::new(dir), env).map_err(|e| (-32000, e.to_string()))?;
             let (backend, steps) = plan_build(&ctx, release);
             let commands: Vec<String> = steps.iter().map(ToString::to_string).collect();
             json!({
@@ -562,8 +564,7 @@ fn handle_tool_call(
                         .collect()
                 })
                 .unwrap_or_default();
-            let ctx =
-                EnvContext::load(Path::new(dir), env).map_err(|e| (-32000, e.to_string()))?;
+            let ctx = EnvContext::load(Path::new(dir), env).map_err(|e| (-32000, e.to_string()))?;
             let plan = plan_hardened_build(&ctx, profile, &passes);
             serde_json::to_value(plan).map_err(|e| (-32000, e.to_string()))?
         }
@@ -713,8 +714,7 @@ fn handle_tool_call(
 
             let frame = validate_pid_gains(kp, ki, kd, max_kp, max_ki, max_kd)?;
             if !dry_run {
-                write_serial_frame(port_name, baud, &frame)
-                    .map_err(|e| (-32000, e.to_string()))?;
+                write_serial_frame(port_name, baud, &frame).map_err(|e| (-32000, e.to_string()))?;
             }
             json!({
                 "port": port_name,
