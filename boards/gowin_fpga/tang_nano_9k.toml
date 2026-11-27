@@ -1,7 +1,0 @@
-id = "tang_nano_9k"
-name = "Sipeed Tang Nano 9K (GW1NR-9C)"
-vendor = "Sipeed"
-platform = "gowin_fpga"
-mcu = "GW1NR-LV9QN88PC6/I5"
-default_framework = "rust-hdl"
-frameworks = ["rust-hdl", "verilog", "apicula"]

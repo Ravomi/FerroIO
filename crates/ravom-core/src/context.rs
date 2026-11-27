@@ -58,16 +58,6 @@ impl EnvContext {
             release,
         )
     }
-
-    /// Expected FPGA bitstream produced by the synthesis pipeline.
-    pub fn bitstream_path(&self) -> PathBuf {
-        let ext = match self.board.platform.as_str() {
-            "lattice_ice40" => "bin",
-            "gowin_fpga" => "fs",
-            _ => "bit",
-        };
-        self.root.join("build").join(format!("top.{ext}"))
-    }
 }
 
 /// Resolve the expected ELF path for the given project, target, and profile.

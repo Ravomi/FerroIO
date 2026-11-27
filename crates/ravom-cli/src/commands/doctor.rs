@@ -36,21 +36,28 @@ pub fn run(install_target: Option<&str>) -> CmdResult {
     Ok(())
 }
 
-/// Launch the `ravom-ui` binary installed next to `mio` or on `PATH`.
+/// Launch the `Ravomi` GUI binary installed next to `mio` or on `PATH`.
 pub fn launch_ui() -> CmdResult {
-    let exe_name = format!("ravom-ui{}", std::env::consts::EXE_SUFFIX);
-    let sibling = std::env::current_exe()
+    let sibling_dir = std::env::current_exe()
         .ok()
-        .and_then(|p| p.parent().map(|d| d.join(&exe_name)))
-        .filter(|p| p.is_file());
-    let Some(ui) = sibling.or_else(|| find_in_path("ravom-ui")) else {
-        return Err(
-            "`ravom-ui` not found; install it with `cargo install --path crates/ravom-ui`".into(),
-        );
-    };
+        .and_then(|p| p.parent().map(std::path::Path::to_path_buf));
+    let ui = ["Ravomi", "ravom-ui"]
+        .iter()
+        .find_map(|name| {
+            let exe = format!("{name}{}", std::env::consts::EXE_SUFFIX);
+            sibling_dir
+                .as_ref()
+                .map(|dir| dir.join(&exe))
+                .filter(|p| p.is_file())
+                .or_else(|| find_in_path(name))
+        })
+        .ok_or_else(|| {
+            "`Ravomi` GUI binary not found; install it with `cargo install --path crates/ravom-ui`"
+                .to_string()
+        })?;
     let status = Command::new(ui).status()?;
     if !status.success() {
-        return Err(format!("ravom-ui exited with {status}").into());
+        return Err(format!("Ravomi exited with {status}").into());
     }
     Ok(())
 }

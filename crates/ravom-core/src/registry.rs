@@ -71,13 +71,6 @@ pub struct BoardRecord {
 }
 
 impl BoardRecord {
-    /// Whether the board is an FPGA (bitstream flow instead of firmware flow).
-    pub fn is_fpga(&self) -> bool {
-        self.platform.starts_with("lattice_")
-            || self.platform == "gowin_fpga"
-            || self.platform.starts_with("xilinx_")
-    }
-
     /// Fully qualified `<platform>/<id>` name, unique across the registry.
     pub fn qualified_id(&self) -> String {
         format!("{}/{}", self.platform, self.id)

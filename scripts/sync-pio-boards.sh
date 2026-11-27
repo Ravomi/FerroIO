@@ -5,7 +5,7 @@
 #   scripts/sync-pio-boards.sh                 # every platform in boards/
 #   scripts/sync-pio-boards.sh ststm32 gd32    # selected platforms
 #
-# Platforms without an upstream PlatformIO repo (FPGA, Linux SBC, ...) are
+# Platforms without an upstream PlatformIO repo (Linux SBC, ...) are
 # curated by hand and skipped. Chip names are resolved against the probe-rs
 # snapshot during import, so the result passes `mio boards --check`.
 set -euo pipefail

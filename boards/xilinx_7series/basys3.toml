@@ -1,7 +1,0 @@
-id = "basys3"
-name = "Digilent Basys 3 (Artix-7)"
-vendor = "Digilent"
-platform = "xilinx_7series"
-mcu = "XC7A35T-1CPG236C"
-default_framework = "rust-hdl"
-frameworks = ["rust-hdl", "verilog", "openxc7"]

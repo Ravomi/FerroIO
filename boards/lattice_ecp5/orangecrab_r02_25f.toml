@@ -1,7 +1,0 @@
-id = "orangecrab_r02_25f"
-name = "GsD OrangeCrab r0.2 (ECP5-25F)"
-vendor = "Good Stuff Department"
-platform = "lattice_ecp5"
-mcu = "LFE5U-25F-8MG285C"
-default_framework = "rust-hdl"
-frameworks = ["rust-hdl", "verilog", "amaranth"]

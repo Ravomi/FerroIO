@@ -28,26 +28,10 @@ pub struct FlashPlan {
 
 /// Build the flash command without executing it.
 ///
-/// * FPGA boards: `openFPGALoader -b <board> <bitstream>`.
 /// * MCU boards: `probe-rs download --chip <chip> <elf>` followed by
 ///   `probe-rs reset --chip <chip>`, or `probe-rs run --chip <chip> <elf>` when
-///   `monitor` is true.
+///   `monitor` is true (or `west flash` for Zephyr).
 pub fn plan_flash(ctx: &EnvContext, release: bool, monitor: bool) -> Result<FlashPlan> {
-    if ctx.board.is_fpga() {
-        let artifact = ctx.bitstream_path();
-        let command = CommandSpec::new("openFPGALoader")
-            .args(["-b", ctx.board.id.as_str()])
-            .path_arg(&artifact)
-            .cwd(&ctx.root);
-        return Ok(FlashPlan {
-            chip: ctx.board.mcu.clone(),
-            artifact,
-            command,
-            post_command: None,
-            monitor: false,
-        });
-    }
-
     let protocol = ctx.env.upload_protocol.as_deref().unwrap_or("probe-rs");
     if protocol == "west" {
         let artifact = ctx.firmware_path(release);
@@ -209,17 +193,6 @@ mod tests {
         let run = plan_flash(&c, false, true).expect("plan");
         assert_eq!(run.command.args[0], "run");
         assert!(run.post_command.is_none());
-    }
-
-    #[test]
-    fn plans_openfpgaloader_with_bitstream() {
-        let c = ctx(
-            "[env.fpga]\nplatform = \"lattice_ice40\"\nboard = \"icebreaker\"\n\
-                     framework = \"verilog\"\n",
-        );
-        let plan = plan_flash(&c, false, false).expect("plan");
-        assert_eq!(plan.command.program, "openFPGALoader");
-        assert_eq!(plan.artifact, PathBuf::from("/tmp/demo/build/top.bin"));
     }
 
     #[test]

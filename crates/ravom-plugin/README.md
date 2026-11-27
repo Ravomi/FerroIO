@@ -1,7 +1,7 @@
 # ravom-plugin
 
 ## Overview
-Plugin protocol and built-in framework/RTOS/HDL registry for RavomIO (supporting Embassy, RTIC, ESP-IDF, FreeRTOS, Zephyr, RT-Thread, bare-metal, RustHDL, Spade, Veryl, and Mirui).
+Plugin protocol and built-in framework/RTOS registry for RavomIO (supporting Embassy, RTIC, ESP-IDF, FreeRTOS, Zephyr, RT-Thread, bare-metal, Arduino, STM32Cube, CMSIS, and Mirui).
 
 ## Interface
 - `pub trait FrameworkPlugin: Send + Sync` (`id(&self) -> &'static str`, `display_name(&self) -> &'static str`, `is_rtos(&self) -> bool`, `starter_main_rs(&self, board_id: &str) -> String`)

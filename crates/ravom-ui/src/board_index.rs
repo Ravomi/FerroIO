@@ -1,6 +1,65 @@
-//! Pre-sorted, pre-lowercased board search index grouped by vendor with query caching.
+//! Pre-sorted, pre-lowercased board search index grouped by vendor with query & filter caching.
 
 use ravom_core::registry::BoardRecord;
+
+/// Ecosystem filter chip for narrowing the board catalog.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum BoardFilter {
+    All,
+    ProbeRs,
+    Esp32,
+    Stm32,
+    Rp2040,
+    Nrf,
+}
+
+impl BoardFilter {
+    /// All filter variants in display order.
+    pub const ALL: &'static [BoardFilter] = &[
+        BoardFilter::All,
+        BoardFilter::ProbeRs,
+        BoardFilter::Esp32,
+        BoardFilter::Stm32,
+        BoardFilter::Rp2040,
+        BoardFilter::Nrf,
+    ];
+
+    /// Short display label for filter chips.
+    pub fn label(self) -> &'static str {
+        match self {
+            BoardFilter::All => "All",
+            BoardFilter::ProbeRs => "probe-rs",
+            BoardFilter::Esp32 => "ESP32",
+            BoardFilter::Stm32 => "STM32",
+            BoardFilter::Rp2040 => "RP2040/2350",
+            BoardFilter::Nrf => "nRF",
+        }
+    }
+
+    /// Return whether `board` belongs to this ecosystem filter.
+    pub fn matches(self, board: &BoardRecord) -> bool {
+        match self {
+            BoardFilter::All => true,
+            BoardFilter::ProbeRs => board.probe_rs_chip.is_some(),
+            BoardFilter::Esp32 => {
+                board.platform.starts_with("espressif")
+                    || board.mcu.to_ascii_uppercase().starts_with("ESP32")
+            }
+            BoardFilter::Stm32 => {
+                board.platform.contains("stm32")
+                    || board.mcu.to_ascii_uppercase().starts_with("STM32")
+            }
+            BoardFilter::Rp2040 => {
+                board.platform.contains("raspberrypi")
+                    || board.mcu.to_ascii_uppercase().starts_with("RP2")
+            }
+            BoardFilter::Nrf => {
+                board.platform.contains("nordic")
+                    || board.mcu.to_ascii_uppercase().starts_with("NRF")
+            }
+        }
+    }
+}
 
 /// Display label for a board's vendor (falls back to platform when absent).
 pub fn vendor_label(board: &BoardRecord) -> &str {
@@ -17,16 +76,19 @@ pub struct VendorGroup {
     pub indices: Vec<usize>,
 }
 
+/// Indexed, pre-sorted board catalog with cached vendor groupings.
 pub struct BoardIndex {
     boards: Vec<BoardRecord>,
     haystacks: Vec<String>,
     cached_query: String,
+    cached_filter: BoardFilter,
     cached_terms: Vec<String>,
     cached_groups: Vec<VendorGroup>,
     cached_total: usize,
 }
 
 impl BoardIndex {
+    /// Build a new sorted board index from `boards`.
     pub fn new(mut boards: Vec<BoardRecord>) -> Self {
         boards.sort_by(|a, b| {
             let va = vendor_label(a).to_lowercase();
@@ -53,34 +115,46 @@ impl BoardIndex {
             boards,
             haystacks,
             cached_query: String::from("\0"), // sentinel so initial "" builds cache
+            cached_filter: BoardFilter::All,
             cached_terms: Vec::new(),
             cached_groups: Vec::new(),
             cached_total: 0,
         };
-        idx.ensure_query("");
+        idx.ensure_query("", BoardFilter::All);
         idx
     }
 
+    /// Total number of boards loaded in the catalog.
     pub fn len(&self) -> usize {
         self.boards.len()
     }
 
+    /// Fetch board record by flat index.
     pub fn get(&self, idx: usize) -> &BoardRecord {
         &self.boards[idx]
     }
 
-    /// Recompute cached vendor groups only when `query` changes (zero per-frame allocations).
-    pub fn ensure_query(&mut self, query: &str) {
-        if self.cached_query == query {
+    /// Look up a board by its qualified `<platform>/<id>` identifier.
+    pub fn find_by_qualified(&self, qualified: &str) -> Option<&BoardRecord> {
+        self.boards.iter().find(|b| b.qualified_id() == qualified)
+    }
+
+    /// Recompute cached vendor groups only when `query` or `filter` changes.
+    pub fn ensure_query(&mut self, query: &str, filter: BoardFilter) {
+        if self.cached_query == query && self.cached_filter == filter {
             return;
         }
         self.cached_query.clear();
         self.cached_query.push_str(query);
+        self.cached_filter = filter;
         self.cached_terms = query.split_whitespace().map(str::to_lowercase).collect();
         self.cached_groups.clear();
         self.cached_total = 0;
 
         for (i, (board, hay)) in self.boards.iter().zip(&self.haystacks).enumerate() {
+            if !filter.matches(board) {
+                continue;
+            }
             if !self.cached_terms.iter().all(|t| hay.contains(t.as_str())) {
                 continue;
             }
@@ -98,20 +172,21 @@ impl BoardIndex {
         }
     }
 
+    /// Lowercased whitespace-separated query terms currently cached.
     pub fn cached_terms(&self) -> &[String] {
         &self.cached_terms
     }
 
+    /// Cached vendor groups matching the current query and filter.
     pub fn cached_groups(&self) -> &[VendorGroup] {
         &self.cached_groups
     }
 
+    /// Total matching board count for the current query and filter.
     pub fn cached_total(&self) -> usize {
         self.cached_total
     }
 
-    /// Boards whose vendor/id/platform/MCU/name contain every whitespace-separated term,
-    /// in `(vendor, board name, board id)` alphabetical order.
     #[cfg(test)]
     pub fn filter<'a>(&'a self, query: &str) -> impl Iterator<Item = &'a BoardRecord> + 'a {
         let terms: Vec<String> = query.split_whitespace().map(str::to_lowercase).collect();
@@ -122,8 +197,6 @@ impl BoardIndex {
             .map(|(b, _)| b)
     }
 
-    /// Filtered boards grouped by vendor (both vendors and boards within each vendor
-    /// are sorted alphabetically, case-insensitively).
     #[cfg(test)]
     pub fn grouped_filter<'a>(&'a self, query: &str) -> Vec<(&'a str, Vec<&'a BoardRecord>)> {
         let mut groups: Vec<(&'a str, Vec<&'a BoardRecord>)> = Vec::new();
@@ -184,11 +257,26 @@ mod tests {
             }
         }
 
-        index.ensure_query("adafruit");
+        index.ensure_query("adafruit", BoardFilter::All);
         assert!(index.cached_total() > 0);
         assert!(index
             .cached_groups()
             .iter()
             .any(|g| g.vendor.eq_ignore_ascii_case("Adafruit")));
+    }
+
+    #[test]
+    fn ecosystem_filters_and_qualified_lookup_work() {
+        let mut index = BoardIndex::new(BoardRegistry::embedded().boards().cloned().collect());
+        let devkit = index
+            .find_by_qualified("espressif32/esp32-c3-devkitm-1")
+            .expect("esp32-c3-devkitm-1 should exist");
+        assert_eq!(devkit.mcu, "ESP32C3");
+
+        index.ensure_query("esp32c3", BoardFilter::Esp32);
+        assert!(index.cached_total() > 0);
+
+        index.ensure_query("", BoardFilter::ProbeRs);
+        assert!(index.cached_total() > 1000);
     }
 }

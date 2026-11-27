@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 896 1200" width="896" height="1200" role="img" aria-label="RavomIO Monochrome Poster — The PlatformIO for Rust Embedded Development">
+  <defs>
+    <radialGradient id="poster-glow" cx="50%" cy="22%" r="48%">
+      <stop offset="0%" stop-color="#222222" stop-opacity="0.55" />
+      <stop offset="100%" stop-color="#090909" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Pure Black Background -->
+  <rect x="0" y="0" width="896" height="1200" fill="#090909" />
+  <rect x="0" y="0" width="896" height="1200" fill="url(#poster-glow)" />
+
+  <!-- Subtle Engineering Grid -->
+  <g stroke="#151515" stroke-width="1">
+    <line x1="0" y1="150" x2="896" y2="150" />
+    <line x1="0" y1="300" x2="896" y2="300" />
+    <line x1="0" y1="450" x2="896" y2="450" />
+    <line x1="0" y1="600" x2="896" y2="600" />
+    <line x1="0" y1="750" x2="896" y2="750" />
+    <line x1="0" y1="900" x2="896" y2="900" />
+    <line x1="0" y1="1050" x2="896" y2="1050" />
+    <line x1="112" y1="0" x2="112" y2="1200" />
+    <line x1="224" y1="0" x2="224" y2="1200" />
+    <line x1="336" y1="0" x2="336" y2="1200" />
+    <line x1="448" y1="0" x2="448" y2="1200" />
+    <line x1="560" y1="0" x2="560" y2="1200" />
+    <line x1="672" y1="0" x2="672" y2="1200" />
+    <line x1="784" y1="0" x2="784" y2="1200" />
+  </g>
+
+  <!-- Subtle Compass Construction Rings -->
+  <g fill="none" stroke="#1C1C1C" stroke-width="1">
+    <circle cx="448" cy="230" r="190" />
+    <circle cx="448" cy="230" r="290" />
+  </g>
+
+  <!-- Monochrome Squircle Emblem -->
+  <g transform="translate(338 118) scale(0.21484375)">
+    <rect x="24" y="24" width="976" height="976" rx="224" fill="#FFFFFF" stroke="#D4D4D4" stroke-width="4" />
+    <g transform="translate(184.5 184) scale(0.64)" fill="#090909" fill-rule="evenodd" clip-rule="evenodd">
+      <path d="M 789.217 102.866 C 744.921 36.22 669.216 -2.668 589.241 0.142 C 591.438 64.189 601.824 127.691 620.147 189.101 C 570.809 175.66 518.742 175.908 469.534 189.818 C 473.338 290.631 530.78 381.706 620.118 428.571 C 582.765 462.681 535.225 483.55 484.834 487.959 C 333.6 501.19 202.088 596.982 143.109 736.868 C 116.97 545.22 169.392 351.141 288.469 198.717 C 166.207 244.384 70.249 341.559 26.126 464.388 C -17.996 587.216 -5.807 723.239 59.449 836.267 C 101.893 909.781 159.109 973.703 227.491 1024 L 550.361 1024 C 583.996 946.934 577.64 858.264 533.358 786.783 C 489.076 715.302 412.514 670.124 328.533 665.92 C 398.563 662.414 466.965 687.786 517.769 736.11 C 568.574 784.435 597.333 851.483 597.333 921.6 C 597.333 957.55 587.87 992.866 569.895 1024 L 671.985 1024 C 667.162 995.468 654.377 968.878 635.104 947.294 C 646.881 883.86 669.523 822.936 702.031 767.207 C 728.434 721.945 771.182 688.525 821.478 673.824 C 858.692 598.606 863.513 511.438 834.823 432.574 C 891.686 423.38 942.049 390.664 973.563 342.448 C 1005.078 294.232 1014.831 234.973 1000.43 179.2 L 949.194 179.2 C 913.067 127.317 852.274 98.309 789.217 102.866 Z M 900.184 153.723 C 876.081 155.09 854.023 167.712 840.632 187.799 C 827.24 207.886 824.074 233.102 832.082 255.877 C 856.186 254.51 878.243 241.888 891.635 221.801 C 905.026 201.714 908.193 176.498 900.184 153.723 Z" />
+      <path d="M 823.786 719.698 C 833.368 829.223 871.868 934.236 935.349 1024 L 802.133 1024 L 712.535 868.812 C 721.798 803.402 763.723 747.208 823.786 719.698 Z" />
+    </g>
+  </g>
+
+  <!-- Title & Subtitle -->
+  <text x="448" y="454" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif" font-size="74" font-weight="700" fill="#FAFAFA" letter-spacing="-1.6">RavomIO</text>
+  <text x="448" y="502" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif" font-size="24" font-weight="400" fill="#A3A3A3">The PlatformIO for Rust Embedded Development</text>
+
+  <!-- 2x2 Pure Monochrome Feature Cards -->
+  <!-- Card 1 -->
+  <g transform="translate(60 580)">
+    <rect width="376" height="176" rx="18" fill="#121212" stroke="#262626" stroke-width="1.2" />
+    <line x1="28" y1="1.2" x2="76" y2="1.2" stroke="#FAFAFA" stroke-width="3" stroke-linecap="round" />
+    <text x="188" y="66" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif" font-size="29" font-weight="700" fill="#FAFAFA">2,328 Boards</text>
+    <text x="188" y="106" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif" font-size="18.5" fill="#9C9C9C">39 platforms: STM32, ESP32,</text>
+    <text x="188" y="132" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif" font-size="18.5" fill="#9C9C9C">RP2040, nRF &amp; Linux SBC</text>
+  </g>
+
+  <!-- Card 2 -->
+  <g transform="translate(460 580)">
+    <rect width="376" height="176" rx="18" fill="#121212" stroke="#262626" stroke-width="1.2" />
+    <line x1="28" y1="1.2" x2="76" y2="1.2" stroke="#FAFAFA" stroke-width="3" stroke-linecap="round" />
+    <text x="188" y="66" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif" font-size="29" font-weight="700" fill="#FAFAFA">AI-Native MCP</text>
+    <text x="188" y="106" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif" font-size="18.5" fill="#9C9C9C">Full-loop HIL, bounded</text>
+    <text x="188" y="132" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif" font-size="18.5" fill="#9C9C9C">serial telemetry &amp; PID tuning</text>
+  </g>
+
+  <!-- Card 3 -->
+  <g transform="translate(60 784)">
+    <rect width="376" height="176" rx="18" fill="#121212" stroke="#262626" stroke-width="1.2" />
+    <line x1="28" y1="1.2" x2="76" y2="1.2" stroke="#FAFAFA" stroke-width="3" stroke-linecap="round" />
+    <text x="188" y="66" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif" font-size="29" font-weight="700" fill="#FAFAFA">VOFA+ Serial Studio</text>
+    <text x="188" y="106" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif" font-size="18.5" fill="#9C9C9C">FireWater, JustFloat,</text>
+    <text x="188" y="132" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif" font-size="18.5" fill="#9C9C9C">16-ch scope &amp; command deck</text>
+  </g>
+
+  <!-- Card 4 -->
+  <g transform="translate(460 784)">
+    <rect width="376" height="176" rx="18" fill="#121212" stroke="#262626" stroke-width="1.2" />
+    <line x1="28" y1="1.2" x2="76" y2="1.2" stroke="#FAFAFA" stroke-width="3" stroke-linecap="round" />
+    <text x="188" y="66" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif" font-size="29" font-weight="700" fill="#FAFAFA">Ravomi Workbench</text>
+    <text x="188" y="106" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif" font-size="18.5" fill="#9C9C9C">Monochrome native IDE,</text>
+    <text x="188" y="132" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif" font-size="18.5" fill="#9C9C9C">probe-rs flash &amp; Doctor</text>
+  </g>
+
+  <!-- Bottom CLI Pill -->
+  <g transform="translate(60 1022)">
+    <rect width="776" height="62" rx="31" fill="#121212" stroke="#303030" stroke-width="1.2" />
+    <text x="388" y="39" text-anchor="middle" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace" font-size="20" font-weight="500" fill="#E5E5E5" letter-spacing="0.6">
+      $ mio init  <tspan fill="#666666">·</tspan>  mio build  <tspan fill="#666666">·</tspan>  mio flash --monitor
+    </text>
+  </g>
+
+  <!-- Footer -->
+  <text x="448" y="1142" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif" font-size="17" fill="#7A7A7A">github.com/Ravomi/RavomIO  ·  Rust 2021  ·  MIT / Apache-2.0</text>
+</svg>

@@ -5,6 +5,7 @@ mod build;
 mod device;
 mod doctor;
 mod mcp;
+mod pkg;
 mod project;
 mod zephyr;
 
@@ -78,6 +79,7 @@ pub fn run(cli: Cli) -> CmdResult {
         } => boards::run(query, import, &platform, into, check, normalize_chips),
         Commands::Doctor { install_target } => doctor::run(install_target.as_deref()),
         Commands::Zephyr { action } => zephyr::run(&root, action),
+        Commands::Pkg { action } => pkg::run(&root, action),
         Commands::Ui => doctor::launch_ui(),
     }
 }

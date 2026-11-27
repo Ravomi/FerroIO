@@ -13,7 +13,6 @@ pub enum BuildBackend {
     AvrGcc,
     EspIdf,
     Zephyr,
-    FpgaSynthesis,
 }
 
 /// Result of a firmware or bitstream build invocation.
@@ -29,13 +28,9 @@ pub struct BuildResult {
 /// Determine the appropriate build backend for a project environment.
 pub fn select_build_backend(dir: &Path, framework: &str, board: &BoardRecord) -> BuildBackend {
     let fw = framework.to_ascii_lowercase();
-    if board.is_fpga() {
-        return BuildBackend::FpgaSynthesis;
-    }
 
     if let Some(plugin) = ravom_plugin::find_framework_plugin(&fw) {
         return match plugin.kind() {
-            ravom_plugin::FrameworkKind::FpgaHdl { .. } => BuildBackend::FpgaSynthesis,
             ravom_plugin::FrameworkKind::Zephyr => BuildBackend::Zephyr,
             ravom_plugin::FrameworkKind::CCpp => {
                 if matches!(fw.as_str(), "esp-idf" | "espidf") {
@@ -48,10 +43,6 @@ pub fn select_build_backend(dir: &Path, framework: &str, board: &BoardRecord) ->
             }
             ravom_plugin::FrameworkKind::RustCargo => BuildBackend::Cargo,
         };
-    }
-
-    if matches!(fw.as_str(), "icestorm" | "apicula" | "openxc7") {
-        return BuildBackend::FpgaSynthesis;
     }
 
     if crate::zephyr::is_zephyr_framework(&fw) {
@@ -78,14 +69,30 @@ pub fn select_build_backend(dir: &Path, framework: &str, board: &BoardRecord) ->
     BuildBackend::Cargo
 }
 
-fn yosys_script(platform: &str) -> &'static str {
-    match platform {
-        "lattice_ice40" => "read_verilog top.v; synth_ice40 -json build/top.json",
-        "lattice_ecp5" => "read_verilog top.v; synth_ecp5 -json build/top.json",
-        "lattice_machxo2" => "read_verilog top.v; synth_lattice -family xo2 -json build/top.json",
-        "gowin_fpga" => "read_verilog top.v; synth_gowin -json build/top.json",
-        _ => "read_verilog top.v; synth_xilinx -json build/top.json",
-    }
+fn libdep_include_flags(dir: &Path, env_name: &str) -> Vec<String> {
+    let base = crate::pkg::libdeps_dir(dir, env_name);
+    let Ok(entries) = fs::read_dir(&base) else {
+        return Vec::new();
+    };
+    let mut paths: Vec<std::path::PathBuf> = entries
+        .filter_map(|e| e.ok())
+        .map(|e| e.path())
+        .filter(|p| p.is_dir())
+        .collect();
+    paths.sort();
+
+    paths
+        .into_iter()
+        .map(|pkg_dir| {
+            let src_sub = pkg_dir.join("src");
+            let inc_dir = if src_sub.is_dir() { src_sub } else { pkg_dir };
+            let rel = inc_dir
+                .strip_prefix(dir)
+                .map(|p| p.to_path_buf())
+                .unwrap_or(inc_dir);
+            format!("-I{}", rel.display())
+        })
+        .collect()
 }
 
 /// Compute the ordered list of external commands for a build, without running them.
@@ -106,23 +113,6 @@ pub fn plan_build(ctx: &EnvContext, release: bool) -> (BuildBackend, Vec<Command
             }
             vec![cmd]
         }
-        BuildBackend::FpgaSynthesis => {
-            let mut steps = Vec::new();
-            if ctx.env.framework.eq_ignore_ascii_case("rust-hdl") && dir.join("Cargo.toml").exists()
-            {
-                steps.push(
-                    CommandSpec::new("cargo")
-                        .args(["run", "--release"])
-                        .cwd(dir),
-                );
-            }
-            steps.push(
-                CommandSpec::new("yosys")
-                    .args(["-p", yosys_script(&ctx.board.platform)])
-                    .cwd(dir),
-            );
-            steps
-        }
         BuildBackend::ArmGcc => {
             let src = if dir.join("src/main.cpp").exists() {
                 "src/main.cpp"
@@ -134,11 +124,10 @@ pub fn plan_build(ctx: &EnvContext, release: bool) -> (BuildBackend, Vec<Command
                 cmd = cmd.arg(format!("-mcpu={cpu}")).arg("-mthumb");
             }
             cmd = cmd.arg(if release { "-O2" } else { "-Og" }).arg("-g");
-            vec![cmd.args(ctx.env.build_flags.iter().cloned()).args([
-                src,
-                "-o",
-                "build/firmware.elf",
-            ])]
+            vec![cmd
+                .args(libdep_include_flags(dir, &ctx.env_name))
+                .args(ctx.env.build_flags.iter().cloned())
+                .args([src, "-o", "build/firmware.elf"])]
         }
         BuildBackend::AvrGcc => {
             let src = if dir.join("src/main.cpp").exists() {
@@ -149,11 +138,10 @@ pub fn plan_build(ctx: &EnvContext, release: bool) -> (BuildBackend, Vec<Command
             let mut cmd = CommandSpec::new("avr-gcc").cwd(dir);
             cmd = cmd.arg(format!("-mmcu={}", board_mcu_flag(&ctx.board.mcu)));
             cmd = cmd.arg(if release { "-Os" } else { "-Og" }).arg("-g");
-            vec![cmd.args(ctx.env.build_flags.iter().cloned()).args([
-                src,
-                "-o",
-                "build/firmware.elf",
-            ])]
+            vec![cmd
+                .args(libdep_include_flags(dir, &ctx.env_name))
+                .args(ctx.env.build_flags.iter().cloned())
+                .args([src, "-o", "build/firmware.elf"])]
         }
         BuildBackend::EspIdf => vec![CommandSpec::new("idf.py").arg("build").cwd(dir)],
         BuildBackend::Zephyr => vec![crate::zephyr::plan_zephyr_build(ctx, release)],
@@ -189,10 +177,7 @@ fn build_project_impl(
 ) -> Result<BuildResult> {
     let ctx = EnvContext::load(dir, env_name)?;
     let (backend, steps) = plan_build(&ctx, release);
-    if matches!(
-        backend,
-        BuildBackend::ArmGcc | BuildBackend::AvrGcc | BuildBackend::FpgaSynthesis
-    ) {
+    if matches!(backend, BuildBackend::ArmGcc | BuildBackend::AvrGcc) {
         fs::create_dir_all(dir.join("build"))?;
     }
     if backend == BuildBackend::Zephyr {
@@ -242,13 +227,7 @@ mod tests {
     }
 
     #[test]
-    fn selects_rust_c_espidf_and_fpga_backends() {
-        let fpga_board = sample_board("lattice_machxo2");
-        assert_eq!(
-            select_build_backend(Path::new("/nonexistent"), "rust-hdl", &fpga_board),
-            BuildBackend::FpgaSynthesis
-        );
-
+    fn selects_rust_c_espidf_and_zephyr_backends() {
         let stm_board = sample_board("ststm32");
         assert_eq!(
             select_build_backend(Path::new("/nonexistent"), "stm32cube", &stm_board),
@@ -326,5 +305,23 @@ mod tests {
             select_build_backend(esp_tmp.path(), &esp_ctx.env.framework, &esp_ctx.board),
             BuildBackend::EspIdf
         );
+    }
+
+    #[test]
+    fn arm_gcc_plan_includes_unpacked_libdeps() {
+        let tmp = tempfile::tempdir().expect("tempdir");
+        init_project(tmp.path(), "ststm32/bluepill_f103c8", Some("stm32cube")).expect("init");
+        let ctx = EnvContext::load(tmp.path(), None).expect("load ctx");
+        let inc = crate::pkg::libdeps_dir(tmp.path(), &ctx.env_name)
+            .join("OneButton")
+            .join("src");
+        fs::create_dir_all(&inc).expect("create libdep dir");
+
+        let (backend, steps) = plan_build(&ctx, false);
+        assert_eq!(backend, BuildBackend::ArmGcc);
+        assert!(steps[0]
+            .args
+            .iter()
+            .any(|a| a.starts_with("-I") && a.contains("OneButton")));
     }
 }

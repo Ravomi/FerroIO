@@ -361,3 +361,62 @@ fn zephyr_c_and_rust_init_build_flash_and_management_commands() {
     );
     assert!(setup_out.contains("sdk install --version"), "{setup_out}");
 }
+
+#[test]
+fn pkg_offline_search_and_manifest_roundtrip() {
+    let tmp = tempfile::tempdir().expect("tempdir");
+
+    let search = mio(
+        tmp.path(),
+        tmp.path(),
+        &["pkg", "search", "button", "--offline"],
+    );
+    assert!(search.status.success(), "{}", stderr(&search));
+    let s_out = stdout(&search);
+    assert!(s_out.contains("OneButton"), "{s_out}");
+    assert!(s_out.contains("async-button"), "{s_out}");
+
+    let proj = tmp.path().join("pkg_app");
+    let proj_s = proj.to_str().expect("utf8 path");
+    let init = mio(
+        tmp.path(),
+        tmp.path(),
+        &[
+            "init",
+            "--board",
+            "atmelavr/uno",
+            "--framework",
+            "arduino",
+            "--dir",
+            proj_s,
+        ],
+    );
+    assert!(init.status.success(), "{}", stderr(&init));
+
+    fs::write(
+        proj.join("ravom.toml"),
+        "[project]\nname = \"pkg_app\"\n\n[env.uno]\nplatform = \"atmelavr\"\n\
+         board = \"uno\"\nframework = \"arduino\"\nlib_deps = [\"mathertel/OneButton@^2.0.3\"]\n",
+    )
+    .expect("write ravom.toml");
+
+    let list = mio(tmp.path(), tmp.path(), &["-C", proj_s, "pkg", "list"]);
+    assert!(list.status.success(), "{}", stderr(&list));
+    let l_out = stdout(&list);
+    assert!(l_out.contains("OneButton"), "{l_out}");
+
+    let rm = mio(
+        tmp.path(),
+        tmp.path(),
+        &["-C", proj_s, "pkg", "remove", "OneButton"],
+    );
+    assert!(rm.status.success(), "{}", stderr(&rm));
+
+    let list_after = mio(tmp.path(), tmp.path(), &["-C", proj_s, "pkg", "list"]);
+    assert!(list_after.status.success(), "{}", stderr(&list_after));
+    assert!(
+        stdout(&list_after).contains("No packages installed"),
+        "{}",
+        stdout(&list_after)
+    );
+}

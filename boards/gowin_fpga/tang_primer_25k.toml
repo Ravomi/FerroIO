@@ -1,7 +1,0 @@
-id = "tang_primer_25k"
-name = "Sipeed Tang Primer 25K (GW5A-25A)"
-vendor = "Sipeed"
-platform = "gowin_fpga"
-mcu = "GW5A-LV25MG121NES"
-default_framework = "rust-hdl"
-frameworks = ["rust-hdl", "verilog", "apicula"]

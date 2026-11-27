@@ -1,7 +1,0 @@
-id = "ulx3s_85f"
-name = "Radiona ULX3S (ECP5-85F)"
-vendor = "Radiona"
-platform = "lattice_ecp5"
-mcu = "LFE5U-85F-6BG381C"
-default_framework = "rust-hdl"
-frameworks = ["rust-hdl", "verilog", "amaranth"]

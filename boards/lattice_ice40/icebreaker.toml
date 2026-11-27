@@ -1,7 +1,0 @@
-id = "icebreaker"
-name = "1BitSquared iCEBreaker (iCE40UP5K)"
-vendor = "1BitSquared"
-platform = "lattice_ice40"
-mcu = "ICE40UP5K-SG48"
-default_framework = "rust-hdl"
-frameworks = ["rust-hdl", "verilog", "icestorm"]

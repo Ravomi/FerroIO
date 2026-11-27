@@ -1,7 +1,0 @@
-id = "arty_a7_35t"
-name = "Digilent Arty A7-35T (Artix-7)"
-vendor = "Digilent"
-platform = "xilinx_7series"
-mcu = "XC7A35TICSG324-1L"
-default_framework = "rust-hdl"
-frameworks = ["rust-hdl", "verilog", "openxc7"]

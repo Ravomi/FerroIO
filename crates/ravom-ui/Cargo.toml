@@ -4,6 +4,10 @@ version.workspace = true
 edition.workspace = true
 license.workspace = true
 
+[[bin]]
+name = "Ravomi"
+path = "src/main.rs"
+
 [dependencies]
 ravom-core.workspace = true
 ravom-plugin.workspace = true

@@ -226,7 +226,7 @@ fn tool_definitions() -> Value {
     json!([
         {
             "name": "boards_search",
-            "description": "Search RavomIO's embedded & FPGA board registry by ID, MCU, or platform.",
+            "description": "Search RavomIO's embedded MCU & Linux SBC board registry by ID, MCU, or platform.",
             "inputSchema": {
                 "type": "object",
                 "properties": {
@@ -247,7 +247,7 @@ fn tool_definitions() -> Value {
         },
         {
             "name": "doctor_check",
-            "description": "Check installed embedded toolchains (rustc, probe-rs, arm-none-eabi-gcc, yosys, west).",
+            "description": "Check installed embedded toolchains (rustc, probe-rs, espflash, arm-none-eabi-gcc, west).",
             "inputSchema": { "type": "object", "properties": {} }
         },
         {

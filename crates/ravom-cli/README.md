@@ -16,7 +16,7 @@ Binary crate (`mio`) providing the RavomIO embedded development CLI, parsing com
 - `main()` exits with `ExitCode::SUCCESS` on `Ok(())` and `ExitCode::FAILURE` on `Err`, printing `error: {err}` to stderr.
 
 ## Side Effects
-- Reads and writes project files (`ravom.toml`, board registries) and invokes external embedded toolchains (`probe-rs`, `openFPGALoader`, serial/RTT monitors, SSH deploy, UI launcher) via subcommand modules.
+- Reads and writes project files (`ravom.toml`, board registries) and invokes external embedded toolchains (`probe-rs`, `espflash`, serial/RTT monitors, SSH deploy, UI launcher) via subcommand modules.
 
 ## Verification
 - Run: `cargo test -p ravom-cli`

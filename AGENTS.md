@@ -1,19 +1,19 @@
 # RavomIO — AI Agent & Engineering Guide
 
-This document is the authoritative reference for AI coding agents working in **RavomIO** (a Rust-first embedded & FPGA build system, board registry, and workbench aiming to be the PlatformIO for Rust embedded development).
+This document is the authoritative reference for AI coding agents working in **RavomIO** (a Rust-first embedded build system, board registry, CLI `mio`, and **Ravomi** desktop workbench aiming to be the PlatformIO for Rust embedded development).
 
 ---
 
 ## 1. Repository Architecture (Quick Map)
 
-- `crates/ravom-plugin`: Framework & RTOS plugin trait (`FrameworkPlugin`), `FrameworkKind` (`RustCargo`, `CCpp`, `Zephyr`, `FpgaHdl`), and project scaffolding templates.
-- `crates/ravom-core`: Core domain logic — board registry (`registry.rs`), project init (`project.rs`), build backend planning (`build.rs`), flashing (`flash.rs`), Zephyr integration (`zephyr.rs`), serial monitor (`monitor.rs`).
-- `crates/ravom-cli`: CLI binary (`mio`) built with `clap`.
-- `crates/ravom-ui`: Desktop workbench built with `egui` / `eframe`.
-- `boards/<platform>/<id>.toml`: 2,340+ embedded/FPGA board definitions compiled into `ravom-core` via `build.rs`.
+- `crates/ravom-plugin`: Framework & RTOS plugin trait (`FrameworkPlugin`), `FrameworkKind` (`RustCargo`, `CCpp`, `Zephyr`), and project scaffolding templates.
+- `crates/ravom-core`: Core domain logic — board registry (`registry.rs`), project init (`project.rs`), package manager (`pkg.rs`), toolchain & Rust target manager (`toolchain.rs`), build backend planning (`build.rs`), flashing (`flash.rs`), Zephyr integration (`zephyr.rs`), serial monitor (`monitor.rs`), and VOFA+ serial protocol engine (`vofa.rs`).
+- `crates/ravom-cli`: CLI binary (`mio`) built with `clap` (also launches `Ravomi` via `mio ui`).
+- `crates/ravom-ui`: Native monochrome desktop application **Ravomi** (`[[bin]] name = "Ravomi"`) built with `egui` / `eframe`.
+- `boards/<platform>/<id>.toml`: 2,328 embedded board definitions across 39 platforms compiled into `ravom-core` via `build.rs`.
 - `docs/designs/`: Architecture & optimization design documents (EGM).
-- `docs/guide/` (git submodule → `Ravomi/ravomio-docs`): Official user guides (`quickstart`, `cli`, `ravom.toml`, `plugins`, `fpga`, `migration`). Push changes to `Ravomi/ravomio-docs` before bumping the submodule pointer here; validate links with the Paseo `docs-check` script.
-- `examples/` (git submodule → `Ravomi/ravomio-examples`): Standalone MCU/FPGA/Linux SBC starter projects (excluded from the root Cargo workspace via `Cargo.toml`). Push changes to `Ravomi/ravomio-examples` before bumping the submodule pointer here; validate manifests with the Paseo `examples-check` script.
+- `docs/guide/` (git submodule → `Ravomi/ravomio-docs`): Official user guides (`quickstart`, `cli`, `ravom.toml`, `plugins`, `migration`). Push changes to `Ravomi/ravomio-docs` before bumping the submodule pointer here; validate links with the Paseo `docs-check` script.
+- `examples/` (git submodule → `Ravomi/ravomio-examples`): Standalone MCU, Zephyr, and Linux SBC starter projects (excluded from the root Cargo workspace via `Cargo.toml`). Push changes to `Ravomi/ravomio-examples` before bumping the submodule pointer here; validate manifests with the Paseo `examples-check` script.
 - `paseo.json` & `scripts/paseo-{setup,teardown}.sh`: Paseo worktree lifecycle hooks (auto-initializes git submodules and warms Cargo caches) and task scripts.
 
 ---

@@ -1,5 +1,9 @@
-//! Workbench panels, each drawing one region of the window.
-
 pub mod boards;
-pub mod project;
-pub mod toolbar;
+pub mod doctor;
+pub mod drawer;
+pub mod libraries;
+pub mod monitor;
+pub mod rail;
+pub mod statusbar;
+pub mod topbar;
+pub mod workspace;

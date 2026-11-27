@@ -1,7 +1,0 @@
-id = "upduino_v31"
-name = "TinyVision UPduino v3.1 (iCE40UP5K)"
-vendor = "TinyVision.ai"
-platform = "lattice_ice40"
-mcu = "ICE40UP5K-SG48"
-default_framework = "rust-hdl"
-frameworks = ["rust-hdl", "verilog", "icestorm"]

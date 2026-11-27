@@ -6,7 +6,6 @@ pub enum FrameworkKind {
     RustCargo,
     CCpp,
     Zephyr,
-    FpgaHdl { uses_cargo: bool },
 }
 
 /// Metadata and template generator for an embedded framework or RTOS plugin.
@@ -176,37 +175,6 @@ impl FrameworkPlugin for BuiltinFramework {
                 ]
             }
             FrameworkKind::Zephyr => Vec::new(),
-            FrameworkKind::FpgaHdl { uses_cargo } => {
-                let mut files = vec![
-                    (
-                        "top.v".to_string(),
-                        format!(
-                            "// RavomIO FPGA top module for `{board_id}` (framework: {})\n\
-                             module top(\n\
-                                 input wire clk,\n\
-                                 output wire led\n\
-                             );\n\
-                                 assign led = clk;\n\
-                             endmodule\n",
-                            self.id
-                        ),
-                    ),
-                    (
-                        ".gitignore".to_string(),
-                        "build/\ntarget/\n.ravom/\n".to_string(),
-                    ),
-                ];
-                if uses_cargo {
-                    files.push((
-                        "Cargo.toml".to_string(),
-                        format!(
-                            "[package]\nname = \"{pkg_name}\"\nversion = \"0.1.0\"\nedition = \"2021\"\n\n[dependencies]\n"
-                        ),
-                    ));
-                    files.push(("src/main.rs".to_string(), self.starter_main_rs(board_id)));
-                }
-                files
-            }
         }
     }
 }
@@ -279,30 +247,6 @@ static BUILTIN_FRAMEWORKS: &[BuiltinFramework] = &[
         kind: FrameworkKind::RustCargo,
     },
     BuiltinFramework {
-        id: "rust-hdl",
-        display_name: "RustHDL (FPGA: Rust -> Verilog -> yosys/nextpnr)",
-        is_rtos: false,
-        kind: FrameworkKind::FpgaHdl { uses_cargo: true },
-    },
-    BuiltinFramework {
-        id: "spade",
-        display_name: "Spade HDL (Rust-inspired FPGA HDL)",
-        is_rtos: false,
-        kind: FrameworkKind::FpgaHdl { uses_cargo: false },
-    },
-    BuiltinFramework {
-        id: "veryl",
-        display_name: "Veryl HDL (Modern SystemVerilog alternative)",
-        is_rtos: false,
-        kind: FrameworkKind::FpgaHdl { uses_cargo: false },
-    },
-    BuiltinFramework {
-        id: "verilog",
-        display_name: "Verilog HDL",
-        is_rtos: false,
-        kind: FrameworkKind::FpgaHdl { uses_cargo: false },
-    },
-    BuiltinFramework {
         id: "mirui",
         display_name: "Mirui (no_std ECS Embedded & Desktop UI Framework)",
         is_rtos: false,
@@ -352,9 +296,11 @@ mod tests {
         assert!(files.iter().any(|(p, _)| p == "src/main.cpp"));
         assert!(!files.iter().any(|(p, _)| p == "Cargo.toml"));
 
-        let veryl = find_framework_plugin("veryl").expect("veryl plugin");
-        let vfiles = veryl.scaffold_files("fpga-demo", "icestick", None);
-        assert!(vfiles.iter().any(|(p, _)| p == "top.v"));
-        assert!(!vfiles.iter().any(|(p, _)| p == "Cargo.toml"));
+        let embassy = find_framework_plugin("embassy").expect("embassy plugin");
+        let rfiles =
+            embassy.scaffold_files("blink-rs", "bluepill_f103c8", Some("thumbv7m-none-eabi"));
+        assert!(rfiles.iter().any(|(p, _)| p == "Cargo.toml"));
+        assert!(rfiles.iter().any(|(p, _)| p == "src/main.rs"));
+        assert!(rfiles.iter().any(|(p, _)| p == ".cargo/config.toml"));
     }
 }

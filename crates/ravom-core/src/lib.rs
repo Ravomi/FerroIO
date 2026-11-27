@@ -8,12 +8,14 @@ pub mod deploy;
 pub mod flash;
 pub mod migrate;
 pub mod monitor;
+pub mod pkg;
 pub mod process;
 pub mod project;
 pub mod registry;
 pub mod security;
 pub mod sim;
 pub mod toolchain;
+pub mod vofa;
 pub mod zephyr;
 
 use std::path::PathBuf;
@@ -91,6 +93,9 @@ pub enum CoreError {
 
     #[error("SSH deploy failed with exit code {0:?}")]
     DeployFailed(Option<i32>),
+
+    #[error("package error: {0}")]
+    Package(String),
 }
 
 pub fn version() -> &'static str {

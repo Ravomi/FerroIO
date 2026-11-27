@@ -55,7 +55,7 @@ pub enum Commands {
         #[arg(long)]
         dry_run: bool,
     },
-    /// Flash firmware via probe-rs (MCU) or openFPGALoader (FPGA)
+    /// Flash firmware via probe-rs or west
     Flash {
         /// Environment name from ravom.toml
         #[arg(short, long)]
@@ -156,7 +156,7 @@ pub enum Commands {
         #[arg(short, long)]
         release: bool,
     },
-    /// Check installed embedded/FPGA toolchains and optionally install a Rust target
+    /// Check installed embedded toolchains and optionally install a Rust target
     Doctor {
         /// Install a Rust target triple via `rustup target add <TRIPLE>`
         #[arg(long)]
@@ -167,8 +167,59 @@ pub enum Commands {
         #[command(subcommand)]
         action: ZephyrAction,
     },
+    /// Search, install, remove, list, and sync embedded packages (crates.io + PlatformIO)
+    Pkg {
+        #[command(subcommand)]
+        action: PkgAction,
+    },
     /// Launch the RavomIO egui desktop workbench
     Ui,
+}
+
+#[derive(Subcommand)]
+pub enum PkgAction {
+    /// Search curated and live community registries (crates.io + PlatformIO)
+    Search {
+        /// Search query (e.g. button, st7789, ssd1306, mpu6050)
+        query: String,
+        /// Registry source filter (`all`, `crates`, `pio`)
+        #[arg(long, default_value = "all")]
+        source: String,
+        /// Maximum remote results per registry
+        #[arg(long, default_value_t = 15)]
+        limit: usize,
+        /// Search offline curated starter catalog only
+        #[arg(long)]
+        offline: bool,
+    },
+    /// Add a library dependency to ravom.toml and install it locally
+    Install {
+        /// Package specification (e.g. mathertel/OneButton@^2.0.3 or crates:async-button@^0.2.0)
+        spec: String,
+        /// Environment name from ravom.toml
+        #[arg(short, long)]
+        env: Option<String>,
+    },
+    /// Remove a library dependency from ravom.toml and local storage
+    Remove {
+        /// Library name or full spec to remove
+        name: String,
+        /// Environment name from ravom.toml
+        #[arg(short, long)]
+        env: Option<String>,
+    },
+    /// List installed libraries in ravom.toml and Cargo.toml
+    List {
+        /// Environment name from ravom.toml
+        #[arg(short, long)]
+        env: Option<String>,
+    },
+    /// Ensure every dependency listed in ravom.toml lib_deps is downloaded locally
+    Sync {
+        /// Environment name from ravom.toml
+        #[arg(short, long)]
+        env: Option<String>,
+    },
 }
 
 #[derive(Subcommand)]

@@ -58,8 +58,8 @@ fn qualified_ids_are_unique_and_platforms_cover_all_ecosystems() {
         "espressif32",
         "raspberrypi",
         "nordicnrf52",
-        "lattice_ice40",
-        "gowin_fpga",
+        "atmelavr",
+        "nxpimxrt",
     ] {
         assert!(
             per_platform.contains_key(platform),

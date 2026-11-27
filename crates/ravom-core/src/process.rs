@@ -57,7 +57,10 @@ impl CommandSpec {
 
     /// Convert into a `std::process::Command`.
     pub fn to_command(&self) -> Command {
-        let program = if self.program == "cargo" {
+        let program = if let Some(custom) = crate::toolchain::resolve_configured_tool(&self.program)
+        {
+            custom.display().to_string()
+        } else if self.program == "cargo" {
             resolve_cargo_program()
         } else {
             self.program.clone()
@@ -237,8 +240,8 @@ mod tests {
 
     #[test]
     fn display_quotes_arguments_with_spaces() {
-        let spec = CommandSpec::new("yosys").args(["-p", "read_verilog top.v"]);
-        assert_eq!(spec.to_string(), "yosys -p \"read_verilog top.v\"");
+        let spec = CommandSpec::new("arm-none-eabi-gcc").args(["-D", "FOO BAR"]);
+        assert_eq!(spec.to_string(), "arm-none-eabi-gcc -D \"FOO BAR\"");
     }
 
     #[test]
