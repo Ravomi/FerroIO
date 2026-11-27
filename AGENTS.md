@@ -12,6 +12,9 @@ This document is the authoritative reference for AI coding agents working in **R
 - `crates/ravom-ui`: Desktop workbench built with `egui` / `eframe`.
 - `boards/<platform>/<id>.toml`: 2,340+ embedded/FPGA board definitions compiled into `ravom-core` via `build.rs`.
 - `docs/designs/`: Architecture & optimization design documents (EGM).
+- `docs/guide/` (git submodule → `Ravomi/ravomio-docs`): Official user guides (`quickstart`, `cli`, `ravom.toml`, `plugins`, `fpga`, `migration`). Push changes to `Ravomi/ravomio-docs` before bumping the submodule pointer here; validate links with the Paseo `docs-check` script.
+- `examples/` (git submodule → `Ravomi/ravomio-examples`): Standalone MCU/FPGA/Linux SBC starter projects (excluded from the root Cargo workspace via `Cargo.toml`). Push changes to `Ravomi/ravomio-examples` before bumping the submodule pointer here; validate manifests with the Paseo `examples-check` script.
+- `paseo.json` & `scripts/paseo-{setup,teardown}.sh`: Paseo worktree lifecycle hooks (auto-initializes git submodules and warms Cargo caches) and task scripts.
 
 ---
 

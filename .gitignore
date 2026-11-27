@@ -4,3 +4,7 @@
 .DS_Store
 .blaze/
 .pi/
+.env
+.env.local
+.cargo/config.local.toml
+hil/local.toml

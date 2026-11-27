@@ -1,0 +1,6 @@
+[submodule "docs/guide"]
+	path = docs/guide
+	url = https://github.com/Ravomi/ravomio-docs.git
+[submodule "examples"]
+	path = examples
+	url = https://github.com/Ravomi/ravomio-examples.git

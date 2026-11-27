@@ -1,0 +1,57 @@
+{
+  "worktree": {
+    "setup": [
+      "scripts/paseo-setup.sh"
+    ],
+    "teardown": [
+      "scripts/paseo-teardown.sh"
+    ],
+    "teardownTimeoutMs": 120000
+  },
+  "scripts": {
+    "check": {
+      "command": "cargo fmt --all -- --check && cargo clippy --workspace --all-targets -- -D warnings && cargo test --workspace && cargo run -q -p ravom-cli -- boards --check"
+    },
+    "test": {
+      "command": "cargo test --workspace"
+    },
+    "clippy": {
+      "command": "cargo clippy --workspace --all-targets -- -D warnings"
+    },
+    "fmt": {
+      "command": "cargo fmt --all"
+    },
+    "boards-check": {
+      "command": "cargo run -q -p ravom-cli -- boards --check"
+    },
+    "docs-check": {
+      "command": "python3 -c 'import pathlib, re, sys; root=pathlib.Path(\"docs/guide\"); errs=[]; [errs.append(f\"{p}: broken link -> {t}\") for p in root.rglob(\"*.md\") if \".git\" not in p.parts for t in re.findall(r\"\\]\\(([^)#\\s]+)\", p.read_text(encoding=\"utf-8\")) if not re.match(r\"^(https?:|mailto:)\", t) and not (p.parent / t).resolve().exists()]; print(\"\\n\".join(errs)) if errs else print(\"All docs/guide markdown links OK.\"); sys.exit(1 if errs else 0)'"
+    },
+    "examples-check": {
+      "command": "python3 -c 'import pathlib, sys; root=pathlib.Path(\"examples\"); errs=[]; dirs=sorted(p for p in root.iterdir() if p.is_dir() and not p.name.startswith(\".\") and p.name != \"scripts\"); [errs.append(f\"{d.name}: missing {f}\") for d in dirs for f in (\"Cargo.toml\", \"ravom.toml\", \"src/main.rs\") if not (d / f).exists()]; mod=__import__(\"tomllib\") if sys.version_info >= (3, 11) else None; [mod.loads((d / f).read_text(encoding=\"utf-8\")) for d in dirs for f in (\"Cargo.toml\", \"ravom.toml\") if mod and (d / f).exists()]; [errs.append(f\"{d.name}/ravom.toml: missing [project]\") for d in dirs if (d / \"ravom.toml\").exists() and \"[project]\" not in (d / \"ravom.toml\").read_text(encoding=\"utf-8\")]; print(\"\\n\".join(errs)) if errs else print(f\"Validated {len(dirs)} examples OK.\"); sys.exit(1 if errs else 0)'"
+    },
+    "doctor": {
+      "command": "cargo run -q -p ravom-cli -- doctor"
+    },
+    "ui": {
+      "command": "cargo run -p ravom-ui"
+    },
+    "hil": {
+      "command": "cargo test -p ravom-cli --test hil -- --ignored --nocapture"
+    }
+  },
+  "metadataGeneration": {
+    "title": {
+      "instructions": "Keep titles concise (at most 6 words), task-shaped, and reflect the target crate or submodule (e.g. core, cli, ui, plugin, boards, mcp, hil, docs, examples)."
+    },
+    "branchName": {
+      "instructions": "Use lowercase <type>/<scope>-<short-kebab-desc>. type: feat|fix|refactor|perf|docs|test|chore|art; scope: core|plugin|cli|ui|boards|mcp|hil|docs|examples|ci (e.g. feat/mcp-pid-clamp, fix/cli-windows-path, docs/fpga-guide)."
+    },
+    "commitMessage": {
+      "instructions": "Follow English Conventional Commits matching this repository's history: `<type>(<scope>): <imperative summary>` or `<type>: <imperative summary>` (types: feat, fix, refactor, perf, docs, test, chore, art; optional scopes: core, plugin, cli, ui, boards, mcp, hil, docs, examples, ci). Keep the subject under 72 characters, imperative mood, no trailing period. Add concise bullet points in the body if changing MCP schemas, plugin traits, board TOML formats, or submodule pointers (`docs/guide`, `examples`)."
+    },
+    "pullRequest": {
+      "instructions": "Write the PR title in English Conventional Commits format (`<type>(<scope>): <summary>`). Format the PR body in English following `.github/PULL_REQUEST_TEMPLATE.md`:\n## Summary\nConcise explanation of what changed and why, noting affected crates (`ravom-core`, `ravom-plugin`, `ravom-cli`, `ravom-ui`), `boards/`/`hil/`, or submodules (`docs/guide`, `examples`).\n\n## Submodules (`docs/guide` & `examples`)\nNote whether `docs/guide` (`Ravomi/ravomio-docs`) or `examples` (`Ravomi/ravomio-examples`) was updated or requires a follow-up submodule bump; write \"None\" if unaffected.\n\n## Checklist\n- [ ] `cargo fmt --all -- --check` passes\n- [ ] `cargo clippy --workspace --all-targets -- -D warnings` passes\n- [ ] `cargo test --workspace` passes\n- [ ] New boards (if any) are valid TOML under `boards/<platform>/<id>.toml` and pass `mio boards --check`\n- [ ] Submodule updates (`docs/guide`, `examples`) pushed to their upstream repos before bumping pointers here (if applicable)"
+    }
+  }
+}

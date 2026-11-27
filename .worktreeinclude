@@ -1,0 +1,5 @@
+# Copy local gitignored environment & HIL bench overrides into new Paseo worktrees
+.env
+!.env.local
+.cargo/config.local.toml
+hil/local.toml
