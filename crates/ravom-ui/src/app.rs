@@ -28,6 +28,7 @@ pub struct RavomApp {
     pub console: Console,
     pub tasks: TaskRunner,
     pub plotter: Plotter,
+    pub brand_texture: Option<egui::TextureHandle>,
 }
 
 impl RavomApp {
@@ -58,6 +59,7 @@ impl RavomApp {
             console,
             tasks: TaskRunner::default(),
             plotter: Plotter::default(),
+            brand_texture: None,
         };
         app.try_load_project();
         app

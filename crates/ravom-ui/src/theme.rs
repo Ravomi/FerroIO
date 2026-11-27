@@ -1,25 +1,33 @@
-//! Restrained, minimalist shadcn-inspired dark theme and reusable UI primitives.
+//! Restrained, minimalist wine-red (Bordeaux) shadcn-inspired dark theme and reusable UI primitives.
 
 use eframe::egui::{self, Color32, CornerRadius, Margin, RichText, Stroke, Vec2};
 
-/// Zinc-based shadcn dark palette tokens.
-pub const BG_BASE: Color32 = Color32::from_rgb(9, 9, 11); // #09090B
-pub const BG_SURFACE: Color32 = Color32::from_rgb(15, 15, 18); // #0F0F12
-pub const BG_MUTED: Color32 = Color32::from_rgb(24, 24, 27); // #18181B
-pub const BG_HOVER: Color32 = Color32::from_rgb(39, 39, 42); // #27272A
-pub const BG_ACTIVE: Color32 = Color32::from_rgb(63, 63, 70); // #3F3F46
-pub const BORDER: Color32 = Color32::from_rgb(39, 39, 42); // #27272A
-pub const BORDER_FOCUS: Color32 = Color32::from_rgb(113, 113, 122); // #71717A
-pub const FG_PRIMARY: Color32 = Color32::from_rgb(250, 250, 250); // #FAFAFA
-pub const FG_SECONDARY: Color32 = Color32::from_rgb(212, 212, 216); // #D4D4D8
-pub const FG_MUTED: Color32 = Color32::from_rgb(161, 161, 170); // #A1A1AA
+/// Wine-red (Bordeaux) shadcn dark palette tokens sampled from the RavomIO hero identity.
+pub const BG_BASE: Color32 = Color32::from_rgb(18, 9, 10); // #12090A
+pub const BG_SURFACE: Color32 = Color32::from_rgb(27, 14, 16); // #1B0E10
+pub const BG_MUTED: Color32 = Color32::from_rgb(39, 20, 23); // #271417
+pub const BG_HOVER: Color32 = Color32::from_rgb(58, 26, 30); // #3A1A1E
+pub const BG_ACTIVE: Color32 = Color32::from_rgb(84, 30, 32); // #541E20
+pub const BORDER: Color32 = Color32::from_rgb(64, 31, 34); // #401F22
+pub const BORDER_FOCUS: Color32 = Color32::from_rgb(148, 31, 24); // #941F18
+pub const FG_PRIMARY: Color32 = Color32::from_rgb(250, 246, 244); // #FAF6F4
+pub const FG_SECONDARY: Color32 = Color32::from_rgb(222, 208, 205); // #DED0CD
+pub const FG_MUTED: Color32 = Color32::from_rgb(163, 140, 138); // #A38C8A
+/// Primary wine-red CTA fill color (`#941F18`).
+pub const ACCENT_WINE: Color32 = Color32::from_rgb(148, 31, 24);
+/// Hovered wine-red CTA fill and border highlight (`#AE2A22`).
+pub const ACCENT_WINE_HOVER: Color32 = Color32::from_rgb(174, 42, 34);
+/// Subtle claret surface tint for active selection rows (`#4A1212`).
+pub const ACCENT_WINE_SUBTLE: Color32 = Color32::from_rgb(74, 18, 18);
+/// High-contrast luminous wine-rose accent for dark-surface text, links, and waveform traces (`#EB867E`).
+pub const ACCENT_WINE_FG: Color32 = Color32::from_rgb(235, 134, 126);
 pub const ACCENT_OK: Color32 = Color32::from_rgb(52, 211, 153); // #34D399
-/// Firefox-inspired match highlight tokens adapted for dark shadcn surfaces.
-pub const MATCH_BG: Color32 = Color32::from_rgb(250, 204, 21); // #FACC15 (amber-400)
+/// Firefox-inspired match highlight tokens adapted for dark wine-red surfaces.
+pub const MATCH_BG: Color32 = Color32::from_rgb(232, 174, 92); // #E8AE5C
 pub const MATCH_ACTIVE_BG: Color32 = Color32::from_rgb(52, 211, 153); // #34D399 (emerald-400)
-pub const MATCH_FG: Color32 = BG_BASE; // #09090B
+pub const MATCH_FG: Color32 = BG_BASE; // #12090A
 pub const DANGER_BORDER: Color32 = Color32::from_rgb(239, 68, 68); // #EF4444
-pub const DANGER_FG: Color32 = Color32::from_rgb(248, 113, 113); // #F87171
+pub const DANGER_FG: Color32 = Color32::from_rgb(252, 165, 165); // #FCA5A5
 
 /// Apply the shadcn-inspired dark theme to the egui context.
 pub fn apply_shadcn_theme(ctx: &egui::Context) {
@@ -45,8 +53,9 @@ pub fn apply_shadcn_theme(ctx: &egui::Context) {
     visuals.menu_corner_radius = radius;
     visuals.window_stroke = Stroke::new(1.0_f32, BORDER);
 
-    visuals.selection.bg_fill = BG_HOVER;
-    visuals.selection.stroke = Stroke::new(1.0_f32, FG_PRIMARY);
+    visuals.selection.bg_fill = ACCENT_WINE_SUBTLE;
+    visuals.selection.stroke = Stroke::new(1.0_f32, ACCENT_WINE);
+    visuals.hyperlink_color = ACCENT_WINE_FG;
 
     visuals.widgets.noninteractive.bg_fill = BG_SURFACE;
     visuals.widgets.noninteractive.weak_bg_fill = BG_SURFACE;
@@ -68,7 +77,7 @@ pub fn apply_shadcn_theme(ctx: &egui::Context) {
 
     visuals.widgets.active.bg_fill = BG_ACTIVE;
     visuals.widgets.active.weak_bg_fill = BG_ACTIVE;
-    visuals.widgets.active.bg_stroke = Stroke::new(1.0_f32, FG_PRIMARY);
+    visuals.widgets.active.bg_stroke = Stroke::new(1.0_f32, ACCENT_WINE);
     visuals.widgets.active.fg_stroke = Stroke::new(1.0_f32, FG_PRIMARY);
     visuals.widgets.active.corner_radius = radius;
 
@@ -94,11 +103,11 @@ pub fn inset_frame() -> egui::Frame {
         .inner_margin(Margin::symmetric(10, 7))
 }
 
-/// High-contrast primary button (white surface, dark text).
+/// High-contrast primary button (wine-red surface, porcelain text).
 pub fn primary_button(label: &str) -> egui::Button<'static> {
-    egui::Button::new(RichText::new(label).color(BG_BASE).strong())
-        .fill(FG_PRIMARY)
-        .stroke(Stroke::new(1.0_f32, FG_PRIMARY))
+    egui::Button::new(RichText::new(label).color(FG_PRIMARY).strong())
+        .fill(ACCENT_WINE)
+        .stroke(Stroke::new(1.0_f32, ACCENT_WINE_HOVER))
         .corner_radius(CornerRadius::same(6))
 }
 
@@ -256,13 +265,23 @@ pub fn highlighted_job(
     job
 }
 
-/// Embed the 64x64 RavomIO cat window icon (`assets/icon.rgba`).
+/// Pixel dimensions (width and height) of the embedded RavomIO cat icon (`assets/icon.rgba`).
+pub const APP_ICON_SIZE: usize = 128;
+
+const ICON_BYTES: &[u8] = include_bytes!("../assets/icon.rgba");
+
+/// Embed the 128x128 RavomIO wine-red cat window icon (`assets/icon.rgba`).
 pub fn app_icon() -> egui::IconData {
     egui::IconData {
-        rgba: include_bytes!("../assets/icon.rgba").to_vec(),
-        width: 64,
-        height: 64,
+        rgba: ICON_BYTES.to_vec(),
+        width: APP_ICON_SIZE as u32,
+        height: APP_ICON_SIZE as u32,
     }
+}
+
+/// Build an `egui::ColorImage` from the embedded 128x128 RavomIO brand icon.
+pub fn brand_logo_image() -> egui::ColorImage {
+    egui::ColorImage::from_rgba_unmultiplied([APP_ICON_SIZE, APP_ICON_SIZE], ICON_BYTES)
 }
 
 #[cfg(test)]
@@ -290,5 +309,13 @@ mod tests {
     fn lerp_color_stays_in_bounds() {
         assert_eq!(lerp_color(BG_BASE, FG_PRIMARY, 0.0), BG_BASE);
         assert_eq!(lerp_color(BG_BASE, FG_PRIMARY, 1.0), FG_PRIMARY);
+    }
+
+    #[test]
+    fn app_icon_has_expected_rgba_dimensions() {
+        let icon = app_icon();
+        assert_eq!(icon.width, APP_ICON_SIZE as u32);
+        assert_eq!(icon.height, APP_ICON_SIZE as u32);
+        assert_eq!(icon.rgba.len(), APP_ICON_SIZE * APP_ICON_SIZE * 4);
     }
 }

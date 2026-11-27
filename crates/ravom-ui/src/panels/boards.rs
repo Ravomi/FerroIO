@@ -181,11 +181,11 @@ pub fn show(app: &mut RavomApp, ui: &mut egui::Ui) {
 
                         let base_fill =
                             theme::lerp_color(theme::BG_SURFACE, theme::BG_MUTED, hover_t);
-                        let fill = theme::lerp_color(base_fill, theme::BG_HOVER, sel_t);
+                        let fill = theme::lerp_color(base_fill, theme::ACCENT_WINE_SUBTLE, sel_t);
                         let base_stroke =
                             theme::lerp_color(theme::BORDER, theme::BORDER_FOCUS, hover_t * 0.6);
                         let stroke_color =
-                            theme::lerp_color(base_stroke, theme::BORDER_FOCUS, sel_t);
+                            theme::lerp_color(base_stroke, theme::ACCENT_WINE, sel_t);
 
                         let title_job = theme::highlighted_job(
                             title,
@@ -216,7 +216,7 @@ pub fn show(app: &mut RavomApp, ui: &mut egui::Ui) {
                                 egui::pos2(r.left() + 2.5, r.center().y),
                                 egui::vec2(2.5, bar_h),
                             );
-                            ui.painter().rect_filled(bar, 1.5, theme::ACCENT_OK);
+                            ui.painter().rect_filled(bar, 1.5, theme::ACCENT_WINE);
                         }
 
                         let resp = card

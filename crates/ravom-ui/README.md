@@ -5,7 +5,7 @@ Desktop GUI workbench (`eframe` / `egui`) for RavomIO, providing board browsing,
 
 ## Interface
 - Binary entry point: `main() -> eframe::Result<()>` launching `RavomApp`
-- `pub struct RavomApp` (`project_dir`, `board_query`, `boards: BoardIndex`, `selected_board`, `selected_env`, `release_mode`, `loaded_config`, `serial_ports`, `console`, `tasks: TaskRunner`, `plotter`)
+- `pub struct RavomApp` (`project_dir`, `board_query`, `boards: BoardIndex`, `selected_board`, `selected_env`, `release_mode`, `loaded_config`, `serial_ports`, `console`, `tasks: TaskRunner`, `plotter`, `brand_texture`)
 - `RavomApp` methods: `new()`, `project_path()`, `try_load_project()`, `env_arg()`, `spawn_build()`, `spawn_flash()`
 - `eframe::App::update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame)`
 

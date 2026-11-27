@@ -1,18 +1,39 @@
 <div align="center">
 
-<img src="./docs/assets/ravomio-icon.jpg" alt="RavomIO Logo" width="128" />
+<img src="./docs/assets/ravomio-banner.jpg" alt="RavomIO — The PlatformIO for Rust Embedded & FPGA Development" width="100%" />
 
-# RavomIO
+<br /><br />
 
 **The PlatformIO for Rust Embedded & FPGA Development**  
 Unified board & toolchain management, native `probe-rs` flashing, **AI-native MCP server (HIL + PID tuning + anti-reversing)**, and a fast **egui** desktop workbench.
 
-[![CI](https://github.com/Ravomi/RavomIO/actions/workflows/ci.yml/badge.svg)](https://github.com/Ravomi/RavomIO/actions/workflows/ci.yml)
-[![License: MIT OR Apache-2.0](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](#license)
-[![Rust](https://img.shields.io/badge/rust-2021%20edition-orange.svg)](https://www.rust-lang.org/)
-[![Boards](https://img.shields.io/badge/boards-2%2C340%2B%20across%2044%20platforms-brightgreen.svg)](#feature-status)
+<p>
+  <a href="https://github.com/Ravomi/RavomIO/actions/workflows/ci.yml">
+    <img src="https://img.shields.io/github/actions/workflow/status/Ravomi/RavomIO/ci.yml?style=flat-square&label=CI&labelColor=1B0E10&color=821F16" alt="CI Status" />
+  </a>
+  <a href="#license">
+    <img src="https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-941F18?style=flat-square&labelColor=1B0E10" alt="License: MIT OR Apache-2.0" />
+  </a>
+  <a href="https://www.rust-lang.org/">
+    <img src="https://img.shields.io/badge/rust-2021%20Edition-821F16?style=flat-square&labelColor=1B0E10" alt="Rust 2021 Edition" />
+  </a>
+  <a href="#feature-status">
+    <img src="https://img.shields.io/badge/boards-2%2C340%2B%20%C2%B7%2044%20Platforms-6C0E0B?style=flat-square&labelColor=1B0E10" alt="2,340+ Boards across 44 Platforms" />
+  </a>
+  <a href="#ai--mcp-integration">
+    <img src="https://img.shields.io/badge/MCP-AI--Native%20HIL-A82A2E?style=flat-square&labelColor=1B0E10" alt="AI-Native MCP" />
+  </a>
+</p>
 
-[Quick Start](#quick-start) · [Features](#key-features) · [AI & MCP](#ai--mcp-integration) · [Architecture](#architecture) · [Roadmap](#roadmap) · [Community](#community)
+<p>
+  <a href="#quick-start">Quick Start</a> ·
+  <a href="#key-features">Features</a> ·
+  <a href="#ai--mcp-integration">AI &amp; MCP</a> ·
+  <a href="#feature-status">Feature Status</a> ·
+  <a href="#architecture">Architecture</a> ·
+  <a href="#roadmap">Roadmap</a> ·
+  <a href="#community">Community</a>
+</p>
 
 </div>
 
@@ -29,6 +50,9 @@ Embedded development shouldn't be slowed down by fragmented toolchains, brittle 
 | **Native `probe-rs` & Serial** | Fast MCU flashing, RTT real-time logging, cross-platform serial monitor, and live waveform plotter. |
 | **AI-Native MCP & Security** | Built-in `mio mcp` stdio server with 3 permission tiers, async background builds, bounded HIL/PID tuning, and stage-separated anti-reversing hardening. |
 | **Fast `egui` Workbench** | Native desktop GUI (`eframe`) with instant board search, non-blocking build/flash console, and live signal plotting. |
+
+> [!TIP]
+> Migrating from an existing PlatformIO repository? Run `mio migrate` to convert `platformio.ini` (including `[env]` inheritance, `extends`, and variable interpolation) into `ravom.toml`, then launch `mio ui` or connect an AI agent via `mio mcp`.
 
 ---
 
@@ -59,15 +83,22 @@ mio mcp --allow-hardware
 
 ## AI & MCP Integration
 
-RavomIO is designed from the ground up to work seamlessly with AI coding agents (see [AGENTS.md](./AGENTS.md) for the Google Rust Style, MCP, and Skill contract):
+RavomIO is designed from the ground up to work seamlessly with AI coding agents (see [AGENTS.md](./AGENTS.md) for the Google Rust Style, MCP, and Skill contract).
 
-- **Three-Tier Permission Isolation (`McpMode`)**:
-  - `mio mcp --mode read-only`: Board discovery (`boards_search`, `board_inspect`), toolchain diagnostics (`doctor_check`), USB device discovery (`device_list`), dry-run build/security plans, and ELF binary audits.
-  - `mio mcp --mode build` *(default)*: Adds non-interactive scaffolding (`init_project`) and asynchronous background task management (`task_start`, `task_poll`, `task_cancel`).
-  - `mio mcp --allow-hardware`: Enables physical flashing, bounded serial telemetry sampling (`monitor_sample` with automatic PID error metrics), and clamped PID gain injection (`pid_tune`).
-- **Stage-Separated Anti-Reversing Hardening**:
-  - **`hil` profile**: Optimized (`-C opt-level=s`) for deterministic real-time PID loop timing while keeping symbols and RTT telemetry intact.
-  - **`release-hardened` profile**: Applies `-C strip=symbols`, `-C panic=abort`, `--remap-path-prefix`, fat LTO, and optional LLVM obfuscation passes—verified with `audit_firmware` and paired with dry-run chip read-protection plans (`plan_chip_protection`).
+### Three-Tier Permission Isolation (`McpMode`)
+
+| Mode | CLI Invocation | Exposed Capabilities |
+| :--- | :--- | :--- |
+| **`read-only`** | `mio mcp --mode read-only` | `boards_search`, `board_inspect`, `doctor_check`, `device_list`, `plan_build`, `plan_hardened_build`, `audit_firmware`, `plan_chip_protection` |
+| **`build`** *(default)* | `mio mcp --mode build` | All `read-only` tools plus `init_project`, `task_start(build)`, `task_poll`, `task_cancel` |
+| **`hardware`** | `mio mcp --allow-hardware` | All `build` tools plus `task_start(flash)`, bounded `monitor_sample` (with automatic PID error metrics), and clamped `pid_tune` |
+
+### Stage-Separated Anti-Reversing Hardening
+
+| Profile | Stage | Toolchain & Security Behavior |
+| :--- | :--- | :--- |
+| **`hil`** | Closed-Loop Tuning | Applies `-C opt-level=s` for deterministic WCET loop timing while keeping symbols and RTT telemetry intact. |
+| **`release-hardened`** | Production Release | Applies `-C strip=symbols`, `-C panic=abort`, `--remap-path-prefix`, fat LTO, and optional LLVM obfuscation passes—verified via `audit_firmware` and paired with dry-run `plan_chip_protection`. |
 
 ---
 
@@ -103,15 +134,21 @@ RavomIO is designed from the ground up to work seamlessly with AI coding agents 
 RavomIO/
 ├── Cargo.toml              # Workspace configuration & Google Rust lints
 ├── AGENTS.md               # AI agent engineering guide (Google Rust Style, MCP & Skill contract)
+├── paseo.json              # Paseo worktree lifecycle hooks & workspace command scripts
+├── .worktreeinclude        # Gitignored developer config patterns copied into new worktrees
 ├── crates/
 │   ├── ravom-core/         # Core engine: registry, security/ELF audit, build / flash / monitor / zephyr
 │   ├── ravom-plugin/       # FrameworkPlugin trait, FrameworkKind & project scaffolding templates
 │   ├── ravom-cli/          # CLI binary `mio` (subcommands + stdio MCP server + E2E/HIL tests)
-│   └── ravom-ui/           # Native egui desktop workbench (app / panels / tasks / console / plotter)
+│   └── ravom-ui/           # Native egui desktop workbench (wine-red theme, panels, tasks, plotter)
 ├── boards/                 # 2,340+ board definitions (<platform>/<id>.toml), embedded at build time
-├── docs/                   # EGM design documents & visual assets
+├── docs/
+│   ├── assets/             # Wine-red brand icons, geometric SVG marks, banner, and poster
+│   ├── designs/            # EGM architecture & optimization design documents
+│   └── guide/              # Official RavomIO documentation site (submodule)
+├── examples/               # Ready-to-build Rust embedded, Linux SBC & FPGA examples (submodule)
 ├── hil/                    # Hardware-in-the-loop bench matrix + firmware fixtures
-└── scripts/                # probe-rs target snapshot + PlatformIO board sync tooling
+└── scripts/                # Board sync, probe-rs snapshot & Paseo worktree setup/teardown scripts
 ```
 
 ---
@@ -133,6 +170,21 @@ RavomIO/
 
 ---
 
+<details>
+<summary><strong>Brand &amp; Geometric Logo Kit (Wine-Red Identity)</strong></summary>
+
+<br />
+
+| Official Squircle Icon | Bézier Outline Study | Geometric Construction Grid |
+| :---: | :---: | :---: |
+| <img src="./docs/assets/ravomio-icon.png" alt="RavomIO Wine-Red Squircle Icon" width="168" /> | <img src="./docs/assets/ravomio-logo-outline.svg" alt="RavomIO Geometric Outline" width="168" /> | <img src="./docs/assets/ravomio-logo-construction.svg" alt="RavomIO Geometric Construction" width="168" /> |
+
+**Official Wine-Red Palette**: `#941F18` (Primary Claret) · `#821F16` (Bordeaux) · `#5A0C08` (Deep Vintage) · `#12090A` (Velvet Oxblood Base) · Vector assets live in [`docs/assets/`](./docs/assets/).
+
+</details>
+
+---
+
 ## Acknowledgments
 
 RavomIO stands on the shoulders of the open-source embedded, FPGA, and Rust communities:
@@ -147,7 +199,7 @@ RavomIO stands on the shoulders of the open-source embedded, FPGA, and Rust comm
 ## Subdirectories & System Boundaries
 - `crates`: [./crates/README.md](./crates/README.md) — Workspace crates (`ravom-core`, `ravom-plugin`, `ravom-cli`, `ravom-ui`).
 - `hil`: [./hil/README.md](./hil/README.md) — Hardware-in-the-loop bench matrix and firmware fixtures (`./hil/fixtures/rtt-hello-stm32f103/README.md`).
-- `scripts`: [./scripts/README.md](./scripts/README.md) — PlatformIO board sync and `probe-rs` target snapshot maintenance scripts.
+- `scripts`: [./scripts/README.md](./scripts/README.md) — PlatformIO board sync, `probe-rs` target snapshot, and Paseo worktree lifecycle scripts.
 
 ## Global Invariants
 - Board definitions in `boards/` are embedded into `ravom-core` at build time and validated against `crates/ravom-core/data/probe-rs-targets.txt` via `mio boards --check`.
@@ -164,9 +216,15 @@ RavomIO stands on the shoulders of the open-source embedded, FPGA, and Rust comm
 
 ## Community
 
-- **QQ 交流群**: [点击加入【RavomIO交流群】](https://qm.qq.com/q/hZVzfJmAVy)
+<div align="center">
+
+**QQ 交流群**: [点击加入【RavomIO交流群】](https://qm.qq.com/q/hZVzfJmAVy)
+
+<br />
 
 <img src="./assets/qq-group-qr.jpg" width="220" alt="RavomIO QQ 交流群二维码" />
+
+</div>
 
 ---
 

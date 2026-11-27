@@ -83,7 +83,7 @@ impl Plotter {
                 .collect();
             painter.add(egui::Shape::line(
                 points,
-                Stroke::new(1.75_f32, theme::ACCENT_OK),
+                Stroke::new(1.75_f32, theme::ACCENT_WINE_FG),
             ));
         }
     }

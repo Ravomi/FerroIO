@@ -7,13 +7,28 @@ use ravom_core::project::init_project;
 pub fn show(app: &mut RavomApp, ui: &mut egui::Ui) {
     // Row 1: Brand + primary build/flash actions (never clipped).
     ui.horizontal(|ui| {
+        let logo = app.brand_texture.get_or_insert_with(|| {
+            ui.ctx().load_texture(
+                "ravomio-brand-logo",
+                theme::brand_logo_image(),
+                egui::TextureOptions::LINEAR,
+            )
+        });
+        ui.image(egui::load::SizedTexture::new(
+            logo.id(),
+            egui::vec2(22.0, 22.0),
+        ));
         ui.label(
             RichText::new("RavomIO")
                 .size(15.0)
                 .strong()
                 .color(theme::FG_PRIMARY),
         );
-        theme::badge(ui, format!("v{}", ravom_core::version()), theme::FG_MUTED);
+        theme::badge(
+            ui,
+            format!("v{}", ravom_core::version()),
+            theme::ACCENT_WINE_FG,
+        );
 
         ui.with_layout(Layout::right_to_left(egui::Align::Center), |ui| {
             let idle = app.tasks.running().is_none();

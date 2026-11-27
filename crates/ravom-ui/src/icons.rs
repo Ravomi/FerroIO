@@ -112,18 +112,14 @@ pub fn button(
     primary: bool,
     enabled: bool,
 ) -> egui::Response {
-    let text_color = if primary {
-        crate::theme::BG_BASE
-    } else {
-        crate::theme::FG_PRIMARY
-    };
+    let text_color = crate::theme::FG_PRIMARY;
     let fill = if primary {
-        crate::theme::FG_PRIMARY
+        crate::theme::ACCENT_WINE
     } else {
         crate::theme::BG_MUTED
     };
     let border = if primary {
-        crate::theme::FG_PRIMARY
+        crate::theme::ACCENT_WINE_HOVER
     } else {
         crate::theme::BORDER
     };
@@ -151,9 +147,9 @@ pub fn button(
         let bg = if !enabled {
             fill.gamma_multiply(0.5)
         } else if hovered && !primary {
-            Color32::from_rgb(48, 48, 54)
+            crate::theme::BG_HOVER
         } else if hovered && primary {
-            Color32::from_rgb(228, 228, 231)
+            crate::theme::ACCENT_WINE_HOVER
         } else {
             fill
         };
